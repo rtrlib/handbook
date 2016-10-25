@@ -1,2 +1,2 @@
-BGP Routing Daemons using RPKR/RTR
-==================================
+BGP Routing Daemons with RPKR/RTR
+=================================
