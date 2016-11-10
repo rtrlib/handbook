@@ -6,8 +6,8 @@ Background
 
 RPKI-enabled routers do not store ROAs itself but only the validated content of these authorities.
 The validation of ROAs will be performed by trusted cache servers, which will be deployed at the network operator site.
-The RPKI/RTR protocol defines a standard mechanism to maintain the exchange of the prefix/origin AS mapping between the cache server and routers.
-In combination with a ​`BGP`_ prefix origin validation scheme a router is able to verify received BGP updates without suffering from cryptographic complexity.
+The RPKI-RTR protocol defines a standard mechanism to maintain the exchange of the prefix origin AS mapping between the cache server and routers.
+In combination with a ​`BGP prefix origin validation scheme <http://tools.ietf.org/html/rfc6811/>`_ a router is able to verify received BGP updates without suffering from cryptographic complexity.
 
 The RTRlib is a lightweight C library.
 It implements the RPKI/RTR protocol for the router end and the proposed prefix origin validation scheme.
@@ -17,9 +17,5 @@ The RTRlib provides functions to establish a connection to a single or multiple 
 
 Other tools
 
-* There is a nice overview at `RIPE`_.
+* There is a nice overview at `RIPE <https://www.ripe.net/manage-ips-and-asns/resource-management/certification/tools-and-resources/>`_.
 * Note, `​rtr-origin <http://subvert-rpki.hactrn.net/trunk/rtr-origin/>`_ includes also a client. It is written in Python.
-
-.. _RIPE: https://www.ripe.net/manage-ips-and-asns/resource-management/certification/tools-and-resources/
-
-.. _BGP: http://tools.ietf.org/html/rfc6811/
