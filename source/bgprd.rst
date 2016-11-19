@@ -17,7 +17,7 @@ To set up BIRD, first `download <http://bird.network.cz/?download>`_, unzip and 
   make
   make install
 
-You may need to execute these and any following commands in this handbook as :bash:`sudo`. For more information on building it can be found in the README of BIRD.
+You may need to execute these and any following commands in this handbook as :bash:`sudo`. More information on the building process can be found in the README of BIRD.
 Now start the daemon with 
 
 .. code-block:: bash
