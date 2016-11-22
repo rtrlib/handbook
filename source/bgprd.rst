@@ -83,6 +83,25 @@ The options do the following:
 |
 
 After executing this line, you will see that, after establishing a connection to the cache server, the ROA entries are piped into the BIRD ROA table.
+Switch back to the BIRD CLI and execute the following command:
+
+.. code-block:: bash
+
+  bird> show roa
+  194.3.206.0/24 max 24 as 24954
+  03.4.119.0/24 max 24 as 38203
+  200.7.212.0/24 max 24 as 27947
+  200.7.212.0/24 max 24 as 19114
+  103.10.79.0/24 max 24 as 45951
+  ...
+
+There will be a lot of similar output, the content of the ``bird-rpki-client`` was successfully written to the ROA table. Search, for example, for the prefix
+93.175.146.0/24 and BIRD will return the entry with its corresponding ASN.
+
+.. code-block:: bash
+
+  bird> show roa 93.175.146.0/24
+  93.175.146.0/24 max 24 as 12654
 
 
 The Quagga Routing Software Suite
@@ -92,4 +111,29 @@ A Routing Daemon such as Quagga implements TCP/IP routing via protocols such as 
 with other routers. Regarding BGP, Quagga supports version 4.
 An unofficial release implements support for the RPKI so BGP updates can be verified against a ROA. Doing so requires the support of the RTRlib so Quagga can
 initialize a connection to a cache server using the RTR protocol.
+
+To install Quagga, clone the Git repository from `here <https://github.com/rtrlib/quagga-rtrlib>`_ and switch the branch like this:
+
+.. code-block:: bash
+
+  git clone https://github.com/rtrlib/quagga-rtrlib.git
+  cd quagga-rtrlib
+  git checkout feature/rtrlib
+  
+This repository is a fork of the original and implements RPKI support. Before building it, make sure your system meets the perquisites:
+
+* automake:	1.9.6
+* autoconf:	2.59 
+* libtool:	1.5.22
+* texinfo:	4.7
+* GNU AWK:	3.1.5
+
+If all of these packages are installed, Quagga can be build. Some steps might require sudo privileges:
+
+.. code-block:: bash
+
+  ./bootstrap
+  ./configure --enable-rpki
+  make
+  make install
 
