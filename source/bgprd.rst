@@ -18,36 +18,25 @@ To set up BIRD, first `download <http://bird.network.cz/?download>`_, unzip and 
   make install
 
 You may need to execute these and any following commands in this handbook as :bash:`sudo`. More information on the building process can be found in the README of BIRD.
-Now start the daemon with 
-
-.. code-block:: bash
-
-  ./bird
-
-You can check whether the daemon is running by typing
-
-.. code-block:: bash
-
-  ps -A | grep bird
   
-BIRD is now up and running. It must be configured before any validations can be done with it. First, a ROA table must be added to :bash:`/usr/local/etc/bird.conf`
+Before any validations with BIRD can be done, it must be configured. First, a ROA table and the validation function must be added to :bash:`/usr/local/etc/bird.conf`.
 At the top of this file write:
 
 .. code-block:: bash
 
   roa table rtr_roa_table ;
 
-This line automatically creates a ROA table when the BIRD daemon is started. To check whether it was created successfully, run :bash:`./birdc`.
-The BIRD CLI will be executed. Refresh the configuration file and list all symbols:
+  function test_ripe_beacons()
+  {
+    print "Testing ROA";
+    print "Should be TRUE TRUE TRUE:",
+      " ", roa_check(rtr_roa_table, 84.205.83.0/24, 12654) = ROA_UNKNOWN,
+      " ", roa_check(rtr_roa_table, 93.175.146.0/24, 12654) = ROA_VALID,
+      " ", roa_check(rtr_roa_table, 93.175.147.0/24, 12654) = ROA_INVALID;
+  }
 
-.. code-block:: bash
-
-  bird> configure
-  Reading configuration from /usr/local/etc/bird.conf
-  Reconfigured
-  bird> show symbols roa
-  rtr_roa_table   ROA table
-
+The first line automatically creates a ROA table when the BIRD daemon is started. The function itself checks for three entries in the ROA table
+and prints the corresponding validity status.
 
 To try out whether BIRD receives actual responses, there is an IPC that runs on the BIRD socket. Clone the `BIRD-RTRlib-CLI <https://github.com/rtrlib/bird-rtrlib-cli>`_
 repository on GitHub and build it:
@@ -67,23 +56,38 @@ In case that the RTRlib was not installed in the default directory, run
 If everything was build correctly, there now should be an executable called :bash:`bird-rpki-client`. To see all the options of this program run the help option
 :bash:`./bird-rpki-client --help`
 
-Now connect to the BIRD socket and receive the RPKI data with the following command. It can also be found in the README of the bird-rpki-client.
+The BIRD socket must now be opened. In order to do that, head back to the BIRD directory and type the following command:
 
 .. code-block:: bash
 
-  ./bird-rpki-client -b /usr/local/var/run/bird.ctl -r rpki-validator.realmv6.org:8282 --bird-roa-table=rtr_roa_table
+  ./bird -c /usr/local/etc/bird.conf -s /tmp/bird.ctl -d 
+
+``/tmp/bird.ctl`` is the location and name of the socket that will be created. It is required by the ``bird-rpki-client``. With the option ``-d``
+BIRD runs in the foreground. That's necessary to view the output of the ``test_ripe_beacons`` function.
+
+Open a new Terminal. Now connect to the BIRD socket and receive the RPKI data with the following command. It can also be found in the README of the bird-rpki-client.
+
+.. code-block:: bash
+
+  ./bird-rpki-client -b /temp/bird.ctl -r rpki-validator.realmv6.org:8282 -t rtr_roa_table
 
 The options do the following:
 
-| :bash:`-b`: the location of the BIRD socket. Depending on the system you are running this on, you might need to change this path to :bash:`/var/run/bird.ctl`
+| :bash:`-b`: the location of the BIRD socket.
 |
 | :bash:`-r`: the address and port of the RPKI cache server. Change it if you want to use a different one.
 |
-| :bash:`--bird-roa-table`: the table in which the gathered rpki-data is filled into. We created this one earlier in the bird.conf
+| :bash:`-t`: the table in which the gathered rpki-data is filled into. We created this one earlier in the bird.conf
 |
 
 After executing this line, you will see that, after establishing a connection to the cache server, the ROA entries are piped into the BIRD ROA table.
-Switch back to the BIRD CLI and execute the following command:
+Start the BIRD CLI with the following command:
+
+.. code-block:: bash
+
+   sudo ./birdc -s /tmp/bird.ctl
+
+All the commands of the CLI can be viewed by typing ``?``. To list all the entries from the ROA table enter:
 
 .. code-block:: bash
 
@@ -95,14 +99,29 @@ Switch back to the BIRD CLI and execute the following command:
   103.10.79.0/24 max 24 as 45951
   ...
 
-There will be a lot of similar output, the content of the ``bird-rpki-client`` was successfully written to the ROA table. Search, for example, for the prefix
+There will be a lot of similar output. The content of the ``bird-rpki-client`` was successfully written to the ROA table. Search, for example, for the prefix
 93.175.146.0/24 and BIRD will return the entry with its corresponding ASN.
 
 .. code-block:: bash
 
   bird> show roa 93.175.146.0/24
-  93.175.146.0/24 max 24 as 12654
+  93.175.146. sudo ./birdc -s /tmp/bird.ctl0/24 max 24 as 12654
 
+To do the actual validation of the prefixes that were defined in ``test_ripe_beacons`` execute:
+
+.. code-block:: bash
+
+  bird> eval test_ripe_beacons()
+  void()
+  
+To see the output of the function switch to the terminal that is running the BIRD daemon. The output will look like:
+
+.. code-block:: bash
+
+  bird: Testing ROA
+  bird: Should be TRUE TRUE TRUE: TRUE TRUE TRUE
+
+After seeing this line, the prefixes were successfully tested.
 
 The Quagga Routing Software Suite
 ---------------------------------
@@ -128,7 +147,7 @@ This repository is a fork of the original and implements RPKI support. Before bu
 * texinfo:	4.7
 * GNU AWK:	3.1.5
 
-If all of these packages are installed, Quagga can be build. Some steps might require sudo privileges:
+If all of these packages are installed, Quagga can be build. Some steps might require ``sudo`` privileges:
 
 .. code-block:: bash
 
