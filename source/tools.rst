@@ -1,3 +1,5 @@
+.. _tools:
+
 Tools based on the RTRlib
 =========================
 
@@ -10,23 +12,63 @@ These tools range from low lever shell commands to easy-to-use browser plugins.
 For all tools we provide small usage examples; where ever appropriate we will
 use the following `RIPE RIS Beacons`_ with well known RPKI validation results:
 
-=============== ========= ==========
-IP Prefix       Valid ROA Result
-=============== ========= ==========
-93.175.146.0/24 AS12654   valid
-93.175.147.0/24 AS196615  invalid AS
-84.205.83.0/24  None      not found
-=============== ========= ==========
+================== ============ ==========
+IP Prefix          Valid Origin Result
+================== ============ ==========
+93.175.146.0/24    AS12654      valid
+2001:7fb:fd02::/48 AS12654      valid
+93.175.147.0/24    AS196615     invalid AS
+2001:7fb:fd03::/48 AS196615     invalid AS
+84.205.83.0/24     None         not found
+2001:7fb:ff03::/48 None         not found
+================== ============ ==========
 
 *Note* all prefixes are validated against origin AS12654, owned by RIPE.
 
 RTRlib Client
 -------------
 
-The RTRlib client is part of the RTRlib package and will be installed
+The RTRlib client (``rtrclient``) is part of the RTRlib package,
+By following the installation instruction given in the previous section
+(:ref:`install`) it will be installed automatically.
 
-RTRlib Client Validator
+RTRlib Validator
 -----------------------
+
+The RTRlib command line validator (``cli-validator``) is also part of RTRlib
+package and is already installed.
+This tool provides a simple command line interface to validate IP prefix to
+origin AS relations against ROAs in an RPKI cache.
+To execute the program you must provide parameters ``hostname`` and ``port`` of
+a known RPKI cache server, afterwards you can validate  IP prefixes by typing
+``prefix``, ``prefix length``, and ``origin ASN`` separated by spaces. Press
+``ENTER`` to run the validation, the result will be shown instantly below the
+input.
+The following listing shows the validation of all known RIPE RIS beacons using
+our cache server:
+
+.. code-block:: Bash
+
+    cli-validator rpki-validator.realmv6.org 8282
+    93.175.146.0 24 12654
+    93.175.146.0 24 12654|12654 93.175.146.0 24 24|0
+    2001:7fb:fd02:: 48 12654
+    2001:7fb:fd02:: 48 12654|12654 2001:7fb:fd02:: 48 48|0
+    93.175.147.0 24 12654
+    93.175.147.0 24 12654|196615 93.175.147.0 24 24|2
+    2001:7fb:fd03:: 48 12654
+    2001:7fb:fd03:: 48 12654|196615 2001:7fb:fd03:: 48 48|2
+    84.205.83.0 24 12654
+    84.205.83.0 24 12654||1
+    2001:7fb:ff03:: 48 12654
+    2001:7fb:ff03:: 48 12654||1
+
+The output is structured into ``input query | ROAs | result``, separated by pipe (``|``).
+The validation results are ``0`` for *valid*, ``1`` for *not found*,
+and ``2`` for *invalid*.
+For *valid* and *invalid* the output also shows the matching or conflicting ROAs
+for the given prefix and AS number; if multiple ROAs for a prefix exist they
+are all listed separated by commas (``,``).
 
 Firefox Browser Plugin
 ----------------------
@@ -76,13 +118,20 @@ RPKI MIRO is a monitoring application that consists of three parts:
 
 .. image:: ../images/rpki_miro.png
 
+Using RPKI MIRO you can lookup any IP prefix and its associated ROA, e.g. the
+RIPE RIS beacon ``93.175.147.0/24``.
+Open a browser and goto URL http://rpki-browser.realmv6.org, in the menu switch
+from ``AFRINIC`` to ``RIPE`` and set a filter for the prefix ``93.175.147.0/24``
+with attribute ``resource``.
+Expand the ROA tree view on the left side to get the corresponding ROA for the
+beacon prefix, the resulting web view should look like the screen shot above.
+
 RPKI RBV
 --------
 
-
 The RPKI *RESTful BGP Validator* (RBV) is web application that provides a RESTful
-API to validate the BGP origin AS of a given IP prefix. The validation service
-can be accessed via `web page <http://rpki-validator.realmv6.org/html/validate.html>`_.
+API to validate the BGP origin AS of a given IP prefix.
+The validation service can be accessed via `web page <http://rpki-validator.realmv6.org/html/validate.html>`_.
 or directly using the RESTful API.
 
 .. image:: ../images/rpki_rbv.png

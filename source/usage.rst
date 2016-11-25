@@ -1,5 +1,9 @@
+.. _usage:
+
 Usage of the RTRlib
 ===================
+
+.. _install:
 
 Build and Install RTRlib
 ------------------------
@@ -55,7 +59,7 @@ Now to build the library itself with all the tests and tools execute
 .. code-block:: Bash
 
     make
-    
+
 The build process of the library is now complete. An additional option is to copy libraries
 and headers to system directories. To do this, execute
 
