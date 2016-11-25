@@ -6,19 +6,20 @@
 Welcome to The RTRlib Handbook!
 ===========================================
 
+This is the official User Handbook of the RTRlib, it provides guidance on how to
+use the library for development and gives an overview on a variety of tools that
+utilize the RTRlib.
+Further information can be found on the RTRlib website_ and its Github_ repository.
+
 Contents:
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
 
-.. include:: intro.rst
-.. include:: usage.rst
-.. include:: tools.rst
-.. include:: bgprd.rst
+   intro
+   usage
+   tools
+   bgprd
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+.. _website: https://rtrlib.realmv6.org
+.. _Github:  https://github.com/rtrlib/rtrlib
