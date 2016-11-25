@@ -28,9 +28,40 @@ IP Prefix          Valid Origin Result
 RTRlib Client
 -------------
 
-The RTRlib client (``rtrclient``) is part of the RTRlib package,
-By following the installation instruction given in the previous section
-(:ref:`install`) it will be installed automatically.
+The RTRlib client (``rtrclient``) is default part of the RTRlib package.
+By following the instruction given in the previous section (:ref:`install`)
+it will be installed automatically.
+To establish a connection with a RPKI cache server the client can use *TCP* or
+*SSH* transport sockets.
+It then communicates with the cache server utilizing the RTR protocol provided
+by the RTRlib to receive all cryptographically verified ROAs from the cache.
+To get a complete reference over all options for the command simply run
+``rtrclient`` in a shell.
+
+The following listing shows how to connect the ``rtrclient`` with a cache server
+as well as 10 lines of the resulting output:
+
+.. code-block:: Bash
+
+    rtrclient tcp -k -p rpki-validator.realmv6.org 8282
+    Prefix                                     Prefix Length         ASN
+    + 89.185.224.0                                19 -  19        24971
+    + 180.234.81.0                                24 -  24        45951
+    + 37.32.128.0                                 17 -  17       197121
+    + 161.234.0.0                                 16 -  24         6306
+    + 85.187.243.0                                24 -  24        29694
+    + 2a02:5d8::                                  32 -  32         8596
+    + 2a03:2260::                                 30 -  30       201701
+    + 2001:13c7:6f08::                            48 -  48        27814
+    + 2a07:7cc3::                                 32 -  32        61232
+    + 2a05:b480:fc00::                            48 -  48        39126
+
+It shows ROAs for IPv4 and IPv6 prefixes with allowed range for prefix length
+and the associated origin ASN.
+Each line represents either a ROA that was added (``+``) or removed (``-``)
+from the cache server.
+The RTRlib client will receive such Updates until the program is terminated,
+i.e., by ``CTRL+C``.
 
 RTRlib Validator
 -----------------------
