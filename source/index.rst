@@ -9,7 +9,7 @@ Welcome to The RTRlib Handbook!
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
 .. include:: intro.rst
 .. include:: usage.rst
