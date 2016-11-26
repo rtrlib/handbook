@@ -1,8 +1,108 @@
+.. _tools:
+
 Tools based on the RTRlib
 =========================
 
-Browser Plugins
----------------
+.. _RIPE RIS Beacons: https://www.ripe.net/analyse/internet-measurements/routing-information-service-ris/current-ris-routing-beacons
+
+In the following sections we give an overview on several software tools, which
+utilize the RTRlib and its features.
+These tools range from low lever shell commands to easy-to-use browser plugins.
+
+For all tools we provide small usage examples; where ever appropriate we will
+use the following `RIPE RIS Beacons`_ with well known RPKI validation results:
+
+================== ============ ==========
+IP Prefix          Valid Origin Result
+================== ============ ==========
+93.175.146.0/24    AS12654      valid
+2001:7fb:fd02::/48 AS12654      valid
+93.175.147.0/24    AS196615     invalid AS
+2001:7fb:fd03::/48 AS196615     invalid AS
+84.205.83.0/24     None         not found
+2001:7fb:ff03::/48 None         not found
+================== ============ ==========
+
+*Note* all prefixes are validated against origin AS12654, owned by RIPE.
+
+RTRlib Client
+-------------
+
+The RTRlib client (``rtrclient``) is default part of the RTRlib package.
+By following the instruction given in the previous section (:ref:`install`)
+it will be installed automatically.
+To establish a connection with a RPKI cache server the client can use *TCP* or
+*SSH* transport sockets.
+It then communicates with the cache server utilizing the RTR protocol provided
+by the RTRlib to receive all cryptographically verified ROAs from the cache.
+To get a complete reference over all options for the command simply run
+``rtrclient`` in a shell.
+
+The following listing shows how to connect the ``rtrclient`` with a cache server
+as well as 10 lines of the resulting output:
+
+.. code-block:: Bash
+
+    rtrclient tcp -k -p rpki-validator.realmv6.org 8282
+    Prefix                                     Prefix Length         ASN
+    + 89.185.224.0                                19 -  19        24971
+    + 180.234.81.0                                24 -  24        45951
+    + 37.32.128.0                                 17 -  17       197121
+    + 161.234.0.0                                 16 -  24         6306
+    + 85.187.243.0                                24 -  24        29694
+    + 2a02:5d8::                                  32 -  32         8596
+    + 2a03:2260::                                 30 -  30       201701
+    + 2001:13c7:6f08::                            48 -  48        27814
+    + 2a07:7cc3::                                 32 -  32        61232
+    + 2a05:b480:fc00::                            48 -  48        39126
+
+It shows ROAs for IPv4 and IPv6 prefixes with allowed range for prefix length
+and the associated origin ASN.
+Each line represents either a ROA that was added (``+``) or removed (``-``)
+from the cache server.
+The RTRlib client will receive such Updates until the program is terminated,
+i.e., by ``CTRL+C``.
+
+RTRlib Validator
+-----------------------
+
+The RTRlib command line validator (``cli-validator``) is also part of RTRlib
+package and is already installed.
+This tool provides a simple command line interface to validate IP prefix to
+origin AS relations against ROAs in an RPKI cache.
+To execute the program you must provide parameters ``hostname`` and ``port`` of
+a known RPKI cache server, afterwards you can validate  IP prefixes by typing
+``prefix``, ``prefix length``, and ``origin ASN`` separated by spaces. Press
+``ENTER`` to run the validation, the result will be shown instantly below the
+input.
+The following listing shows the validation of all known RIPE RIS beacons using
+our cache server:
+
+.. code-block:: Bash
+
+    cli-validator rpki-validator.realmv6.org 8282
+    93.175.146.0 24 12654
+    93.175.146.0 24 12654|12654 93.175.146.0 24 24|0
+    2001:7fb:fd02:: 48 12654
+    2001:7fb:fd02:: 48 12654|12654 2001:7fb:fd02:: 48 48|0
+    93.175.147.0 24 12654
+    93.175.147.0 24 12654|196615 93.175.147.0 24 24|2
+    2001:7fb:fd03:: 48 12654
+    2001:7fb:fd03:: 48 12654|196615 2001:7fb:fd03:: 48 48|2
+    84.205.83.0 24 12654
+    84.205.83.0 24 12654||1
+    2001:7fb:ff03:: 48 12654
+    2001:7fb:ff03:: 48 12654||1
+
+The output is structured into ``input query | ROAs | result``, separated by pipe (``|``).
+The validation results are ``0`` for *valid*, ``1`` for *not found*,
+and ``2`` for *invalid*.
+For *valid* and *invalid* the output also shows the matching or conflicting ROAs
+for the given prefix and AS number; if multiple ROAs for a prefix exist they
+are all listed separated by commas (``,``).
+
+Firefox Browser Plugin
+----------------------
 
 .. |valid| image:: ../images/valid.png
 
@@ -16,7 +116,7 @@ To check prefixes while browsing the internet there is a validation tool for Fir
 shows the user whether the currently visited website has a valid prefix. A small icon indicates the status, which is either
 valid (|valid|), invalid (|invalid|) or was not found (|not_found|).
 
-Chrome user can profit from the extension aswell, but they will have to install it by hand.
+Chrome user can profit from the extension as well, but they will have to install it by hand.
 First download the `Chrome extension <https://github.com/rtrlib/chrome-extension>`_ from GitHub. Now open a new tab in
 the browser and enter ``chrome://extensions``. Activate the checkbox that says `Developer Mode` in the top right corner.
 Now click the `Load unpacked extension` button and navigate to the source directory of the downloaded files.
@@ -30,13 +130,45 @@ The *RPKI Realtime Dashboard* (READ)
 RPKI MIRO
 ---------
 
-The RPKI *Monitoring and Inspection of RPKI Objects* (MIRO)
+.. _RPKI MIRO: http://rpki-miro.realmv6.org/
+
+The RPKI *Monitoring and Inspection of RPKI Objects* (`RPKI MIRO`_)
+aims for easy access to RPKI certificates, revocation lists, ROAs etc.
+to finally give Internet operators more confidence in their data.
+Though, RPKI is a powerful tool, its success depends on several aspects.
+One crucial piece is the correctness of the RPKI data.
+RPKI data is public but might be hard to inspect outside of shell-like environments.
+
+The main objective of RPKI MIRO is to provide an extensive but painless insight
+into the published RPKI content.
+RPKI MIRO is a monitoring application that consists of three parts:
+
+#. standard functions to collect RPKI data from remote repositories,
+#. a browser to visualize RPKI objects, and
+#. statistical analysis of the collected objects.
+
+.. image:: ../images/rpki_miro.png
+
+Using RPKI MIRO you can lookup any IP prefix and its associated ROA, e.g. the
+RIPE RIS beacon ``93.175.147.0/24``.
+Open a browser and goto URL http://rpki-browser.realmv6.org, in the menu switch
+from ``AFRINIC`` to ``RIPE`` and set a filter for the prefix ``93.175.147.0/24``
+with attribute ``resource``.
+Expand the ROA tree view on the left side to get the corresponding ROA for the
+beacon prefix, the resulting web view should look like the screen shot above.
 
 RPKI RBV
 --------
-.. image:: ../images/rest_bgp_validator.png
 
-The RPKI *RESTful BGP Validator* (RBV) offers the ability to host BGP validation on your own.
+The RPKI *RESTful BGP Validator* (RBV) is web application that provides a RESTful
+API to validate the BGP origin AS of a given IP prefix.
+The validation service can be accessed via `web page <http://rpki-validator.realmv6.org/html/validate.html>`_.
+or directly using the RESTful API.
+
+.. image:: ../images/rpki_rbv.png
+
+RBV has two distinct APIs
+offers the ability to host BGP validation on your own.
 An example of how it could look like can be found `here <http://rpki-validator.realmv6.org/html/validate.html>`_.
 If a query like the one in the picture is sent, the result will be a JSON Object like this one
 
@@ -64,3 +196,9 @@ For a detailed instruction how to install and set up the API visit the `RBV Repo
 
 RTRlib Python Binding
 ---------------------
+
+Other Third-Party Tools
+-----------------------
+
+- There is a nice overview at `RIPE <https://www.ripe.net/manage-ips-and-asns/resource-management/certification/tools-and-resources/>`_.
+- Note, `rtr-origin <http://subvert-rpki.hactrn.net/trunk/rtr-origin/>`_ includes also a client. It is written in Python.
