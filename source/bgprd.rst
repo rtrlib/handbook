@@ -38,8 +38,17 @@ At the top of this file write:
 The first line automatically creates a ROA table when the BIRD daemon is started. The function itself checks for three entries in the ROA table
 and prints the corresponding validity status.
 
-To try out whether BIRD receives actual responses, there is an IPC that runs on the BIRD socket. Clone the `BIRD-RTRlib-CLI <https://github.com/rtrlib/bird-rtrlib-cli>`_
-repository on GitHub and build it:
+The BIRD socket must now be opened. In order to do that type the following command:
+
+.. code-block:: bash
+
+  ./bird -c /usr/local/etc/bird.conf -s /tmp/bird.ctl -d 
+
+With the option ``-d`` BIRD runs in the foreground. That's necessary to view the output of the ``test_ripe_beacons`` function.
+``/tmp/bird.ctl`` is the location and name of the socket that will be created. It is required by the ``bird-rtrlib-cli`` which we will install next.
+
+Open a new terminal. To try out whether BIRD receives actual responses, there is an IPC that runs on the BIRD socket.
+Clone the `BIRD-RTRlib-CLI <https://github.com/rtrlib/bird-rtrlib-cli>`_ repository on GitHub and build it:
 
 .. code-block:: bash
 
@@ -53,23 +62,13 @@ In case that the RTRlib was not installed in the default directory, run
   cmake -DRTRLIB_INCLUDE=<rtrlib> -DRTRLIB_LIBRARY=</path/to/rtrlib.[a|so|dylib]> .
   make
 
-If everything was build correctly, there now should be an executable called :bash:`bird-rpki-client`. To see all the options of this program run the help option
-:bash:`./bird-rpki-client --help`
-
-The BIRD socket must now be opened. In order to do that, head back to the BIRD directory and type the following command:
-
-.. code-block:: bash
-
-  ./bird -c /usr/local/etc/bird.conf -s /tmp/bird.ctl -d 
-
-``/tmp/bird.ctl`` is the location and name of the socket that will be created. It is required by the ``bird-rpki-client``. With the option ``-d``
-BIRD runs in the foreground. That's necessary to view the output of the ``test_ripe_beacons`` function.
-
-Open a new Terminal. Now connect to the BIRD socket and receive the RPKI data with the following command. It can also be found in the README of the bird-rpki-client.
+If everything was build correctly, there now should be an executable called :bash:`bird-rtrlib.cli`. To see all the options of this program run the help option
+:bash:`./bird-rtrlib-cli --help`.
+Now connect to the BIRD socket and receive the RPKI data with the following command:
 
 .. code-block:: bash
 
-  ./bird-rpki-client -b /temp/bird.ctl -r rpki-validator.realmv6.org:8282 -t rtr_roa_table
+  ./bird-rtrlib-cli -b /tmp/bird.ctl -r rpki-validator.realmv6.org:8282 -t rtr_roa_table
 
 The options do the following:
 
@@ -81,7 +80,7 @@ The options do the following:
 |
 
 After executing this line, you will see that, after establishing a connection to the cache server, the ROA entries are piped into the BIRD ROA table.
-Start the BIRD CLI with the following command:
+Head back to the BRID directory and start the BIRD CLI with the following command:
 
 .. code-block:: bash
 
@@ -99,7 +98,7 @@ All the commands of the CLI can be viewed by typing ``?``. To list all the entri
   103.10.79.0/24 max 24 as 45951
   ...
 
-There will be a lot of similar output. The content of the ``bird-rpki-client`` was successfully written to the ROA table. Search, for example, for the prefix
+Type ``q`` to exit. There will be a lot of similar output. The content of the ``bird-rtrlib-cli`` was successfully written to the ROA table. Search, for example, for the prefix
 93.175.146.0/24 and BIRD will return the entry with its corresponding ASN.
 
 .. code-block:: bash
@@ -114,7 +113,7 @@ To do the actual validation of the prefixes that were defined in ``test_ripe_bea
   bird> eval test_ripe_beacons()
   void()
   
-To see the output of the function switch to the terminal that is running the BIRD daemon. The output will look like:
+To see the output of the function, switch to the terminal that is running the BIRD daemon. The output will look like:
 
 .. code-block:: bash
 
