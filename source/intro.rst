@@ -15,7 +15,7 @@ Background
 RPKI-enabled routers do not store ROAs itself but only the validated content of
 these authorities.
 To achieve high scalability as well as limit resource utilization on BGP
-routers, the validation of ROAs is performed by trusted cache servers,
+routers, the validation of ROAs is performed by trusted RPKI cache servers,
 which are deployed at the network operator site.
 The RPKI-RTR protocol defines a standard mechanism to maintain exchange of
 the prefix origin AS relations between the cache server and routers.
