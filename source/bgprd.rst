@@ -155,3 +155,14 @@ If all of these packages are installed, Quagga can be build. Some steps might re
   make
   make install
 
+The ``--enable-rpki`` option tells the configure script to include the RTRlib.
+
+Now that Quagga is built, start the BGP and Zebra daemons. Zebra acts as a process between the package stream of the kernel and daemons like BGP or OSPF.
+Execute ``bgpd`` and ``zebra``:
+
+.. code-block:: bash
+
+  ./bgpd/bgpd
+  ./zebra/zebra
+
+To interact with BGPD, connect to it via ``vtysh``, a command line interface that gains access to such daemons.
