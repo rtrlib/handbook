@@ -36,7 +36,7 @@ At the top of this file write:
   }
 
 The first line automatically creates a ROA table when the BIRD daemon is started. The function itself checks for three entries in the ROA table
-and prints the corresponding validity status.
+and prints the corresponding validity status. See :ref:`tools` for more information.
 
 The BIRD socket must now be opened. In order to do that type the following command:
 
@@ -62,7 +62,7 @@ In case that the RTRlib was not installed in the default directory, run
   cmake -DRTRLIB_INCLUDE=<rtrlib> -DRTRLIB_LIBRARY=</path/to/rtrlib.[a|so|dylib]> .
   make
 
-If everything was build correctly, there now should be an executable called :bash:`bird-rtrlib.cli`. To see all the options of this program run the help option
+If everything was build correctly, there now should be an executable called :bash:`bird-rtrlib-cli`. To see all the options of this program run
 :bash:`./bird-rtrlib-cli --help`.
 Now connect to the BIRD socket and receive the RPKI data with the following command:
 
@@ -104,14 +104,14 @@ Type ``q`` to exit. There will be a lot of similar output. The content of the ``
 .. code-block:: bash
 
   bird> show roa 93.175.146.0/24
-  93.175.146. sudo ./birdc -s /tmp/bird.ctl0/24 max 24 as 12654
+  93.175.146.0/24 max 24 as 12654
 
 To do the actual validation of the prefixes that were defined in ``test_ripe_beacons`` execute:
 
 .. code-block:: bash
 
   bird> eval test_ripe_beacons()
-  void()
+  (void)
   
 To see the output of the function, switch to the terminal that is running the BIRD daemon. The output will look like:
 
@@ -120,7 +120,7 @@ To see the output of the function, switch to the terminal that is running the BI
   bird: Testing ROA
   bird: Should be TRUE TRUE TRUE: TRUE TRUE TRUE
 
-After seeing this line, the prefixes were successfully tested.
+After seeing this line, the test function was executed and the prefixes were successfully tested.
 
 The Quagga Routing Software Suite
 ---------------------------------
@@ -155,3 +155,14 @@ If all of these packages are installed, Quagga can be build. Some steps might re
   make
   make install
 
+The ``--enable-rpki`` option tells the configure script to include the RTRlib.
+
+Now that Quagga is built, start the BGP and Zebra daemons. Zebra acts as a process between the package stream of the kernel and daemons like BGP or OSPF.
+Execute ``bgpd`` and ``zebra``:
+
+.. code-block:: bash
+
+  ./bgpd/bgpd
+  ./zebra/zebra
+
+To interact with BGPD, connect to it via ``vtysh``, a command line interface that gains access to such daemons.
