@@ -247,36 +247,36 @@ To test the APIs type the following queries for the RIPE RIS beacon
     rpki-rbv.realmv6.org/api/v1/validity/AS12654/93.175.146.0/24
     rpki-rbv.realmv6.org/api/v2/validity/93.175.146.1
 
-The result will be a JSON object shown below:
+The result will be a JSON object as shown below:
 
 .. code-block:: JSON
 
-{
-    "validated_route": {
-        "info": {
-            "origin_country": "EU",
-            "origin_asname": "RIPE-NCC-RIS-AS Reseaux IP Europeens Network Coordination Centre (RIPE NCC), EU"
-        },
-        "route": {
-            "prefix": "93.175.146.0/24",
-            "origin_asn": "AS12654"
-        },
-        "validity": {
-            "state": "Valid",
-            "code": 0,
-            "description": "At least one VRP Matches the Route Prefix",
-            "VRPs": {
-                "unmatched_as": [],
-                "unmatched_length": [],
-                "matched": [{
-                    "prefix": "93.175.146.0/24",
-                    "max_length": "24",
-                    "asn": "AS12654"
-                }]
+    {
+        "validated_route": {
+            "info": {
+                "origin_country": "EU",
+                "origin_asname": "RIPE-NCC-RIS-AS Reseaux IP Europeens Network Coordination Centre (RIPE NCC), EU"
+            },
+            "route": {
+                "prefix": "93.175.146.0/24",
+                "origin_asn": "AS12654"
+            },
+            "validity": {
+                "state": "Valid",
+                "code": 0,
+                "description": "At least one VRP Matches the Route Prefix",
+                "VRPs": {
+                    "unmatched_as": [],
+                    "unmatched_length": [],
+                    "matched": [{
+                        "prefix": "93.175.146.0/24",
+                        "max_length": "24",
+                        "asn": "AS12654"
+                    }]
+                }
             }
         }
     }
-}
 
 For a detailed instruction how to install and set up the API visit the `RBV Repository <https://github.com/rtrlib/rbv>`_ on GitHub.
 
