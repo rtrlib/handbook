@@ -1,2 +1,0 @@
-# handbook
-The RTRlib Handbook
