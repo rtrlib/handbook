@@ -1,0 +1,494 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Tools based on the RTRlib &mdash; The RTRlib Handbook 0.1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="The RTRlib Handbook 0.1 documentation" href="index.html"/>
+        <link rel="next" title="BGP Routing Daemons with RPKR/RTR" href="bgprd.html"/>
+        <link rel="prev" title="Usage of the RTRlib" href="usage.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> The RTRlib Handbook
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage of the RTRlib</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tools based on the RTRlib</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#rtrlib-client">RTRlib Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rtrlib-validator">RTRlib Validator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rpki-validator-web-browser-plugins">RPKI Validator Web Browser Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rpki-read">RPKI READ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rpki-miro">RPKI MIRO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rpki-rbv">RPKI RBV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rtrlib-python-binding">RTRlib Python Binding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#other-third-party-tools">Other Third-Party Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bgprd.html">BGP Routing Daemons with RPKR/RTR</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">The RTRlib Handbook</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Tools based on the RTRlib</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/tools.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="tools-based-on-the-rtrlib">
+<span id="tools"></span><h1>Tools based on the RTRlib<a class="headerlink" href="#tools-based-on-the-rtrlib" title="Permalink to this headline">¶</a></h1>
+<p>In the following sections we give an overview on several software tools, which
+utilize the RTRlib and its features.
+These tools range from low lever shell commands to easy-to-use browser plugins.</p>
+<p>For all tools we provide small usage examples; where ever appropriate we will
+use the following <a class="reference external" href="https://www.ripe.net/analyse/internet-measurements/routing-information-service-ris/current-ris-routing-beacons">RIPE RIS Beacons</a> with well known RPKI validation results:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="45%" />
+<col width="30%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">IP Prefix</th>
+<th class="head">Valid Origin</th>
+<th class="head">Result</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>93.175.146.0/24</td>
+<td>AS12654</td>
+<td>valid</td>
+</tr>
+<tr class="row-odd"><td>2001:7fb:fd02::/48</td>
+<td>AS12654</td>
+<td>valid</td>
+</tr>
+<tr class="row-even"><td>93.175.147.0/24</td>
+<td>AS196615</td>
+<td>invalid AS</td>
+</tr>
+<tr class="row-odd"><td>2001:7fb:fd03::/48</td>
+<td>AS196615</td>
+<td>invalid AS</td>
+</tr>
+<tr class="row-even"><td>84.205.83.0/24</td>
+<td>None</td>
+<td>not found</td>
+</tr>
+<tr class="row-odd"><td>2001:7fb:ff03::/48</td>
+<td>None</td>
+<td>not found</td>
+</tr>
+</tbody>
+</table>
+<p><em>Note</em> all prefixes are validated against origin AS12654, owned by RIPE.</p>
+<div class="section" id="rtrlib-client">
+<h2>RTRlib Client<a class="headerlink" href="#rtrlib-client" title="Permalink to this headline">¶</a></h2>
+<p>The RTRlib client (<code class="docutils literal"><span class="pre">rtrclient</span></code>) is a default part of the RTRlib package.
+It emulates an RPKI enabled BGP router by using  the client side functionality
+of the RTR protocol to connect to a trusted RPKI cache server and receive all
+currently valid ROAs.
+By following the instruction given in the previous section (<a class="reference internal" href="usage.html#install"><span class="std std-ref">Build and Install the RTRlib</span></a>)
+it will be installed automatically.</p>
+<p>To establish a connection with a RPKI cache server the client can use <em>TCP</em> or
+<em>SSH</em> transport sockets.
+It then communicates with the cache server utilizing the RTR protocol provided
+by the RTRlib to receive all cryptographically verified ROAs from the cache.
+To run the programm you have to specify the transport protocol as well as the
+hostname and port of a RPKI cache server; additionally you can set several
+options.
+To get a complete reference over all options for the command simply run
+<code class="docutils literal"><span class="pre">rtrclient</span></code> in a shell.</p>
+<p>The following listing shows how to connect the <code class="docutils literal"><span class="pre">rtrclient</span></code> with a cache server
+as well as 10 lines of the resulting output:</p>
+<div class="highlight-Bash"><div class="highlight"><pre><span></span>rtrclient tcp -k -p rpki-validator.realmv6.org 8282
+Prefix                                     Prefix Length         ASN
++ 89.185.224.0                                <span class="m">19</span> -  <span class="m">19</span>        24971
++ 180.234.81.0                                <span class="m">24</span> -  <span class="m">24</span>        45951
++ 37.32.128.0                                 <span class="m">17</span> -  <span class="m">17</span>       197121
++ 161.234.0.0                                 <span class="m">16</span> -  <span class="m">24</span>         6306
++ 85.187.243.0                                <span class="m">24</span> -  <span class="m">24</span>        29694
++ 2a02:5d8::                                  <span class="m">32</span> -  <span class="m">32</span>         8596
++ 2a03:2260::                                 <span class="m">30</span> -  <span class="m">30</span>       201701
++ 2001:13c7:6f08::                            <span class="m">48</span> -  <span class="m">48</span>        27814
++ 2a07:7cc3::                                 <span class="m">32</span> -  <span class="m">32</span>        61232
++ 2a05:b480:fc00::                            <span class="m">48</span> -  <span class="m">48</span>        39126
+</pre></div>
+</div>
+<p>It shows ROAs for IPv4 and IPv6 prefixes with allowed range for prefix length
+and the associated origin ASN.
+Each line represents either a ROA that was added (<code class="docutils literal"><span class="pre">+</span></code>) or removed (<code class="docutils literal"><span class="pre">-</span></code>)
+from the cache server.
+The RTRlib client will receive such Updates until the program is terminated,
+i.e., by <code class="docutils literal"><span class="pre">CTRL+C</span></code>.</p>
+</div>
+<div class="section" id="rtrlib-validator">
+<h2>RTRlib Validator<a class="headerlink" href="#rtrlib-validator" title="Permalink to this headline">¶</a></h2>
+<p>The RTRlib command line validator (<code class="docutils literal"><span class="pre">cli-validator</span></code>) is also part of RTRlib
+package and is already installed.
+This tool provides a simple command line interface to validate IP prefix to
+origin AS relations against ROAs received from a trusted RPKI cache server.</p>
+<p>To execute the program you must provide parameters <code class="docutils literal"><span class="pre">hostname</span></code> and <code class="docutils literal"><span class="pre">port</span></code> of
+a known RPKI cache server, afterwards you can validate  IP prefixes by typing
+<code class="docutils literal"><span class="pre">prefix</span></code>, <code class="docutils literal"><span class="pre">prefix</span> <span class="pre">length</span></code>, and <code class="docutils literal"><span class="pre">origin</span> <span class="pre">ASN</span></code> separated by spaces. Press
+<code class="docutils literal"><span class="pre">ENTER</span></code> to run the validation, the result will be shown instantly below the
+input.
+<em>Note</em>: the <code class="docutils literal"><span class="pre">cli-validator</span></code> can validate IPv4 and IPv6 prefixes by default.</p>
+<p>The following listing shows the validation of all known RIPE RIS beacons using
+our cache server:</p>
+<div class="highlight-Bash"><div class="highlight"><pre><span></span>cli-validator rpki-validator.realmv6.org 8282
+93.175.146.0 <span class="m">24</span> 12654
+93.175.146.0 <span class="m">24</span> 12654<span class="p">|</span><span class="m">12654</span> 93.175.146.0 <span class="m">24</span> 24<span class="p">|</span>0
+2001:7fb:fd02:: <span class="m">48</span> 12654
+2001:7fb:fd02:: <span class="m">48</span> 12654<span class="p">|</span><span class="m">12654</span> 2001:7fb:fd02:: <span class="m">48</span> 48<span class="p">|</span>0
+93.175.147.0 <span class="m">24</span> 12654
+93.175.147.0 <span class="m">24</span> 12654<span class="p">|</span><span class="m">196615</span> 93.175.147.0 <span class="m">24</span> 24<span class="p">|</span>2
+2001:7fb:fd03:: <span class="m">48</span> 12654
+2001:7fb:fd03:: <span class="m">48</span> 12654<span class="p">|</span><span class="m">196615</span> 2001:7fb:fd03:: <span class="m">48</span> 48<span class="p">|</span>2
+84.205.83.0 <span class="m">24</span> 12654
+84.205.83.0 <span class="m">24</span> 12654<span class="o">||</span>1
+2001:7fb:ff03:: <span class="m">48</span> 12654
+2001:7fb:ff03:: <span class="m">48</span> 12654<span class="o">||</span>1
+</pre></div>
+</div>
+<p>The output is structured into <code class="docutils literal"><span class="pre">input</span> <span class="pre">query</span> <span class="pre">|</span> <span class="pre">ROAs</span> <span class="pre">|</span> <span class="pre">result</span></code>, separated by
+pipe (<code class="docutils literal"><span class="pre">|</span></code>) symbol.
+The validation results are <code class="docutils literal"><span class="pre">0</span></code> for <em>valid</em>, <code class="docutils literal"><span class="pre">1</span></code> for <em>not found</em>,
+and <code class="docutils literal"><span class="pre">2</span></code> for <em>invalid</em>.
+For <em>valid</em> and <em>invalid</em> the output also shows the matching or conflicting
+ROAs for the given prefix and AS number.
+If multiple ROAs exist for a prefix, they are listed successively separated
+by commas (<code class="docutils literal"><span class="pre">,</span></code>).</p>
+</div>
+<div class="section" id="rpki-validator-web-browser-plugins">
+<h2>RPKI Validator Web Browser Plugins<a class="headerlink" href="#rpki-validator-web-browser-plugins" title="Permalink to this headline">¶</a></h2>
+<p>The RPKI Validator browser Plugins allow to check the RPKI validation of visited
+URLs, i.e., the associated IP prefix and origin AS of the URL.
+A small icon indicates the validation state of the visited URL, which is either
+valid (<img alt="valid" src="_images/valid.png" />), invalid (<img alt="invalid" src="_images/invalid.png" />) or was not found (<img alt="not_found" src="_images/notFound.png" />).</p>
+<p>The plugin is available as an add-on (or extension) for the web browsers
+<a class="reference external" href="https://addons.mozilla.org/en-US/firefox/addon/rpki-validator/">Firefox</a> and <a class="reference external" href="https://github.com/rtrlib/chrome-extension">Chrome</a>.
+While the Firefox add-on is available through the add-on store, Chrome users
+have to download and install the extension themselves as follows:</p>
+<ol class="arabic simple">
+<li>download the <a class="reference external" href="https://github.com/rtrlib/chrome-extension">Chrome extension</a> from GitHub</li>
+<li>open a new tab in Chrome and enter <code class="docutils literal"><span class="pre">chrome://extensions</span></code></li>
+<li>activate <cite>Developer Mode</cite> via the checkbox in the top right</li>
+<li>click the <cite>Load unpacked extension</cite> button and navigate to the source</li>
+</ol>
+<p>The following screenshots show the validation results for certain websites
+(<em>valid</em>, <em>invalid</em>, <em>not found</em>) of the RPKI Validator browser plugin for
+Firefox:</p>
+<div class="figure">
+<img alt="_images/rbv_valid.png" src="_images/rbv_valid.png" />
+</div>
+<div class="figure">
+<img alt="_images/rbv_invalid.png" src="_images/rbv_invalid.png" />
+</div>
+<div class="figure">
+<img alt="_images/rbv_notfound.png" src="_images/rbv_notfound.png" />
+</div>
+</div>
+<div class="section" id="rpki-read">
+<h2>RPKI READ<a class="headerlink" href="#rpki-read" title="Permalink to this headline">¶</a></h2>
+<p>The <em>RPKI Realtime Dashboard</em> (<a class="reference external" href="https://rpki-read.realmv6.org/">RPKI READ</a>) aims to provide a consistent
+(and live) view on the RPKI validation state of currently announced IP prefixes.
+That is, it verifies relation of an IP prefix and its BGP origin AS
+(autonomous system) utilizing the RPKI.</p>
+<p>The RPKI READ monitoring system has two parts:</p>
+<ol class="arabic simple">
+<li>the backend storing latest validation results in a database, and</li>
+<li>the (web) frontend displaying these results as well as an overview of statistics derived from them.</li>
+</ol>
+<p>The backend connects to a live BGP stream, e.g. of a <a class="reference external" href="http://www.bgpmon.io/">BGPmon</a> instance or via
+<a class="reference external" href="https://bgpstream.caida.org/">BGPstream</a>.
+It then parses  received BGP messages and extracts IP prefixes and origin AS
+information.
+These prefix to origin AS relations are validated using the RTRlib client
+to query a trusted RPKI cache server.</p>
+<p>The RPKI READ frontend presents a dashboard like interface showing a live
+overview of the RPKI validation state of all currently advertised IP prefixes
+observed by a certain BGP source.
+Further, the frontend provides detailed statistics and also allows the user
+to search for results on distinct prefixes.</p>
+<div class="figure" id="id5">
+<img alt="RPKI READ screenshot" src="_images/rpki_read.png" />
+<p class="caption"><span class="caption-text">Screenshot of the RPKI READ web frontend</span></p>
+</div>
+</div>
+<div class="section" id="rpki-miro">
+<h2>RPKI MIRO<a class="headerlink" href="#rpki-miro" title="Permalink to this headline">¶</a></h2>
+<p>The RPKI <em>Monitoring and Inspection of RPKI Objects</em> (<a class="reference external" href="http://rpki-miro.realmv6.org/">RPKI MIRO</a>)
+aims for easy access to RPKI certificates, revocation lists, ROAs etc.
+to finally give Internet operators more confidence in their data.
+Though, RPKI is a powerful tool, its success depends on several aspects.
+One crucial piece is the correctness of the RPKI data.
+RPKI data is public but might be hard to inspect outside of shell-like
+environments.</p>
+<p>The main objective of RPKI MIRO is to provide an extensive but painless insight
+into the published RPKI content.
+RPKI MIRO is a monitoring application that consists of three parts:</p>
+<ol class="arabic simple">
+<li>standard functions to collect RPKI data from remote repositories,</li>
+<li>a browser to visualize RPKI objects, and</li>
+<li>statistical analysis of the collected objects.</li>
+</ol>
+<div class="figure" id="id6">
+<img alt="RPKI MIRO screenshot" src="_images/rpki_miro.png" />
+<p class="caption"><span class="caption-text">Screenshot of the RPKI MIRO web interface.</span></p>
+</div>
+<p>Using RPKI MIRO you can lookup any IP prefix and its associated ROA, e.g. the
+RIPE RIS beacon <code class="docutils literal"><span class="pre">93.175.147.0/24</span></code>.
+Open a browser and goto URL <a class="reference external" href="http://rpki-browser.realmv6.org">http://rpki-browser.realmv6.org</a>, in the menu switch
+from <code class="docutils literal"><span class="pre">AFRINIC</span></code> to <code class="docutils literal"><span class="pre">RIPE</span></code> and set a filter for the prefix <code class="docutils literal"><span class="pre">93.175.147.0/24</span></code>
+with attribute <code class="docutils literal"><span class="pre">resource</span></code>.
+Expand the ROA tree view on the left side to get the corresponding ROA for the
+beacon prefix, the resulting web view should look like the screenshot above.</p>
+</div>
+<div class="section" id="rpki-rbv">
+<h2>RPKI RBV<a class="headerlink" href="#rpki-rbv" title="Permalink to this headline">¶</a></h2>
+<p>The RPKI <em>RESTful BGP Validator</em> (<a class="reference external" href="https://rpki-rbv.realmv6.org/">RPKI RBV</a>) is web application that provides
+a RESTful API to validate IP prefix to origin AS relations.
+The validation service can be accessed via a plain and simple
+<a class="reference external" href="http://rpki-rbv.realmv6.org/html/validate.html">web page</a>
+(see image below) or directly using its RESTful API.</p>
+<div class="figure" id="id7">
+<img alt="RPKI RBV screenshot" src="_images/rpki_rbv.png" />
+<p class="caption"><span class="caption-text">Screenshot of the RPKI RBV web interface</span></p>
+</div>
+<p>RBV provides two distinct APIs to run RPKI validation queries, the APIs allow
+RESTful GET queries with the following syntax for the URL path:</p>
+<ol class="arabic simple">
+<li><code class="docutils literal"><span class="pre">/api/v1/validity/&lt;asn&gt;/&lt;prefix&gt;/&lt;masklen&gt;</span></code></li>
+<li><code class="docutils literal"><span class="pre">/api/v2/validity/&lt;host&gt;</span></code></li>
+</ol>
+<p><em>Note</em>: the AS number in <code class="docutils literal"><span class="pre">&lt;asn&gt;</span></code> has to be prepended with <em>AS</em>;
+and <code class="docutils literal"><span class="pre">&lt;host&gt;</span></code> can either be an IP address or a DSN hostname.
+To test the APIs type the following queries for the RIPE RIS beacon
+<code class="docutils literal"><span class="pre">93.175.146.0/24</span></code> into the address bar of your favorite web browser:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rpki-rbv.realmv6.org/api/v1/validity/AS12654/93.175.146.0/24
+rpki-rbv.realmv6.org/api/v2/validity/93.175.146.1
+</pre></div>
+</div>
+<p>The result will be a JSON object as shown below:</p>
+<div class="highlight-JSON"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;validated_route&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;origin_country&quot;</span><span class="p">:</span> <span class="s2">&quot;EU&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;origin_asname&quot;</span><span class="p">:</span> <span class="s2">&quot;RIPE-NCC-RIS-AS Reseaux IP Europeens Network Coordination Centre (RIPE NCC), EU&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;route&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;prefix&quot;</span><span class="p">:</span> <span class="s2">&quot;93.175.146.0/24&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;origin_asn&quot;</span><span class="p">:</span> <span class="s2">&quot;AS12654&quot;</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;validity&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;Valid&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;code&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;At least one VRP Matches the Route Prefix&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;VRPs&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;unmatched_as&quot;</span><span class="p">:</span> <span class="p">[],</span>
+                <span class="nt">&quot;unmatched_length&quot;</span><span class="p">:</span> <span class="p">[],</span>
+                <span class="nt">&quot;matched&quot;</span><span class="p">:</span> <span class="p">[{</span>
+                    <span class="nt">&quot;prefix&quot;</span><span class="p">:</span> <span class="s2">&quot;93.175.146.0/24&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;max_length&quot;</span><span class="p">:</span> <span class="s2">&quot;24&quot;</span><span class="p">,</span>
+                    <span class="nt">&quot;asn&quot;</span><span class="p">:</span> <span class="s2">&quot;AS12654&quot;</span>
+                <span class="p">}]</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>For a detailed instruction how to install and set up the API visit the <a class="reference external" href="https://github.com/rtrlib/rbv">RBV Repository</a> on GitHub.</p>
+</div>
+<div class="section" id="rtrlib-python-binding">
+<h2>RTRlib Python Binding<a class="headerlink" href="#rtrlib-python-binding" title="Permalink to this headline">¶</a></h2>
+<p>The RTRlib can also be used for scripting in Python using the <a class="reference external" href="https://github.com/rtrlib/python-binding">RTRlib Python
+binding</a>.
+Documentation on the API and usage examples can be found on <a class="reference external" href="http://readthedocs.io">http://readthedocs.io</a></p>
+</div>
+<div class="section" id="other-third-party-tools">
+<h2>Other Third-Party Tools<a class="headerlink" href="#other-third-party-tools" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://www.ripe.net/manage-ips-and-asns/resource-management/certification/tools-and-resources/">RIPE</a>.
+provides an (almost) complete overview on other tools related to the RPKI and
+BGP security.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="bgprd.html" class="btn btn-neutral float-right" title="BGP Routing Daemons with RPKR/RTR" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="usage.html" class="btn btn-neutral" title="Usage of the RTRlib" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Colin Sames, Marcel Röthke, Sebastian Meiling.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

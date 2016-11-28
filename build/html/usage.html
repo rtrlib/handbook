@@ -1,0 +1,289 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Usage of the RTRlib &mdash; The RTRlib Handbook 0.1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="The RTRlib Handbook 0.1 documentation" href="index.html"/>
+        <link rel="next" title="Tools based on the RTRlib" href="tools.html"/>
+        <link rel="prev" title="Introduction" href="intro.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> The RTRlib Handbook
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Usage of the RTRlib</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#build-and-install-the-rtrlib">Build and Install the RTRlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#development-with-the-rtrlib">Development with the RTRlib</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Tools based on the RTRlib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bgprd.html">BGP Routing Daemons with RPKR/RTR</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">The RTRlib Handbook</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Usage of the RTRlib</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/usage.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="usage-of-the-rtrlib">
+<span id="usage"></span><h1>Usage of the RTRlib<a class="headerlink" href="#usage-of-the-rtrlib" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="build-and-install-the-rtrlib">
+<span id="install"></span><h2>Build and Install the RTRlib<a class="headerlink" href="#build-and-install-the-rtrlib" title="Permalink to this headline">¶</a></h2>
+<p>The RTRlib supports most Linux distributions as well as Apple macOS.
+If you are running Debian Linux, you can install the library via the APT
+package manager, as follows</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install librtr0
+</pre></div>
+</div>
+<p>On any other OS you will have to build and install the RTRlib from source.
+The following minimal requirements have to be met, before building the library:</p>
+<ul class="simple">
+<li>the build system is based on <cite>cmake</cite>, version &gt;= 2.6</li>
+<li><cite>libssh</cite> to establish SSH transport connections, version &gt;= 0.5.0</li>
+</ul>
+<p>Optional requirements are:</p>
+<ul class="simple">
+<li><cite>cmocka</cite> a framework to run RTRlib unit tests</li>
+<li><cite>doxygen</cite> to build the RTRlib API documentation</li>
+</ul>
+<p>If the requirements are met, the library can be build.
+First, either download or clone the RTRlib source code as follows:</p>
+<div class="highlight-Bash"><div class="highlight"><pre><span></span>wget https://github.com/rtrlib/rtrlib/archive/v0.3.6.tar.gz
+tar xzf v0.3.6.tar.gz
+<span class="nb">cd</span> rtrlib-0.3.6
+<span class="c1"># or</span>
+git clone https://github.com/rtrlib/rtrlib/
+<span class="nb">cd</span> rtrlib
+</pre></div>
+</div>
+<p>The contents of the RTRlib source code has the following subdirectories:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">cmake/</span></code>      CMake modules</li>
+<li><code class="docutils literal"><span class="pre">doxygen/</span></code>    Example code and graphics used in the Doxygen documentation</li>
+<li><code class="docutils literal"><span class="pre">rtrlib/</span></code>     Header and source code files of the RTRlib</li>
+<li><code class="docutils literal"><span class="pre">tests/</span></code>      Function tests and unit tests</li>
+<li><code class="docutils literal"><span class="pre">tools/</span></code>      Contains <code class="docutils literal"><span class="pre">rtrclient</span></code> and <code class="docutils literal"><span class="pre">cli-validator</span></code></li>
+</ul>
+<p>Afterwards build the library as follows, we recommend an <cite>out-of-source</cite> build
+using the <cite>cmake</cite> build system:</p>
+<div class="highlight-Bash"><div class="highlight"><pre><span></span>mkdir build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> build
+cmake -DCMAKE_BUILD_TYPE<span class="o">=</span>Release ../
+make
+sudo make install
+</pre></div>
+</div>
+<p>The RTRLib shared library will be installed to <code class="docutils literal"><span class="pre">/usr/local/lib</span></code> and the
+headers files to <code class="docutils literal"><span class="pre">/usr/local/include</span></code> respectively by default.
+To enable debug symbols and messages, change the <cite>cmake</cite> command to:</p>
+<div class="highlight-Bash"><div class="highlight"><pre><span></span>cmake -D <span class="nv">CMAKE_BUILD_TYPE</span><span class="o">=</span>Debug .
+</pre></div>
+</div>
+<p>If <cite>Doxygen</cite> is available, you can build the documentation, by running:</p>
+<div class="highlight-Bash"><div class="highlight"><pre><span></span>make doc
+</pre></div>
+</div>
+<p>If the build command fails with any error, please consult the RTRlib <a class="reference external" href="https://github.com/rtrlib/rtrlib/">README</a>
+and <a class="reference external" href="https://github.com/rtrlib/rtrlib/wiki">Wiki</a>, you may also join our <a class="reference external" href="https://groups.google.com/forum/#!forum/rtrlib">mailing list</a>.</p>
+</div>
+<div class="section" id="development-with-the-rtrlib">
+<h2>Development with the RTRlib<a class="headerlink" href="#development-with-the-rtrlib" title="Permalink to this headline">¶</a></h2>
+<p>The name of the shared library is <cite>rtr</cite>. To link programs to the RTRlib,
+pass the following parameter to gcc:</p>
+<div class="highlight-Bash"><div class="highlight"><pre><span></span>-lrtr
+</pre></div>
+</div>
+<p>In case an error such as</p>
+<div class="line-block">
+<div class="line">-/usr/bin/ld: cannot find -lrtr</div>
+<div class="line">-collect2: error: ld returned 1 exit status</div>
+<div class="line"><br /></div>
+</div>
+<p>occurs while compiling, the library cannot be found.
+Pass its location as an absolute path to the compiler:</p>
+<div class="highlight-Bash"><div class="highlight"><pre><span></span>-L&lt;path_to_librtr.so&gt;
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tools.html" class="btn btn-neutral float-right" title="Tools based on the RTRlib" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="intro.html" class="btn btn-neutral" title="Introduction" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Colin Sames, Marcel Röthke, Sebastian Meiling.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
