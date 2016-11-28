@@ -58,8 +58,6 @@ using the `cmake` build system:
     make
     sudo make install
 
-The RTRLib shared library will be installed to ``/usr/local/lib`` and the
-headers files to ``/usr/local/include`` respectively by default.
 To enable debug symbols and messages, change the `cmake` command to:
 
 .. code-block:: Bash
@@ -82,6 +80,8 @@ and Wiki_, you may also join our `mailing list`_.
 Development with the RTRlib
 ---------------------------
 
+The RTRLib shared library is installed to ``/usr/local/lib`` and its headers
+files to ``/usr/local/include`` respectively by default.
 The name of the shared library is `rtr`. To link programs to the RTRlib,
 pass the following parameter to gcc:
 

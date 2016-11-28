@@ -184,9 +184,7 @@ make
 sudo make install
 </pre></div>
 </div>
-<p>The RTRLib shared library will be installed to <code class="docutils literal"><span class="pre">/usr/local/lib</span></code> and the
-headers files to <code class="docutils literal"><span class="pre">/usr/local/include</span></code> respectively by default.
-To enable debug symbols and messages, change the <cite>cmake</cite> command to:</p>
+<p>To enable debug symbols and messages, change the <cite>cmake</cite> command to:</p>
 <div class="highlight-Bash"><div class="highlight"><pre><span></span>cmake -D <span class="nv">CMAKE_BUILD_TYPE</span><span class="o">=</span>Debug .
 </pre></div>
 </div>
@@ -199,7 +197,9 @@ and <a class="reference external" href="https://github.com/rtrlib/rtrlib/wiki">W
 </div>
 <div class="section" id="development-with-the-rtrlib">
 <h2>Development with the RTRlib<a class="headerlink" href="#development-with-the-rtrlib" title="Permalink to this headline">¶</a></h2>
-<p>The name of the shared library is <cite>rtr</cite>. To link programs to the RTRlib,
+<p>The RTRLib shared library is installed to <code class="docutils literal"><span class="pre">/usr/local/lib</span></code> and its headers
+files to <code class="docutils literal"><span class="pre">/usr/local/include</span></code> respectively by default.
+The name of the shared library is <cite>rtr</cite>. To link programs to the RTRlib,
 pass the following parameter to gcc:</p>
 <div class="highlight-Bash"><div class="highlight"><pre><span></span>-lrtr
 </pre></div>
