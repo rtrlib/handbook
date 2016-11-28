@@ -1,0 +1,351 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>BGP Routing Daemons with RPKR/RTR &mdash; The RTRlib Handbook 0.1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="The RTRlib Handbook 0.1 documentation" href="index.html"/>
+        <link rel="prev" title="Tools based on the RTRlib" href="tools.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> The RTRlib Handbook
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage of the RTRlib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Tools based on the RTRlib</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">BGP Routing Daemons with RPKR/RTR</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-bird-internet-routing-daemon">The BIRD Internet Routing Daemon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-quagga-routing-software-suite">The Quagga Routing Software Suite</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">The RTRlib Handbook</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>BGP Routing Daemons with RPKR/RTR</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/bgprd.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="bgp-routing-daemons-with-rpkr-rtr">
+<h1>BGP Routing Daemons with RPKR/RTR<a class="headerlink" href="#bgp-routing-daemons-with-rpkr-rtr" title="Permalink to this headline">¶</a></h1>
+<p>For several Routing Daemons such as <a class="reference external" href="http://www.nongnu.org/quagga/">Quagga</a>
+and <a class="reference external" href="http://bird.network.cz/">BIRD</a> exist RPKI enabled extensions that are
+based on the RTRlib.</p>
+<div class="section" id="the-bird-internet-routing-daemon">
+<h2>The BIRD Internet Routing Daemon<a class="headerlink" href="#the-bird-internet-routing-daemon" title="Permalink to this headline">¶</a></h2>
+<p>To set up BIRD, first <a class="reference external" href="http://bird.network.cz/?download">download</a> the latest
+release, unzip and change into the source directory.
+To build BIRD, run:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>./configure
+make
+make install
+</pre></div>
+</div>
+<p>You may need to execute these and any following commands in this handbook as <code class="code bash docutils literal"><span class="pre">sudo</span></code>.
+More information on the building process can be found in the README of BIRD.</p>
+<p>Before any validations with BIRD can be done, it must be configured accordingly.
+First, a ROA table and the validation function must be added to <code class="code bash docutils literal"><span class="pre">/usr/local/etc/bird.conf</span></code>.
+At the top of this file write:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roa table rtr_roa_table <span class="p">;</span>
+
+<span class="k">function</span> test_ripe_beacons<span class="o">()</span>
+<span class="o">{</span>
+  print <span class="s2">&quot;Testing ROA&quot;</span><span class="p">;</span>
+  print <span class="s2">&quot;Should be TRUE TRUE TRUE:&quot;</span>,
+    <span class="s2">&quot; &quot;</span>, roa_check<span class="o">(</span>rtr_roa_table, 84.205.83.0/24, 12654<span class="o">)</span> <span class="o">=</span> ROA_UNKNOWN,
+    <span class="s2">&quot; &quot;</span>, roa_check<span class="o">(</span>rtr_roa_table, 93.175.146.0/24, 12654<span class="o">)</span> <span class="o">=</span> ROA_VALID,
+    <span class="s2">&quot; &quot;</span>, roa_check<span class="o">(</span>rtr_roa_table, 93.175.147.0/24, 12654<span class="o">)</span> <span class="o">=</span> ROA_INVALID<span class="p">;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>The first line automatically creates a ROA table when the BIRD daemon is started.
+The function itself checks for three entries in the ROA table
+and prints the corresponding validity status.
+See <a class="reference internal" href="tools.html#tools"><span class="std std-ref">Tools based on the RTRlib</span></a> for more information.</p>
+<p>The BIRD socket must now be opened. In order to do that type the following command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>./bird -c /usr/local/etc/bird.conf -s /tmp/bird.ctl -d
+</pre></div>
+</div>
+<p>With the option <code class="docutils literal"><span class="pre">-d</span></code> BIRD runs in the foreground.
+That&#8217;s necessary to view the output of the <code class="docutils literal"><span class="pre">test_ripe_beacons</span></code> function.
+<code class="docutils literal"><span class="pre">/tmp/bird.ctl</span></code> is the location and name of the socket that will be created.
+It is required by the <code class="docutils literal"><span class="pre">bird-rtrlib-cli</span></code> which we will install next.</p>
+<p>Open a new terminal. To try out whether BIRD receives actual responses,
+there is an IPC that runs on the BIRD socket.
+Clone the <a class="reference external" href="https://github.com/rtrlib/bird-rtrlib-cli">BIRD-RTRlib-CLI</a>
+repository on GitHub and build it:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>cmake .
+make
+</pre></div>
+</div>
+<p>In case that the RTRlib was not installed in the default directory, run</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>cmake -DRTRLIB_INCLUDE<span class="o">=</span>&lt;rtrlib&gt; -DRTRLIB_LIBRARY<span class="o">=</span>&lt;/path/to/rtrlib.<span class="o">[</span>a<span class="p">|</span>so<span class="p">|</span>dylib<span class="o">]</span>&gt; .
+make
+</pre></div>
+</div>
+<p>If everything was build correctly,
+there now should be an executable called <code class="code bash docutils literal"><span class="pre">bird-rtrlib-cli</span></code>.
+To see all the options of this program run <code class="code bash docutils literal"><span class="pre">./bird-rtrlib-cli</span> <span class="pre">--help</span></code>.
+Now connect to the BIRD socket and receive the RPKI data with the following command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>./bird-rtrlib-cli -b /tmp/bird.ctl -r rpki-validator.realmv6.org:8282 -t rtr_roa_table
+</pre></div>
+</div>
+<p>The options do the following:</p>
+<div class="line-block">
+<div class="line"><code class="code bash docutils literal"><span class="pre">-b</span></code>: the location of the BIRD socket.</div>
+<div class="line"><br /></div>
+<div class="line"><code class="code bash docutils literal"><span class="pre">-r</span></code>: the address and port of the RPKI cache server. Change it if you want to use a different one.</div>
+<div class="line"><br /></div>
+<div class="line"><code class="code bash docutils literal"><span class="pre">-t</span></code>: the table in which the gathered rpki-data is filled into. We created this one earlier in the bird.conf</div>
+<div class="line"><br /></div>
+</div>
+<p>After executing this line, you will see that, after establishing a connection to the cache server, the ROA entries are piped into the BIRD ROA table.
+Head back to the BRID directory and start the BIRD CLI with the following command:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo ./birdc -s /tmp/bird.ctl
+</pre></div>
+</div>
+<p>All the commands of the CLI can be viewed by typing <code class="docutils literal"><span class="pre">?</span></code>.
+To list all the entries from the ROA table enter:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>bird&gt; show roa
+194.3.206.0/24 max <span class="m">24</span> as 24954
+03.4.119.0/24 max <span class="m">24</span> as 38203
+200.7.212.0/24 max <span class="m">24</span> as 27947
+200.7.212.0/24 max <span class="m">24</span> as 19114
+103.10.79.0/24 max <span class="m">24</span> as 45951
+...
+</pre></div>
+</div>
+<p>Type <code class="docutils literal"><span class="pre">q</span></code> to exit. There will be a lot of similar output.
+The content of the <code class="docutils literal"><span class="pre">bird-rtrlib-cli</span></code> was successfully written to the ROA table.
+Search, for example, for the prefix <code class="docutils literal"><span class="pre">93.175.146.0/24</span></code> and BIRD will return the entry with its corresponding ASN.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>bird&gt; show roa 93.175.146.0/24
+93.175.146.0/24 max <span class="m">24</span> as 12654
+</pre></div>
+</div>
+<p>To do the actual validation of the prefixes that were defined in <code class="docutils literal"><span class="pre">test_ripe_beacons</span></code> execute:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>bird&gt; <span class="nb">eval</span> test_ripe_beacons<span class="o">()</span>
+<span class="o">(</span>void<span class="o">)</span>
+</pre></div>
+</div>
+<p>To see the output of the function, switch to the terminal that is running the BIRD daemon. The output will look like:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>bird: Testing ROA
+bird: Should be TRUE TRUE TRUE: TRUE TRUE TRUE
+</pre></div>
+</div>
+<p>After seeing this line, the test function was executed and the prefixes were successfully tested.</p>
+</div>
+<div class="section" id="the-quagga-routing-software-suite">
+<h2>The Quagga Routing Software Suite<a class="headerlink" href="#the-quagga-routing-software-suite" title="Permalink to this headline">¶</a></h2>
+<p>A Routing Daemon such as Quagga implements TCP/IP routing via protocols such as OSPF, RIP and BGP. It acts as a router that fetches and shares routing information
+with other routers. Regarding BGP, Quagga supports version 4.
+An unofficial release implements support for the RPKI so BGP updates can be verified against a ROA. Doing so requires the support of the RTRlib so Quagga can
+initialize a connection to a cache server using the RTR protocol.</p>
+<p>To install Quagga, clone the Git repository from <a class="reference external" href="https://github.com/rtrlib/quagga-rtrlib">here</a> and switch the branch like this:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/rtrlib/quagga-rtrlib.git
+<span class="nb">cd</span> quagga-rtrlib
+git checkout feature/rtrlib
+</pre></div>
+</div>
+<p>This repository is a fork of the original and implements RPKI support. Before building it, make sure your system meets the perquisites:</p>
+<ul class="simple">
+<li>automake:     1.9.6</li>
+<li>autoconf:     2.59</li>
+<li>libtool:      1.5.22</li>
+<li>texinfo:      4.7</li>
+<li>GNU AWK:      3.1.5</li>
+</ul>
+<p>If all of these packages are installed, Quagga can be build. Some steps might require <code class="docutils literal"><span class="pre">sudo</span></code> privileges:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>./bootstrap
+./configure --enable-rpki
+make
+make install
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">--enable-rpki</span></code> option tells the configure script to include the RTRlib.</p>
+<p>Now that Quagga is built, start the BGP and Zebra daemons. Zebra acts as a process between the package stream of the kernel and daemons like BGP or OSPF.
+Execute <code class="docutils literal"><span class="pre">bgpd</span></code> and <code class="docutils literal"><span class="pre">zebra</span></code>:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>./bgpd/bgpd
+./zebra/zebra
+</pre></div>
+</div>
+<p>To interact with BGPD, connect to it via <code class="docutils literal"><span class="pre">vtysh</span></code>, a command line interface that gains access to such daemons.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="tools.html" class="btn btn-neutral" title="Tools based on the RTRlib" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Colin Sames, Marcel Röthke, Sebastian Meiling.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
