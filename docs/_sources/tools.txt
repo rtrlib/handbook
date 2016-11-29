@@ -25,7 +25,11 @@ use the following `RIPE RIS Beacons`_ with well known RPKI validation results.
     2001:7fb:ff03::/48 None         not found
     ================== ============ ==========
 
-*Note* all prefixes are validated against origin AS12654, owned by RIPE.
+*Note* for all prefixes the RPKI validation results are based on origin AS12654,
+owned by RIPE.
+Most examples require a connection to a RPKI cache server, for that we
+provide a public cache with *hostname* ``rpki-validator.realmv6.org``
+and *port* ``8282``.
 
 RTRlib Client
 -------------
@@ -81,14 +85,14 @@ This tool provides a simple command line interface to validate IP prefix to
 origin AS relations against ROAs received from a trusted RPKI cache server.
 
 To execute the program you must provide parameters ``hostname`` and ``port`` of
-a known RPKI cache server, afterwards you can validate  IP prefixes by typing
+a known RPKI cache server, afterwards you can validate IP prefixes by typing
 ``prefix``, ``prefix length``, and ``origin ASN`` separated by spaces. Press
-``ENTER`` to run the validation, the result will be shown instantly below the
-input.
+``ENTER`` to run the validation.
+The result will be shown instantly below the input.
 *Note*: the ``cli-validator`` can validate IPv4 and IPv6 prefixes by default.
 
-The following listing shows the validation of all known RIPE RIS beacons using
-our cache server:
+The following listing shows the validation of all RIPE RIS beacons using our
+cache server:
 
 .. code-block:: Bash
 
@@ -107,10 +111,10 @@ our cache server:
     2001:7fb:ff03:: 48 12654||1
 
 The output is structured into ``input query | ROAs | result``, separated by
-pipe (``|``) symbol.
+pipe (``|``) symbols.
 The validation results are ``0`` for *valid*, ``1`` for *not found*,
 and ``2`` for *invalid*.
-For *valid* and *invalid* the output also shows the matching or conflicting
+For *valid* and *invalid* the output shows the matching or conflicting
 ROAs for the given prefix and AS number.
 If multiple ROAs exist for a prefix, they are listed successively separated
 by commas (``,``).
@@ -118,10 +122,10 @@ by commas (``,``).
 RPKI Validator Web Browser Plugins
 ----------------------------------
 
-The RPKI Validator browser Plugins allow to check the RPKI validation of visited
-URLs, i.e., the associated IP prefix and origin AS of the URL.
-A small icon indicates the validation state of the visited URL, which is either
-valid (|valid|), invalid (|invalid|) or was not found (|not_found|).
+The RPKI Validator browser plugins allow to check the RPKI validation of
+visited URLs, i.e., the associated IP prefix and origin AS of the URL.
+A small icon indicates the validation state of the visited URL, which is
+either valid (|valid|), invalid (|invalid|) or was not found (|not_found|).
 
 The plugin is available as an add-on (or extension) for the web browsers
 Firefox_ and Chrome_.
@@ -196,8 +200,8 @@ One crucial piece is the correctness of the RPKI data.
 RPKI data is public but might be hard to inspect outside of shell-like
 environments.
 
-The main objective of RPKI MIRO is to provide an extensive but painless insight
-into the published RPKI content.
+The main objective of RPKI MIRO is to provide an extensive but painless
+insight into the published RPKI content.
 RPKI MIRO is a monitoring application that consists of three parts:
 
 #. standard functions to collect RPKI data from remote repositories,
@@ -230,6 +234,7 @@ The validation service can be accessed via a plain and simple
 
 .. figure:: ../images/rpki_rbv.png
    :alt: RPKI RBV screenshot
+   :scale: 50%
 
    Screenshot of the RPKI RBV web interface
 
@@ -290,13 +295,14 @@ RTRlib Python Binding
 
 The RTRlib can also be used for scripting in Python using the `RTRlib Python
 binding`_.
-Documentation on the API and usage examples can be found on http://readthedocs.io
+Documentation on the API and usage examples can be found on `readthedocs.io`_.
 
 .. _`RTRlib Python binding`: https://github.com/rtrlib/python-binding
+.. _`readthedocs.io`: https://python-rtrlib.readthedocs.io
 
 Other Third-Party Tools
 -----------------------
 
-`RIPE <https://www.ripe.net/manage-ips-and-asns/resource-management/certification/tools-and-resources/>`_.
+`RIPE <https://www.ripe.net/manage-ips-and-asns/resource-management/certification/tools-and-resources/>`_
 provides an (almost) complete overview on other tools related to the RPKI and
 BGP security.

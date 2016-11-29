@@ -190,7 +190,11 @@ use the following <a class="reference external" href="https://www.ripe.net/analy
 </tr>
 </tbody>
 </table>
-<p><em>Note</em> all prefixes are validated against origin AS12654, owned by RIPE.</p>
+<p><em>Note</em> for all prefixes the RPKI validation results are based on origin AS12654,
+owned by RIPE.
+Most examples require a connection to a RPKI cache server, for that we
+provide a public cache with <em>hostname</em> <code class="docutils literal"><span class="pre">rpki-validator.realmv6.org</span></code>
+and <em>port</em> <code class="docutils literal"><span class="pre">8282</span></code>.</p>
 <div class="section" id="rtrlib-client">
 <h2>RTRlib Client<a class="headerlink" href="#rtrlib-client" title="Permalink to this headline">¶</a></h2>
 <p>The RTRlib client (<code class="docutils literal"><span class="pre">rtrclient</span></code>) is a default part of the RTRlib package.
@@ -238,13 +242,13 @@ package and is already installed.
 This tool provides a simple command line interface to validate IP prefix to
 origin AS relations against ROAs received from a trusted RPKI cache server.</p>
 <p>To execute the program you must provide parameters <code class="docutils literal"><span class="pre">hostname</span></code> and <code class="docutils literal"><span class="pre">port</span></code> of
-a known RPKI cache server, afterwards you can validate  IP prefixes by typing
+a known RPKI cache server, afterwards you can validate IP prefixes by typing
 <code class="docutils literal"><span class="pre">prefix</span></code>, <code class="docutils literal"><span class="pre">prefix</span> <span class="pre">length</span></code>, and <code class="docutils literal"><span class="pre">origin</span> <span class="pre">ASN</span></code> separated by spaces. Press
-<code class="docutils literal"><span class="pre">ENTER</span></code> to run the validation, the result will be shown instantly below the
-input.
+<code class="docutils literal"><span class="pre">ENTER</span></code> to run the validation.
+The result will be shown instantly below the input.
 <em>Note</em>: the <code class="docutils literal"><span class="pre">cli-validator</span></code> can validate IPv4 and IPv6 prefixes by default.</p>
-<p>The following listing shows the validation of all known RIPE RIS beacons using
-our cache server:</p>
+<p>The following listing shows the validation of all RIPE RIS beacons using our
+cache server:</p>
 <div class="highlight-Bash"><div class="highlight"><pre><span></span>cli-validator rpki-validator.realmv6.org 8282
 93.175.146.0 <span class="m">24</span> 12654
 93.175.146.0 <span class="m">24</span> 12654<span class="p">|</span><span class="m">12654</span> 93.175.146.0 <span class="m">24</span> 24<span class="p">|</span>0
@@ -261,20 +265,20 @@ our cache server:</p>
 </pre></div>
 </div>
 <p>The output is structured into <code class="docutils literal"><span class="pre">input</span> <span class="pre">query</span> <span class="pre">|</span> <span class="pre">ROAs</span> <span class="pre">|</span> <span class="pre">result</span></code>, separated by
-pipe (<code class="docutils literal"><span class="pre">|</span></code>) symbol.
+pipe (<code class="docutils literal"><span class="pre">|</span></code>) symbols.
 The validation results are <code class="docutils literal"><span class="pre">0</span></code> for <em>valid</em>, <code class="docutils literal"><span class="pre">1</span></code> for <em>not found</em>,
 and <code class="docutils literal"><span class="pre">2</span></code> for <em>invalid</em>.
-For <em>valid</em> and <em>invalid</em> the output also shows the matching or conflicting
+For <em>valid</em> and <em>invalid</em> the output shows the matching or conflicting
 ROAs for the given prefix and AS number.
 If multiple ROAs exist for a prefix, they are listed successively separated
 by commas (<code class="docutils literal"><span class="pre">,</span></code>).</p>
 </div>
 <div class="section" id="rpki-validator-web-browser-plugins">
 <h2>RPKI Validator Web Browser Plugins<a class="headerlink" href="#rpki-validator-web-browser-plugins" title="Permalink to this headline">¶</a></h2>
-<p>The RPKI Validator browser Plugins allow to check the RPKI validation of visited
-URLs, i.e., the associated IP prefix and origin AS of the URL.
-A small icon indicates the validation state of the visited URL, which is either
-valid (<img alt="valid" src="_images/valid.png" />), invalid (<img alt="invalid" src="_images/invalid.png" />) or was not found (<img alt="not_found" src="_images/notFound.png" />).</p>
+<p>The RPKI Validator browser plugins allow to check the RPKI validation of
+visited URLs, i.e., the associated IP prefix and origin AS of the URL.
+A small icon indicates the validation state of the visited URL, which is
+either valid (<img alt="valid" src="_images/valid.png" />), invalid (<img alt="invalid" src="_images/invalid.png" />) or was not found (<img alt="not_found" src="_images/notFound.png" />).</p>
 <p>The plugin is available as an add-on (or extension) for the web browsers
 <a class="reference external" href="https://addons.mozilla.org/en-US/firefox/addon/rpki-validator/">Firefox</a> and <a class="reference external" href="https://github.com/rtrlib/chrome-extension">Chrome</a>.
 While the Firefox add-on is available through the add-on store, Chrome users
@@ -334,8 +338,8 @@ Though, RPKI is a powerful tool, its success depends on several aspects.
 One crucial piece is the correctness of the RPKI data.
 RPKI data is public but might be hard to inspect outside of shell-like
 environments.</p>
-<p>The main objective of RPKI MIRO is to provide an extensive but painless insight
-into the published RPKI content.
+<p>The main objective of RPKI MIRO is to provide an extensive but painless
+insight into the published RPKI content.
 RPKI MIRO is a monitoring application that consists of three parts:</p>
 <ol class="arabic simple">
 <li>standard functions to collect RPKI data from remote repositories,</li>
@@ -362,7 +366,7 @@ The validation service can be accessed via a plain and simple
 <a class="reference external" href="http://rpki-rbv.realmv6.org/html/validate.html">web page</a>
 (see image below) or directly using its RESTful API.</p>
 <div class="figure" id="id8">
-<img alt="RPKI RBV screenshot" src="_images/rpki_rbv.png" />
+<a class="reference internal image-reference" href="_images/rpki_rbv.png"><img alt="RPKI RBV screenshot" src="_images/rpki_rbv.png" style="width: 218.5px; height: 169.0px;" /></a>
 <p class="caption"><span class="caption-text">Screenshot of the RPKI RBV web interface</span></p>
 </div>
 <p>RBV provides two distinct APIs to run RPKI validation queries, the APIs allow
@@ -414,11 +418,11 @@ rpki-rbv.realmv6.org/api/v2/validity/93.175.146.1
 <h2>RTRlib Python Binding<a class="headerlink" href="#rtrlib-python-binding" title="Permalink to this headline">¶</a></h2>
 <p>The RTRlib can also be used for scripting in Python using the <a class="reference external" href="https://github.com/rtrlib/python-binding">RTRlib Python
 binding</a>.
-Documentation on the API and usage examples can be found on <a class="reference external" href="http://readthedocs.io">http://readthedocs.io</a></p>
+Documentation on the API and usage examples can be found on <a class="reference external" href="https://python-rtrlib.readthedocs.io">readthedocs.io</a>.</p>
 </div>
 <div class="section" id="other-third-party-tools">
 <h2>Other Third-Party Tools<a class="headerlink" href="#other-third-party-tools" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://www.ripe.net/manage-ips-and-asns/resource-management/certification/tools-and-resources/">RIPE</a>.
+<p><a class="reference external" href="https://www.ripe.net/manage-ips-and-asns/resource-management/certification/tools-and-resources/">RIPE</a>
 provides an (almost) complete overview on other tools related to the RPKI and
 BGP security.</p>
 </div>
