@@ -7,23 +7,29 @@ Tools based on the RTRlib
 
 In the following sections we give an overview on several software tools, which
 utilize the RTRlib and its features.
-These tools range from low lever shell commands to easy-to-use browser plugins.
+These tools range from low level shell commands to easy-to-use browser plugins.
 
 For all tools we provide small usage examples; where ever appropriate we will
-use the following `RIPE RIS Beacons`_ with well known RPKI validation results:
+use the following `RIPE RIS Beacons`_ with well known RPKI validation results.
 
-================== ============ ==========
-IP Prefix          Valid Origin Result
-================== ============ ==========
-93.175.146.0/24    AS12654      valid
-2001:7fb:fd02::/48 AS12654      valid
-93.175.147.0/24    AS196615     invalid AS
-2001:7fb:fd03::/48 AS196615     invalid AS
-84.205.83.0/24     None         not found
-2001:7fb:ff03::/48 None         not found
-================== ============ ==========
+.. table:: RIPE RIS beacons with RPKI validation results
 
-*Note* all prefixes are validated against origin AS12654, owned by RIPE.
+    ================== ============ ==========
+    IP Prefix          Valid Origin Result
+    ================== ============ ==========
+    93.175.146.0/24    AS12654      valid
+    2001:7fb:fd02::/48 AS12654      valid
+    93.175.147.0/24    AS196615     invalid AS
+    2001:7fb:fd03::/48 AS196615     invalid AS
+    84.205.83.0/24     None         not found
+    2001:7fb:ff03::/48 None         not found
+    ================== ============ ==========
+
+*Note* for all prefixes the RPKI validation results are based on origin AS12654,
+owned by RIPE.
+Most examples require a connection to a RPKI cache server, for that we
+provide a public cache with *hostname* ``rpki-validator.realmv6.org``
+and *port* ``8282``.
 
 RTRlib Client
 -------------
