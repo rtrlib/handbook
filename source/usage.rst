@@ -1,20 +1,42 @@
 .. _usage:
 
+*******************
 Usage of the RTRlib
-===================
+*******************
 
 .. _install:
 
 Build and Install the RTRlib
-----------------------------
+============================
 
 The RTRlib supports most Linux distributions as well as Apple macOS.
-If you are running Debian Linux, you can install the library via the APT
+
+Debian Linux
+------------
+
+If you are running Debian (Jessie), you can install the library via the APT
 package manager, as follows
 
-.. code-block:: bash
+.. code-block:: Bash
 
     sudo apt-get install librtr0
+
+Apple macOS
+-----------
+
+For macOS we provide *Homebrew* tap_ to easily install the RTRlib.
+First, install Homebrew_ and afterwards install RTRlib as follows:
+
+.. code-block:: Bash
+
+    brew tap rtrlib/pils
+    brew install rtrlib
+
+.. _Homebrew: http://brew.sh
+.. _tap: https://github.com/rtrlib/homebrew-pils
+
+From Source
+-----------
 
 On any other OS you will have to build and install the RTRlib from source.
 The following minimal requirements have to be met, before building the library:
@@ -78,7 +100,7 @@ and Wiki_, you may also join our `mailing list`_.
 .. _mailing list: https://groups.google.com/forum/#!forum/rtrlib
 
 Development with the RTRlib
----------------------------
+===========================
 
 The RTRLib shared library is installed to ``/usr/local/lib`` and its headers
 files to ``/usr/local/include`` respectively by default.

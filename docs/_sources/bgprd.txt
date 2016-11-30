@@ -1,12 +1,15 @@
+.. _bgprd:
+
+*********************************
 BGP Routing Daemons with RPKR/RTR
-=================================
+*********************************
 
 For several Routing Daemons such as `Quagga <http://www.nongnu.org/quagga/>`_
 and `BIRD <http://bird.network.cz/>`_ exist RPKI enabled extensions that are
 based on the RTRlib.
 
 The BIRD Internet Routing Daemon
---------------------------------
+================================
 
 .. role:: bash(code)
   :language: bash
@@ -138,7 +141,7 @@ To see the output of the function, switch to the terminal that is running the BI
 After seeing this line, the test function was executed and the prefixes were successfully tested.
 
 The Quagga Routing Software Suite
----------------------------------
+=================================
 
 A Routing Daemon such as Quagga implements TCP/IP routing via protocols such as OSPF, RIP and BGP. It acts as a router that fetches and shares routing information
 with other routers. Regarding BGP, Quagga supports version 4.

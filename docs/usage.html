@@ -87,7 +87,12 @@
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Usage of the RTRlib</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#build-and-install-the-rtrlib">Build and Install the RTRlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-and-install-the-rtrlib">Build and Install the RTRlib</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#debian-linux">Debian Linux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#apple-macos">Apple macOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#from-source">From Source</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#development-with-the-rtrlib">Development with the RTRlib</a></li>
 </ul>
 </li>
@@ -141,12 +146,26 @@
 <span id="usage"></span><h1>Usage of the RTRlib<a class="headerlink" href="#usage-of-the-rtrlib" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="build-and-install-the-rtrlib">
 <span id="install"></span><h2>Build and Install the RTRlib<a class="headerlink" href="#build-and-install-the-rtrlib" title="Permalink to this headline">¶</a></h2>
-<p>The RTRlib supports most Linux distributions as well as Apple macOS.
-If you are running Debian Linux, you can install the library via the APT
+<p>The RTRlib supports most Linux distributions as well as Apple macOS.</p>
+<div class="section" id="debian-linux">
+<h3>Debian Linux<a class="headerlink" href="#debian-linux" title="Permalink to this headline">¶</a></h3>
+<p>If you are running Debian (Jessie), you can install the library via the APT
 package manager, as follows</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install librtr0
+<div class="highlight-Bash"><div class="highlight"><pre><span></span>sudo apt-get install librtr0
 </pre></div>
 </div>
+</div>
+<div class="section" id="apple-macos">
+<h3>Apple macOS<a class="headerlink" href="#apple-macos" title="Permalink to this headline">¶</a></h3>
+<p>For macOS we provide <em>Homebrew</em> <a class="reference external" href="https://github.com/rtrlib/homebrew-pils">tap</a> to easily install the RTRlib.
+First, install <a class="reference external" href="http://brew.sh">Homebrew</a> and afterwards install RTRlib as follows:</p>
+<div class="highlight-Bash"><div class="highlight"><pre><span></span>brew tap rtrlib/pils
+brew install rtrlib
+</pre></div>
+</div>
+</div>
+<div class="section" id="from-source">
+<h3>From Source<a class="headerlink" href="#from-source" title="Permalink to this headline">¶</a></h3>
 <p>On any other OS you will have to build and install the RTRlib from source.
 The following minimal requirements have to be met, before building the library:</p>
 <ul class="simple">
@@ -194,6 +213,7 @@ sudo make install
 </div>
 <p>If the build command fails with any error, please consult the RTRlib <a class="reference external" href="https://github.com/rtrlib/rtrlib/">README</a>
 and <a class="reference external" href="https://github.com/rtrlib/rtrlib/wiki">Wiki</a>, you may also join our <a class="reference external" href="https://groups.google.com/forum/#!forum/rtrlib">mailing list</a>.</p>
+</div>
 </div>
 <div class="section" id="development-with-the-rtrlib">
 <h2>Development with the RTRlib<a class="headerlink" href="#development-with-the-rtrlib" title="Permalink to this headline">¶</a></h2>

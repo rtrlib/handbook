@@ -12,8 +12,6 @@ that utilize the RTRlib.
 Further information can be found on the RTRlib website_ and its source code
 repository on Github_.
 
-Contents:
-
 .. toctree::
    :maxdepth: 2
 

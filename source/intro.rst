@@ -1,7 +1,8 @@
 .. _intro:
 
+************
 Introduction
-============
+************
 
 The RTRlib implements the client-side of the RPKI-RTR protocol (`RFC 6810`_) and
 BGP Prefix Origin Validation (`RFC 6811`_). The latest release of the RTRlib also
@@ -10,7 +11,7 @@ the maintenance of router keys.
 Router keys are required to deploy BGPSEC.
 
 Background
-----------
+==========
 
 RPKI-enabled routers do not store ROAs itself but only the validated content of
 these authorities.
@@ -36,7 +37,7 @@ pushes this preprocessed data to connected BGP routers using the RTR protocol.
 .. image:: ../images/rpki-rtr-overview.jpg
 
 Further Reading
----------------
+===============
 
 - `USENIX CSET13`_: RTRlib: An Open-Source Library in C for RPKI-based Prefix Origin Validation
 - `RFC 6480`_ : An Infrastructure to Support Secure Internet Routing

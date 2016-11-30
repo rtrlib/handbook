@@ -1,7 +1,8 @@
 .. _tools:
 
+*************************
 Tools based on the RTRlib
-=========================
+*************************
 
 .. _RIPE RIS Beacons: https://www.ripe.net/analyse/internet-measurements/routing-information-service-ris/current-ris-routing-beacons
 
@@ -32,7 +33,7 @@ provide a public cache with *hostname* ``rpki-validator.realmv6.org``
 and *port* ``8282``.
 
 RTRlib Client
--------------
+=============
 
 The RTRlib client (``rtrclient``) is a default part of the RTRlib package.
 It emulates an RPKI enabled BGP router by using  the client side functionality
@@ -77,7 +78,7 @@ The RTRlib client will receive such Updates until the program is terminated,
 i.e., by ``CTRL+C``.
 
 RTRlib Validator
------------------------
+================
 
 The RTRlib command line validator (``cli-validator``) is also part of RTRlib
 package and is already installed.
@@ -120,7 +121,7 @@ If multiple ROAs exist for a prefix, they are listed successively separated
 by commas (``,``).
 
 RPKI Validator Web Browser Plugins
-----------------------------------
+==================================
 
 The RPKI Validator browser plugins allow to check the RPKI validation of
 visited URLs, i.e., the associated IP prefix and origin AS of the URL.
@@ -155,7 +156,7 @@ Firefox:
 .. _Chrome: https://github.com/rtrlib/chrome-extension
 
 RPKI READ
----------
+=========
 
 The *RPKI Realtime Dashboard* (`RPKI READ`_) aims to provide a consistent
 (and live) view on the RPKI validation state of currently announced IP prefixes.
@@ -190,7 +191,7 @@ to search for results on distinct prefixes.
 .. _BGPstream: https://bgpstream.caida.org/
 
 RPKI MIRO
----------
+=========
 
 The RPKI *Monitoring and Inspection of RPKI Objects* (`RPKI MIRO`_)
 aims for easy access to RPKI certificates, revocation lists, ROAs etc.
@@ -224,7 +225,7 @@ beacon prefix, the resulting web view should look like the screenshot above.
 .. _RPKI MIRO: http://rpki-miro.realmv6.org/
 
 RPKI RBV
---------
+========
 
 The RPKI *RESTful BGP Validator* (`RPKI RBV`_) is web application that provides
 a RESTful API to validate IP prefix to origin AS relations.
@@ -234,7 +235,6 @@ The validation service can be accessed via a plain and simple
 
 .. figure:: ../images/rpki_rbv.png
    :alt: RPKI RBV screenshot
-   :scale: 50%
 
    Screenshot of the RPKI RBV web interface
 
@@ -291,7 +291,7 @@ For a detailed instruction how to install and set up the API visit the `RBV Repo
 .. _RBV Github: https://github.com/rtrlib/rbv
 
 RTRlib Python Binding
----------------------
+=====================
 
 The RTRlib can also be used for scripting in Python using the `RTRlib Python
 binding`_.
@@ -301,7 +301,7 @@ Documentation on the API and usage examples can be found on `readthedocs.io`_.
 .. _`readthedocs.io`: https://python-rtrlib.readthedocs.io
 
 Other Third-Party Tools
------------------------
+=======================
 
 `RIPE <https://www.ripe.net/manage-ips-and-asns/resource-management/certification/tools-and-resources/>`_
 provides an (almost) complete overview on other tools related to the RPKI and
