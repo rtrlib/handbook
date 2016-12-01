@@ -245,11 +245,11 @@ htmlhelp_basename = 'RTRlibHandbookdoc'
 latex_elements = {
      # The paper size ('letterpaper' or 'a4paper').
      #
-     # 'papersize': 'letterpaper',
+    'papersize': 'a4paper',
 
      # The font size ('10pt', '11pt' or '12pt').
      #
-     # 'pointsize': '10pt',
+    'pointsize': '11pt',
 
      # Additional stuff for the LaTeX preamble.
      #
@@ -264,7 +264,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'RTRlibHandbook.tex', u'RTRlib Handbook Documentation',
+    (master_doc, 'RTRlibHandbook.tex', u'RTRlib Handbook',
      u'Colin Sames, Marcel Röthke, Sebastian Meiling', 'manual'),
 ]
 
