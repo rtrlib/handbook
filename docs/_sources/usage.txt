@@ -24,7 +24,7 @@ package manager, as follows
 Apple macOS
 -----------
 
-For macOS we provide *Homebrew* tap_ to easily install the RTRlib.
+For macOS we provide a *Homebrew* tap_ to easily install the RTRlib.
 First, install Homebrew_ and afterwards install RTRlib as follows:
 
 .. code-block:: Bash
@@ -50,7 +50,7 @@ Optional requirements are:
 - `doxygen` to build the RTRlib API documentation
 
 
-If the requirements are met, the library can be build.
+If the requirements are installed, the library can be build.
 First, either download or clone the RTRlib source code as follows:
 
 .. code-block:: Bash
@@ -62,7 +62,7 @@ First, either download or clone the RTRlib source code as follows:
     git clone https://github.com/rtrlib/rtrlib/
     cd rtrlib
 
-The contents of the RTRlib source code has the following subdirectories:
+The contents of the RTRlib source code has the following subdirectory structure:
 
 - ``cmake/``      CMake modules
 - ``doxygen/``    Example code and graphics used in the Doxygen documentation
@@ -70,8 +70,8 @@ The contents of the RTRlib source code has the following subdirectories:
 - ``tests/``      Function tests and unit tests
 - ``tools/``      Contains ``rtrclient`` and ``cli-validator``
 
-Afterwards build the library as follows, we recommend an `out-of-source` build
-using the `cmake` build system:
+Afterwards, build the library as follows (we recommend an `out-of-source` build)
+using `cmake`:
 
 .. code-block:: Bash
 
@@ -80,11 +80,14 @@ using the `cmake` build system:
     make
     sudo make install
 
+If the build command fails with any error, please consult the RTRlib README_
+and Wiki_, you may also join our `mailing list`_.
+
 To enable debug symbols and messages, change the `cmake` command to:
 
 .. code-block:: Bash
 
-    cmake -D CMAKE_BUILD_TYPE=Debug .
+    cmake -D CMAKE_BUILD_TYPE=Debug ../
 
 If `Doxygen` is available, you can build the documentation, by running:
 
@@ -92,8 +95,12 @@ If `Doxygen` is available, you can build the documentation, by running:
 
     make doc
 
-If the build command fails with any error, please consult the RTRlib README_
-and Wiki_, you may also join our `mailing list`_.
+Further, you can also run the build-in tests provided by the RTRlib package
+via `make`:
+
+.. code-block:: Bash
+
+    make test
 
 .. _README: https://github.com/rtrlib/rtrlib/
 .. _Wiki: https://github.com/rtrlib/rtrlib/wiki
@@ -102,10 +109,10 @@ and Wiki_, you may also join our `mailing list`_.
 Development with the RTRlib
 ===========================
 
-The RTRLib shared library is installed to ``/usr/local/lib`` and its headers
-files to ``/usr/local/include`` respectively by default.
-The name of the shared library is `rtr`. To link programs to the RTRlib,
-pass the following parameter to gcc:
+The RTRLib shared library is installed to ``/usr/local/lib`` by default,
+and its headers files to ``/usr/local/include``, respectively .
+The name of the shared library is `rtr`.
+To link programs to the RTRlib, pass the following parameter to gcc:
 
 .. code-block:: Bash
 

@@ -157,7 +157,7 @@ package manager, as follows</p>
 </div>
 <div class="section" id="apple-macos">
 <h3>Apple macOS<a class="headerlink" href="#apple-macos" title="Permalink to this headline">¶</a></h3>
-<p>For macOS we provide <em>Homebrew</em> <a class="reference external" href="https://github.com/rtrlib/homebrew-pils">tap</a> to easily install the RTRlib.
+<p>For macOS we provide a <em>Homebrew</em> <a class="reference external" href="https://github.com/rtrlib/homebrew-pils">tap</a> to easily install the RTRlib.
 First, install <a class="reference external" href="http://brew.sh">Homebrew</a> and afterwards install RTRlib as follows:</p>
 <div class="highlight-Bash"><div class="highlight"><pre><span></span>brew tap rtrlib/pils
 brew install rtrlib
@@ -177,7 +177,7 @@ The following minimal requirements have to be met, before building the library:<
 <li><cite>cmocka</cite> a framework to run RTRlib unit tests</li>
 <li><cite>doxygen</cite> to build the RTRlib API documentation</li>
 </ul>
-<p>If the requirements are met, the library can be build.
+<p>If the requirements are installed, the library can be build.
 First, either download or clone the RTRlib source code as follows:</p>
 <div class="highlight-Bash"><div class="highlight"><pre><span></span>wget https://github.com/rtrlib/rtrlib/archive/v0.3.6.tar.gz
 tar xzf v0.3.6.tar.gz
@@ -187,7 +187,7 @@ git clone https://github.com/rtrlib/rtrlib/
 <span class="nb">cd</span> rtrlib
 </pre></div>
 </div>
-<p>The contents of the RTRlib source code has the following subdirectories:</p>
+<p>The contents of the RTRlib source code has the following subdirectory structure:</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">cmake/</span></code>      CMake modules</li>
 <li><code class="docutils literal"><span class="pre">doxygen/</span></code>    Example code and graphics used in the Doxygen documentation</li>
@@ -195,32 +195,37 @@ git clone https://github.com/rtrlib/rtrlib/
 <li><code class="docutils literal"><span class="pre">tests/</span></code>      Function tests and unit tests</li>
 <li><code class="docutils literal"><span class="pre">tools/</span></code>      Contains <code class="docutils literal"><span class="pre">rtrclient</span></code> and <code class="docutils literal"><span class="pre">cli-validator</span></code></li>
 </ul>
-<p>Afterwards build the library as follows, we recommend an <cite>out-of-source</cite> build
-using the <cite>cmake</cite> build system:</p>
+<p>Afterwards, build the library as follows (we recommend an <cite>out-of-source</cite> build)
+using <cite>cmake</cite>:</p>
 <div class="highlight-Bash"><div class="highlight"><pre><span></span>mkdir build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> build
 cmake -DCMAKE_BUILD_TYPE<span class="o">=</span>Release ../
 make
 sudo make install
 </pre></div>
 </div>
+<p>If the build command fails with any error, please consult the RTRlib <a class="reference external" href="https://github.com/rtrlib/rtrlib/">README</a>
+and <a class="reference external" href="https://github.com/rtrlib/rtrlib/wiki">Wiki</a>, you may also join our <a class="reference external" href="https://groups.google.com/forum/#!forum/rtrlib">mailing list</a>.</p>
 <p>To enable debug symbols and messages, change the <cite>cmake</cite> command to:</p>
-<div class="highlight-Bash"><div class="highlight"><pre><span></span>cmake -D <span class="nv">CMAKE_BUILD_TYPE</span><span class="o">=</span>Debug .
+<div class="highlight-Bash"><div class="highlight"><pre><span></span>cmake -D <span class="nv">CMAKE_BUILD_TYPE</span><span class="o">=</span>Debug ../
 </pre></div>
 </div>
 <p>If <cite>Doxygen</cite> is available, you can build the documentation, by running:</p>
 <div class="highlight-Bash"><div class="highlight"><pre><span></span>make doc
 </pre></div>
 </div>
-<p>If the build command fails with any error, please consult the RTRlib <a class="reference external" href="https://github.com/rtrlib/rtrlib/">README</a>
-and <a class="reference external" href="https://github.com/rtrlib/rtrlib/wiki">Wiki</a>, you may also join our <a class="reference external" href="https://groups.google.com/forum/#!forum/rtrlib">mailing list</a>.</p>
+<p>Further, you can also run the build-in tests provided by the RTRlib package
+via <cite>make</cite>:</p>
+<div class="highlight-Bash"><div class="highlight"><pre><span></span>make <span class="nb">test</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="development-with-the-rtrlib">
 <h2>Development with the RTRlib<a class="headerlink" href="#development-with-the-rtrlib" title="Permalink to this headline">¶</a></h2>
-<p>The RTRLib shared library is installed to <code class="docutils literal"><span class="pre">/usr/local/lib</span></code> and its headers
-files to <code class="docutils literal"><span class="pre">/usr/local/include</span></code> respectively by default.
-The name of the shared library is <cite>rtr</cite>. To link programs to the RTRlib,
-pass the following parameter to gcc:</p>
+<p>The RTRLib shared library is installed to <code class="docutils literal"><span class="pre">/usr/local/lib</span></code> by default,
+and its headers files to <code class="docutils literal"><span class="pre">/usr/local/include</span></code>, respectively .
+The name of the shared library is <cite>rtr</cite>.
+To link programs to the RTRlib, pass the following parameter to gcc:</p>
 <div class="highlight-Bash"><div class="highlight"><pre><span></span>-lrtr
 </pre></div>
 </div>
