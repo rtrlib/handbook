@@ -11,8 +11,10 @@ utilize the RTRlib and its features.
 These tools range from low level shell commands to easy-to-use browser plugins.
 
 For all tools we provide small usage examples; where ever appropriate we will
-use the following `RIPE RIS Beacons`_ with well known RPKI validation results.
+use the `RIPE RIS Beacons`_ (see :numref:`beacons`) with well known RPKI
+validation results.
 
+.. _beacons:
 .. table:: RIPE RIS beacons with RPKI validation results
 
     ================== ============ ==========
@@ -285,20 +287,11 @@ The result will be a JSON object as shown below:
         }
     }
 
-For a detailed instruction how to install and set up the API visit the `RBV Repository <https://github.com/rtrlib/rbv>`_ on GitHub.
+For a detailed instruction how to install and set up the API visit
+the `RBV Repository <https://github.com/rtrlib/rbv>`_ on GitHub.
 
 .. _RPKI RBV: https://rpki-rbv.realmv6.org/
 .. _RBV Github: https://github.com/rtrlib/rbv
-
-RTRlib Python Binding
-=====================
-
-The RTRlib can also be used for scripting in Python using the `RTRlib Python
-binding`_.
-Documentation on the API and usage examples can be found on `readthedocs.io`_.
-
-.. _`RTRlib Python binding`: https://github.com/rtrlib/python-binding
-.. _`readthedocs.io`: https://python-rtrlib.readthedocs.io
 
 Other Third-Party Tools
 =======================

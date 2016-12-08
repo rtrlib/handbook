@@ -10,10 +10,12 @@ The latest release of the RTRlib also supports the Internet-Draft
 :cite:`draft-ietf-sidr-rpki-rtr-rfc6810-bis` to enable
 the maintenance of router keys which are required to deploy BGPSEC in the future.
 
-Securing BGP using RPKI
-=======================
+Background
+==========
 
-The (RPKI :cite:`RFC-6480`)
+The global deployment of a Resource Public Key Infrastructure
+(RPKI :cite:`RFC-6480`) is a first step towards securing the Internet routing.
+
 RPKI-enabled routers do not store ROAs itself but only the validated content of
 these authorities.
 To achieve high scalability as well as limit resource utilization on BGP
@@ -30,20 +32,30 @@ The RTRlib provides functions to establish a connection to a single or multiple
 trusted caches using TCP or SSH transport connections, and further allows to
 determine the validation state of prefix to origin AS relations.
 
-The figure below shows a typical RPKI deployment, where trusted cache server
-collect ROAs from global RPKI repositories of RIRs, such as RIPE and APNIC.
+The image in :numref:`overview` shows a typical RPKI deployment, where trusted
+cache server collect ROAs from global RPKI repositories of RIRs, such as RIPE
+and APNIC.
 Each local RPKI cache periodically updates and verifies the stored ROAs, and
-pushes this preprocessed data to connected RPKI enabled BGP routers using
+pushes the preprocessed data to connected RPKI enabled BGP routers using
 the RTR protocol.
 
-.. image:: ../images/rpki-rtr-overview.jpg
+.. _overview:
+.. figure:: ../images/rpki-rtr-overview.jpg
+
+    Overview on a typical RPKI deployment, showing global RPKI repositories,
+    trusted cache servers, and RPKI enabled BGP routers.
+
+Further Reading
+===============
+
+Detailed insights on the implementation of the RTRlib  and its performance can
+be found in :cite:`whss-roslr-13`.
+Further it complies to the standard specifications and protocols in
+RFCs 6810 :cite:`RFC-6810` and 6811 :cite:`RFC-6811`.
 
 .. only:: html
 
-   .. rubric:: Further Reading
-
-   Detailed insights on the RTRlib implementation, its performance :cite:`whss-roslr-13`,
-   and the utilized standard protocols, can be found in the following references:
+    .. rubric:: References
 
 .. bibliography:: handbook.bib
     :style: unsrt

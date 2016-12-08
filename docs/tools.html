@@ -95,7 +95,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#rpki-read">RPKI READ</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rpki-miro">RPKI MIRO</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#rpki-rbv">RPKI RBV</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#rtrlib-python-binding">RTRlib Python Binding</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#other-third-party-tools">Other Third-Party Tools</a></li>
 </ul>
 </li>
@@ -150,9 +149,10 @@
 utilize the RTRlib and its features.
 These tools range from low level shell commands to easy-to-use browser plugins.</p>
 <p>For all tools we provide small usage examples; where ever appropriate we will
-use the following <a class="reference external" href="https://www.ripe.net/analyse/internet-measurements/routing-information-service-ris/current-ris-routing-beacons">RIPE RIS Beacons</a> with well known RPKI validation results.</p>
-<table border="1" class="docutils" id="id5">
-<caption><span class="caption-text">RIPE RIS beacons with RPKI validation results</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
+use the <a class="reference external" href="https://www.ripe.net/analyse/internet-measurements/routing-information-service-ris/current-ris-routing-beacons">RIPE RIS Beacons</a> (see <a class="reference internal" href="#beacons"><span class="std std-numref">Table 1</span></a>) with well known RPKI
+validation results.</p>
+<table border="1" class="docutils" id="id4">
+<span id="beacons"></span><caption><span class="caption-number">Table 1 </span><span class="caption-text">RIPE RIS beacons with RPKI validation results</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="45%" />
 <col width="30%" />
@@ -325,9 +325,9 @@ overview of the RPKI validation state of all currently advertised IP prefixes
 observed by a certain BGP source.
 Further, the frontend provides detailed statistics and also allows the user
 to search for results on distinct prefixes.</p>
-<div class="figure" id="id6">
+<div class="figure" id="id5">
 <img alt="RPKI READ screenshot" src="_images/rpki_read.png" />
-<p class="caption"><span class="caption-text">Screenshot of the RPKI READ web frontend</span></p>
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Screenshot of the RPKI READ web frontend</span></p>
 </div>
 </div>
 <div class="section" id="rpki-miro">
@@ -347,9 +347,9 @@ RPKI MIRO is a monitoring application that consists of three parts:</p>
 <li>a browser to visualize RPKI objects, and</li>
 <li>statistical analysis of the collected objects.</li>
 </ol>
-<div class="figure" id="id7">
+<div class="figure" id="id6">
 <img alt="RPKI MIRO screenshot" src="_images/rpki_miro.png" />
-<p class="caption"><span class="caption-text">Screenshot of the RPKI MIRO web interface.</span></p>
+<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Screenshot of the RPKI MIRO web interface.</span></p>
 </div>
 <p>Using RPKI MIRO you can lookup any IP prefix and its associated ROA, e.g. the
 RIPE RIS beacon <code class="docutils literal"><span class="pre">93.175.147.0/24</span></code>.
@@ -366,9 +366,9 @@ a RESTful API to validate IP prefix to origin AS relations.
 The validation service can be accessed via a plain and simple
 <a class="reference external" href="http://rpki-rbv.realmv6.org/html/validate.html">web page</a>
 (see image below) or directly using its RESTful API.</p>
-<div class="figure" id="id8">
+<div class="figure" id="id7">
 <img alt="RPKI RBV screenshot" src="_images/rpki_rbv.png" />
-<p class="caption"><span class="caption-text">Screenshot of the RPKI RBV web interface</span></p>
+<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Screenshot of the RPKI RBV web interface</span></p>
 </div>
 <p>RBV provides two distinct APIs to run RPKI validation queries, the APIs allow
 RESTful GET queries with the following syntax for the URL path:</p>
@@ -413,13 +413,8 @@ rpki-rbv.realmv6.org/api/v2/validity/93.175.146.1
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>For a detailed instruction how to install and set up the API visit the <a class="reference external" href="https://github.com/rtrlib/rbv">RBV Repository</a> on GitHub.</p>
-</div>
-<div class="section" id="rtrlib-python-binding">
-<h2>RTRlib Python Binding<a class="headerlink" href="#rtrlib-python-binding" title="Permalink to this headline">¶</a></h2>
-<p>The RTRlib can also be used for scripting in Python using the <a class="reference external" href="https://github.com/rtrlib/python-binding">RTRlib Python
-binding</a>.
-Documentation on the API and usage examples can be found on <a class="reference external" href="https://python-rtrlib.readthedocs.io">readthedocs.io</a>.</p>
+<p>For a detailed instruction how to install and set up the API visit
+the <a class="reference external" href="https://github.com/rtrlib/rbv">RBV Repository</a> on GitHub.</p>
 </div>
 <div class="section" id="other-third-party-tools">
 <h2>Other Third-Party Tools<a class="headerlink" href="#other-third-party-tools" title="Permalink to this headline">¶</a></h2>
