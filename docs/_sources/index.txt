@@ -17,6 +17,7 @@ repository on Github_.
 
    intro
    usage
+   python
    tools
    bgprd
 

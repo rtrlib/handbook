@@ -4,14 +4,17 @@
 Introduction
 ************
 
-The RTRlib implements the client-side of the RPKI-RTR protocol (`RFC 6810`_) and
-BGP Prefix Origin Validation (`RFC 6811`_). The latest release of the RTRlib also
-supports Internet-Draft `draft-ietf-sidr-rpki-rtr-rfc6810-bis`_, which enables
-the maintenance of router keys.
-Router keys are required to deploy BGPSEC.
+The RTRlib implements the client-side of the RPKI-RTR protocol :cite:`RFC-6810`
+and the BGP Prefix Origin Validation :cite:`RFC-6811`.
+The latest release of the RTRlib also supports the Internet-Draft
+:cite:`draft-ietf-sidr-rpki-rtr-rfc6810-bis` to enable
+the maintenance of router keys which are required to deploy BGPSEC in the future.
 
-Background
-==========
+Securing BGP using RPKI
+=======================
+
+The global deployment of a Resource Public Key Infrastructure
+(RPKI :cite:`RFC-6480`) is a first step towards securing the Internet routing.
 
 RPKI-enabled routers do not store ROAs itself but only the validated content of
 these authorities.
@@ -37,19 +40,13 @@ the RTR protocol.
 
 .. image:: ../images/rpki-rtr-overview.jpg
 
-Further Reading
-===============
+.. only:: html
 
-Detailed insights on the RTRlib implementation, its performance, and the
-utilized standard protocols, can be found in the following references:
+   .. rubric:: Further Reading
 
-- `USENIX CSET13`_: RTRlib: An Open-Source Library in C for RPKI-based Prefix Origin Validation
-- `RFC 6480`_ : An Infrastructure to Support Secure Internet Routing
-- `RFC 6810`_ : the RPKI to Router Protocol (RTR)
-- `RFC 6811`_ : on BGP Prefix Origin Validation
+   Detailed insights on the RTRlib implementation, its performance :cite:`whss-roslr-13`,
+   and the utilized standard protocols, can be found in the following references:
 
-.. _USENIX CSET13: https://www.usenix.org/conference/cset13/workshop-program/presentation/w%C3%A4hlisch
-.. _RFC 6480: https://tools.ietf.org/html/rfc6480
-.. _RFC 6810: https://tools.ietf.org/html/rfc6810
-.. _RFC 6811: https://tools.ietf.org/html/rfc6811
-.. _draft-ietf-sidr-rpki-rtr-rfc6810-bis: https://tools.ietf.org/html/draft-ietf-sidr-rpki-rtr-rfc6810-bis
+.. bibliography:: handbook.bib
+    :style: unsrt
+    :cited:

@@ -1,0 +1,70 @@
+@inproceedings{whss-roslr-13,
+  author = {Matthias W{\"a}hlisch and Fabian Holler and Thomas C. Schmidt and Jochen H. Schiller},
+  title = {{RTRlib: An Open-Source Library in C for RPKI-based Prefix Origin Validation}},
+  booktitle = {Proc. of USENIX Security Workshop CSET'13},
+  year = {2013},
+  publisher = {USENIX Assoc.},
+  address = {Berkeley, CA, USA},
+  url = {https://www.usenix.org/conference/cset13/rtrlib-open-source-library-c-rpki-based-prefix-origin-validation},
+  abstract  = {
+A major step towards secure Internet backbone routing started with the
+ deployment of the Resource Public Key Infrastructure (RPKI). It allows
+ for the cryptographic strong binding of an IP prefix and autonomous
+ systems that are legitimate to originate this prefix. A fundamental
+ design choice of RPKI-based prefix origin validation is the avoidance
+ of cryptographic load at BGP routers. Cryptographic verifications will
+ be performed only by cache servers, which deliver valid AS/prefix
+ mappings to the RPKI-enabled BGP router using the RPKI/RTR protocol.
+
+In this paper, we give first insights into the additional system load
+ introduced by RPKI at BGP routers. For this purpose, we design and
+ implement a highly efficient C library of the RPKI/RTR router part and
+ the prefix origin validation scheme. It fetches and stores validated
+ prefix origin data from an RTR-cache and performs origin verification
+ of prefixes as obtained from BGP updates. We measure a relatively small
+ overhead of origin validation on commodity hardware (5\% more RAM than
+ required for full BGP table support, 0.41\% load in case of ca. 92,000
+ prefix updates per minute), which meets real-world requirements of today.
+              },
+  theme     = {nsec},
+}
+
+@techreport{RFC-6480,
+  author = {M. Lepinski and S. Kent},
+  title = {{An Infrastructure to Support Secure Internet Routing}},
+  institution = {IETF},
+  type = {RFC},
+  number = {6480},
+  month = {February},
+  year = {2012}
+}
+
+@techreport{RFC-6810,
+  author = {R. Bush and R. Austein},
+  title = {{The Resource Public Key Infrastructure (RPKI) to Router Protocol}},
+  institution = {IETF},
+  type = {RFC},
+  number = {6810},
+  month = {January},
+  year = {2013}
+}
+
+@techreport{RFC-6811,
+  author = {P. Mohapatra and J. Scudder and D. Ward and R. Bush and R. Austein},
+  title = {{BGP Prefix Origin Validation}},
+  institution = {IETF},
+  type = {RFC},
+  number = {6811},
+  month = {January},
+  year = {2013}
+}
+
+@techreport{draft-ietf-sidr-rpki-rtr-rfc6810-bis,
+  author = {Randy Bush and Rob Austein},
+  title = {{The Resource Public Key Infrastructure (RPKI) to Router Protocol}},
+  institution = {IETF},
+  type = {Internet-Draft -- work in progress},
+  number = {07},
+  month = {March},
+  year = {2016}
+}

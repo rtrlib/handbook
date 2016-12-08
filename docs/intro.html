@@ -86,11 +86,11 @@
             
                 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#background">Background</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#further-reading">Further Reading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#securing-bgp-using-rpki">Securing BGP using RPKI</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage of the RTRlib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">RTRlib Python Binding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tools.html">Tools based on the RTRlib</a></li>
 <li class="toctree-l1"><a class="reference internal" href="bgprd.html">BGP Routing Daemons with RPKR/RTR</a></li>
 </ul>
@@ -139,14 +139,15 @@
             
   <div class="section" id="introduction">
 <span id="intro"></span><h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p>The RTRlib implements the client-side of the RPKI-RTR protocol (<a class="reference external" href="https://tools.ietf.org/html/rfc6810">RFC 6810</a>) and
-BGP Prefix Origin Validation (<a class="reference external" href="https://tools.ietf.org/html/rfc6811">RFC 6811</a>). The latest release of the RTRlib also
-supports Internet-Draft <a class="reference external" href="https://tools.ietf.org/html/draft-ietf-sidr-rpki-rtr-rfc6810-bis">draft-ietf-sidr-rpki-rtr-rfc6810-bis</a>, which enables
-the maintenance of router keys.
-Router keys are required to deploy BGPSEC.</p>
-<div class="section" id="background">
-<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
-<p>RPKI-enabled routers do not store ROAs itself but only the validated content of
+<p>The RTRlib implements the client-side of the RPKI-RTR protocol <a class="reference internal" href="#rfc-6810" id="id1">[1]</a>
+and the BGP Prefix Origin Validation <a class="reference internal" href="#rfc-6811" id="id2">[2]</a>.
+The latest release of the RTRlib also supports the Internet-Draft
+<a class="reference internal" href="#draft-ietf-sidr-rpki-rtr-rfc6810-bis" id="id3">[3]</a> to enable
+the maintenance of router keys which are required to deploy BGPSEC in the future.</p>
+<div class="section" id="securing-bgp-using-rpki">
+<h2>Securing BGP using RPKI<a class="headerlink" href="#securing-bgp-using-rpki" title="Permalink to this headline">¶</a></h2>
+<p>The (RPKI <a class="reference internal" href="#rfc-6480" id="id4">[4]</a>)
+RPKI-enabled routers do not store ROAs itself but only the validated content of
 these authorities.
 To achieve high scalability as well as limit resource utilization on BGP
 routers, the validation of ROAs is performed by trusted RPKI cache servers,
@@ -159,21 +160,47 @@ verify received BGP updates without suffering from cryptographic complexity.</p>
 the client end (i.e., routers) and the proposed prefix origin validation scheme.
 The RTRlib provides functions to establish a connection to a single or multiple
 trusted caches using TCP or SSH transport connections, and further allows to
-determine the validation state of a prefix to origin AS relations.</p>
+determine the validation state of prefix to origin AS relations.</p>
 <p>The figure below shows a typical RPKI deployment, where trusted cache server
-collects ROAs from global RPKI repositories of RIRs, such as RIPE and APNIC.
+collect ROAs from global RPKI repositories of RIRs, such as RIPE and APNIC.
 Each local RPKI cache periodically updates and verifies the stored ROAs, and
-pushes this preprocessed data to connected BGP routers using the RTR protocol.</p>
+pushes this preprocessed data to connected RPKI enabled BGP routers using
+the RTR protocol.</p>
 <img alt="_images/rpki-rtr-overview.jpg" src="_images/rpki-rtr-overview.jpg" />
-</div>
-<div class="section" id="further-reading">
-<h2>Further Reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><a class="reference external" href="https://www.usenix.org/conference/cset13/workshop-program/presentation/w%C3%A4hlisch">USENIX CSET13</a>: RTRlib: An Open-Source Library in C for RPKI-based Prefix Origin Validation</li>
-<li><a class="reference external" href="https://tools.ietf.org/html/rfc6480">RFC 6480</a> : An Infrastructure to Support Secure Internet Routing</li>
-<li><a class="reference external" href="https://tools.ietf.org/html/rfc6810">RFC 6810</a> : the RPKI to Router Protocol (RTR)</li>
-<li><a class="reference external" href="https://tools.ietf.org/html/rfc6811">RFC 6811</a> : on BGP Prefix Origin Validation</li>
-</ul>
+<p class="rubric">Further Reading</p>
+<p>Detailed insights on the RTRlib implementation, its performance <a class="reference internal" href="#whss-roslr-13" id="id5">[5]</a>,
+and the utilized standard protocols, can be found in the following references:</p>
+<p id="bibtex-bibliography-intro-0"><table class="docutils citation" frame="void" id="rfc-6810" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>R.&nbsp;Bush and R.&nbsp;Austein. The Resource Public Key Infrastructure (RPKI) to Router Protocol. RFC 6810, IETF, January 2013.</td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="rfc-6811" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>P.&nbsp;Mohapatra, J.&nbsp;Scudder, D.&nbsp;Ward, R.&nbsp;Bush, and R.&nbsp;Austein. BGP Prefix Origin Validation. RFC 6811, IETF, January 2013.</td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="draft-ietf-sidr-rpki-rtr-rfc6810-bis" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>Randy Bush and Rob Austein. The Resource Public Key Infrastructure (RPKI) to Router Protocol. Internet-Draft – work in progress 07, IETF, March 2016.</td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="rfc-6480" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td>M.&nbsp;Lepinski and S.&nbsp;Kent. An Infrastructure to Support Secure Internet Routing. RFC 6480, IETF, February 2012.</td></tr>
+</tbody>
+</table>
+<table class="docutils citation" frame="void" id="whss-roslr-13" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[5]</a></td><td>Matthias Wählisch, Fabian Holler, Thomas&nbsp;C. Schmidt, and Jochen&nbsp;H. Schiller. RTRlib: An Open-Source Library in C for RPKI-based Prefix Origin Validation. In <em>Proc. of USENIX Security Workshop CSET&#8216;13</em>. Berkeley, CA, USA, 2013. USENIX Assoc. URL: <a class="reference external" href="https://www.usenix.org/conference/cset13/rtrlib-open-source-library-c-rpki-based-prefix-origin-validation">https://www.usenix.org/conference/cset13/rtrlib-open-source-library-c-rpki-based-prefix-origin-validation</a>.</td></tr>
+</tbody>
+</table>
+</p>
 </div>
 </div>
 
