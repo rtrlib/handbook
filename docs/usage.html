@@ -94,6 +94,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#development-with-the-rtrlib">Development with the RTRlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-by-step-coding-example">Step-by-Step Coding Example</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="python.html">RTRlib Python Binding</a></li>
@@ -147,7 +148,7 @@
 <span id="usage"></span><h1>Usage of the RTRlib<a class="headerlink" href="#usage-of-the-rtrlib" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="build-and-install-the-rtrlib">
 <span id="install"></span><h2>Build and Install the RTRlib<a class="headerlink" href="#build-and-install-the-rtrlib" title="Permalink to this headline">¶</a></h2>
-<p>The RTRlib supports most Linux distributions as well as Apple macOS.</p>
+<p>The RTRlib is supported by most Linux distributions as well as Apple macOS.</p>
 <div class="section" id="debian-linux">
 <h3>Debian Linux<a class="headerlink" href="#debian-linux" title="Permalink to this headline">¶</a></h3>
 <p>If you are running Debian (Jessie), you can install the library via the APT
@@ -167,7 +168,7 @@ brew install rtrlib
 </div>
 <div class="section" id="from-source">
 <h3>From Source<a class="headerlink" href="#from-source" title="Permalink to this headline">¶</a></h3>
-<p>On any other OS you will have to build and install the RTRlib from source.
+<p>On any other Linux OS you will have to build and install the RTRlib from source.
 The following minimal requirements have to be met, before building the library:</p>
 <ul class="simple">
 <li>the build system is based on <cite>cmake</cite>, version &gt;= 2.6</li>
@@ -222,23 +223,110 @@ via <cite>make</cite>:</p>
 </div>
 </div>
 <div class="section" id="development-with-the-rtrlib">
-<h2>Development with the RTRlib<a class="headerlink" href="#development-with-the-rtrlib" title="Permalink to this headline">¶</a></h2>
-<p>The RTRLib shared library is installed to <code class="docutils literal"><span class="pre">/usr/local/lib</span></code> by default,
-and its headers files to <code class="docutils literal"><span class="pre">/usr/local/include</span></code>, respectively .
-The name of the shared library is <cite>rtr</cite>.
-To link programs to the RTRlib, pass the following parameter to gcc:</p>
+<span id="devel"></span><h2>Development with the RTRlib<a class="headerlink" href="#development-with-the-rtrlib" title="Permalink to this headline">¶</a></h2>
+<p>The RTRlib shared library is installed to <code class="docutils literal"><span class="pre">/usr/local/lib</span></code> by default,
+and its headers files to <code class="docutils literal"><span class="pre">/usr/local/include</span></code>, respectively.
+Writing an application in C/C++ using the RTRlib just include the main header
+file into the code:</p>
+<div class="highlight-C"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;rtrlib/rtrlib.h&quot;</span><span class="cp"></span>
+</pre></div>
+</div>
+<p>The name of the shared library is <cite>rtr</cite>.
+To link an application against the RTRlib, pass the following parameter to gcc:</p>
 <div class="highlight-Bash"><div class="highlight"><pre><span></span>-lrtr
 </pre></div>
 </div>
-<p>In case an error such as</p>
-<div class="line-block">
-<div class="line">-/usr/bin/ld: cannot find -lrtr</div>
-<div class="line">-collect2: error: ld returned 1 exit status</div>
-<div class="line"><br /></div>
+<p>If the linker reports an error such as <code class="docutils literal"><span class="pre">cannot</span> <span class="pre">find</span> <span class="pre">-lrtr</span></code> the shared library
+cannot be found.
+This typically happens when the RTRlib was not installed to a standard location.
+Thus, pass its location as an absolute path to the compiler:</p>
+<div class="highlight-Bash"><div class="highlight"><pre><span></span>-L&lt;/path/to/librtr/&gt;
+</pre></div>
 </div>
-<p>occurs while compiling, the library cannot be found.
-Pass its location as an absolute path to the compiler:</p>
-<div class="highlight-Bash"><div class="highlight"><pre><span></span>-L&lt;path_to_librtr.so&gt;
+<p>On Linux you can also try to update the linker cache by running:</p>
+<div class="highlight-Bash"><div class="highlight"><pre><span></span>ldconfig
+<span class="c1"># verify with</span>
+ldconfig -p <span class="p">|</span> grep rtr
+</pre></div>
+</div>
+</div>
+<div class="section" id="step-by-step-coding-example">
+<span id="coding"></span><h2>Step-by-Step Coding Example<a class="headerlink" href="#step-by-step-coding-example" title="Permalink to this headline">¶</a></h2>
+<p>The RTRlib package includes two command line tools, the <code class="docutils literal"><span class="pre">rtrclient</span></code> and
+the <code class="docutils literal"><span class="pre">cli-validator</span></code>, see also <a class="reference internal" href="tools.html#tools"><span class="std std-ref">Tools based on the RTRlib</span></a>.
+The former connects to a single RTR cache server via TCP or SSH and prints
+validated prefix origin data to STDOUT. You can use this tool to get first
+experiences with the RPKI-RTR protocol. With the latter you can validate
+arbitrary prefix to origin relations. Both tools are located in the <code class="docutils literal"><span class="pre">tools/</span></code>
+directory.</p>
+<p>Having a look into the source code of these tools may help to understand and
+integrate the RTRlib into your own applications. The following provides an
+overview on important code segments.</p>
+<hr class="docutils" />
+<p>Create a TCP Transport socket</p>
+<div class="highlight-C"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">tr_socket</span> <span class="n">tr_tcp</span><span class="p">;</span>
+<span class="kt">char</span> <span class="n">tcp_host</span><span class="p">[]</span>     <span class="o">=</span> <span class="p">;</span>
+<span class="kt">char</span> <span class="n">tcp_port</span><span class="p">[]</span>     <span class="o">=</span> <span class="s">&quot;8282&quot;</span><span class="p">;</span>
+
+<span class="k">struct</span> <span class="n">tr_tcp_config</span> <span class="n">tcp_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&quot;rpki-validator.realmv6.org&quot;</span><span class="p">,</span>   <span class="c1">// TCP host</span>
+    <span class="s">&quot;8282&quot;</span><span class="p">,</span>                         <span class="c1">// TCP port</span>
+    <span class="nb">NULL</span>                <span class="c1">// empty source address</span>
+<span class="p">};</span>
+<span class="n">tr_tcp_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tcp_config</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tr_tcp</span><span class="p">);</span>
+
+<span class="k">struct</span> <span class="n">rtr_socket</span> <span class="n">rtr_tcp</span><span class="p">;</span>
+<span class="n">rtr_tcp</span><span class="p">.</span><span class="n">tr_socket</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">tr_tcp</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Create a group of RTR-Servers with preference <cite>1</cite>. In this case, it includes
+only one RTR-Server.</p>
+<div class="highlight-C"><div class="highlight"><pre><span></span><span class="n">rtr_mgr_group</span> <span class="n">groups</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+<span class="n">groups</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">sockets</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">rtr_socket</span><span class="o">*</span><span class="p">));</span>
+<span class="n">groups</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">sockets_len</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">groups</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">sockets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">rtr_tcp</span><span class="p">;</span>
+<span class="n">groups</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">preference</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>#. Initialize the RTR Connection Manager with a configuration object, the group(s),
+number of groups, a refresh interval, an expiration interval, and retry interval,
+as well as callback functions. In this case, a refresh interval of 30 seconds,
+a 600s expiration timeout, and a 600s retry interval will be defined.</p>
+<div class="highlight-C"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">rtr_mgr_config</span> <span class="o">*</span><span class="n">conf</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">ret</span> <span class="o">=</span> <span class="n">rtr_mgr_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">conf</span><span class="p">,</span> <span class="n">groups</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span>
+                       <span class="n">pfx_update_fp</span><span class="p">,</span> <span class="n">spki_update_fp</span><span class="p">,</span> <span class="n">status_fp</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Start the RTR Connection Manager</p>
+<div class="highlight-C"><div class="highlight"><pre><span></span><span class="n">rtr_mgr_start</span><span class="p">(</span><span class="n">conf</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>As soon as an update has been received from the RTR-Server, the callback
+function will be invoked. In this example, <cite>update_cb</cite> will be invoked and
+prints the prefix, the min and max length, as well as the origin AS.</p>
+<div class="highlight-C"><div class="highlight"><pre><span></span><span class="k">static</span> <span class="kt">void</span> <span class="nf">update_cb</span><span class="p">(</span><span class="k">struct</span> <span class="n">pfx_table</span><span class="o">*</span> <span class="n">p</span><span class="p">,</span> <span class="k">const</span> <span class="n">pfx_record</span> <span class="n">rec</span><span class="p">,</span> <span class="k">const</span> <span class="kt">bool</span> <span class="n">added</span><span class="p">){</span>
+    <span class="kt">char</span> <span class="n">ip</span><span class="p">[</span><span class="n">INET6_ADDRSTRLEN</span><span class="p">];</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">added</span><span class="p">)</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;+ &quot;</span><span class="p">);</span>
+    <span class="k">else</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;- &quot;</span><span class="p">);</span>
+    <span class="n">ip_addr_to_str</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="n">rec</span><span class="p">.</span><span class="n">prefix</span><span class="p">),</span> <span class="n">ip</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">ip</span><span class="p">));</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%-18s %3u-%-3u %10u</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">ip</span><span class="p">,</span> <span class="n">rec</span><span class="p">.</span><span class="n">min_len</span><span class="p">,</span> <span class="n">rec</span><span class="p">.</span><span class="n">max_len</span><span class="p">,</span> <span class="n">rec</span><span class="p">.</span><span class="n">asn</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Validate the relation of prefix <cite>10.10.0.0/24</cite> and its origin AS 12345 as follows.</p>
+<div class="highlight-C"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">lrtr_ip_addr</span> <span class="n">pref</span><span class="p">;</span>
+<span class="n">lrtr_ip_str_to_addr</span><span class="p">(</span><span class="s">&quot;10.10.0.0&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">pref</span><span class="p">);</span>
+<span class="k">enum</span> <span class="n">pfxv_state</span> <span class="n">result</span><span class="p">;</span>
+<span class="k">const</span> <span class="kt">uint8_t</span> <span class="n">mask</span> <span class="o">=</span> <span class="mi">24</span><span class="p">;</span>
+<span class="n">rtr_mgr_validate</span><span class="p">(</span><span class="n">conf</span><span class="p">,</span> <span class="mi">12345</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">pref</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">result</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Finally, stop the RTR Connection Manager and release memory.</p>
+<div class="highlight-C"><div class="highlight"><pre><span></span><span class="n">rtr_mgr_stop</span><span class="p">(</span><span class="n">conf</span><span class="p">);</span>
+<span class="n">rtr_mgr_free</span><span class="p">(</span><span class="n">conf</span><span class="p">);</span>
+<span class="n">free</span><span class="p">(</span><span class="n">groups</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">sockets</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
