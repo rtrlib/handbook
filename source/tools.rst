@@ -15,18 +15,18 @@ use the `RIPE RIS Beacons`_ (see :numref:`beacons`) with well known RPKI
 validation results.
 
 .. _beacons:
-.. table:: RIPE RIS beacons with RPKI validation results
+.. table:: RIPE RIS beacons for RPKI tests
 
-    ================== ============ ==========
-    IP Prefix          Valid Origin Result
-    ================== ============ ==========
-    93.175.146.0/24    AS12654      valid
-    2001:7fb:fd02::/48 AS12654      valid
-    93.175.147.0/24    AS196615     invalid AS
-    2001:7fb:fd03::/48 AS196615     invalid AS
-    84.205.83.0/24     None         not found
-    2001:7fb:ff03::/48 None         not found
-    ================== ============ ==========
+    ==================== ============== ============
+     IP Prefix            Valid Origin   Result
+    ==================== ============== ============
+    93.175.146.0/24       AS12654        valid
+    2001:7fb:fd02::/48    AS12654        valid
+    93.175.147.0/24       AS196615       invalid AS
+    2001:7fb:fd03::/48    AS196615       invalid AS
+    84.205.83.0/24        None           not found
+    2001:7fb:ff03::/48    None           not found
+    ==================== ============== ============
 
 *Note* for all prefixes the RPKI validation results are based on origin AS12654,
 owned by RIPE.
@@ -61,6 +61,8 @@ The following listing shows how to connect the ``rtrclient`` with a cache server
 as well as 10 lines of the resulting output:
 
 .. code-block:: Bash
+    :caption: Output of the rtrclient tool
+    :name: lst-rtrclient
 
     rtrclient tcp -k -p rpki-validator.realmv6.org 8282
     Prefix                                     Prefix Length         ASN
@@ -104,6 +106,8 @@ The following listing shows the validation of all RIPE RIS beacons using our
 cache server:
 
 .. code-block:: Bash
+    :caption: Output of the cli-validator tool
+    :name: lst-validator
 
     cli-validator rpki-validator.realmv6.org 8282
     93.175.146.0 24 12654
@@ -265,6 +269,8 @@ To test the APIs type the following queries for the RIPE RIS beacon
 The result will be a JSON object as shown below:
 
 .. code-block:: JSON
+    :caption: Sample JSON output of RPKI RBV
+    :name: lst-rbv-json
 
     {
         "validated_route": {
