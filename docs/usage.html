@@ -267,7 +267,8 @@ Both tools are located in the <code class="docutils literal"><span class="pre">t
 integrate the RTRlib into your own applications. The following provides an
 overview on important code segments.</p>
 <hr class="docutils" />
-<p>First, you have to create a RTR transport socket, e.g., using TCP.</p>
+<p>First, create a RTR transport socket, for instance using TCP as shown in
+<a class="reference internal" href="#lst-create-socket"><span class="std std-numref">Listing 1</span></a>.</p>
 <div class="literal-block-wrapper container" id="lst-create-socket">
 <div class="code-block-caption"><span class="caption-number">Listing 1 </span><span class="caption-text">Create a RTR transport socket.</span><a class="headerlink" href="#lst-create-socket" title="Permalink to this code">¶</a></div>
 <div class="highlight-C"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
@@ -299,7 +300,8 @@ overview on important code segments.</p>
 </td></tr></table></div>
 </div>
 <p>Afterwards, create a group of RTR cache servers with preference <cite>1</cite>.
-In this example case, it includes only a single cache instance.</p>
+In this example case (see <a class="reference internal" href="#lst-create-group"><span class="std std-numref">Listing 2</span></a>), it includes only a
+single cache instance.</p>
 <div class="literal-block-wrapper container" id="lst-create-group">
 <div class="code-block-caption"><span class="caption-number">Listing 2 </span><span class="caption-text">Create a group of RTR caches.</span><a class="headerlink" href="#lst-create-group" title="Permalink to this code">¶</a></div>
 <div class="highlight-C"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -314,9 +316,10 @@ In this example case, it includes only a single cache instance.</p>
 </pre></div>
 </td></tr></table></div>
 </div>
-<p>Now you can initialize the RTR connection manager with a configuration object,
-the preconfigured group(s), number of groups, a refresh interval, an expiration
-interval, and retry interval, as well as distinct callback functions.
+<p>Now initialize the RTR connection manager (<a class="reference internal" href="#lst-init-rtrmgr"><span class="std std-numref">Listing 3</span></a>) providing
+a pointer to a configuration object, the preconfigured group(s), number
+of groups, a refresh interval, an expiration interval, and retry interval,
+as well as distinct callback functions.
 In this case, a refresh interval of 30 seconds, a 600s expiration timeout,
 and a 600s retry interval will be defined.</p>
 <div class="literal-block-wrapper container" id="lst-init-rtrmgr">
@@ -378,8 +381,8 @@ Validate the relation of prefix <cite>10.10.0.0/24</cite> and its origin AS 1234
 </pre></div>
 </td></tr></table></div>
 </div>
-<p>For a clean shutdown or exit of your application, you should stop the RTR
-Connection Manager and release any memory allocated.</p>
+<p>For a clean shutdown and exit of the application, first stop the RTR
+Connection Manager, and secondly release any memory allocated.</p>
 <div class="literal-block-wrapper container" id="lst-stop-rtrmgr">
 <div class="code-block-caption"><span class="caption-number">Listing 7 </span><span class="caption-text">Stop the RTR connection manager and cleanup.</span><a class="headerlink" href="#lst-stop-rtrmgr" title="Permalink to this code">¶</a></div>
 <div class="highlight-C"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -393,7 +396,7 @@ Connection Manager and release any memory allocated.</p>
 </div>
 <div class="section" id="complete-rtrlib-example">
 <h2>Complete RTRlib Example<a class="headerlink" href="#complete-rtrlib-example" title="Permalink to this headline">¶</a></h2>
-<p>The code listing <a class="reference internal" href="#lst-full-example"><span class="std std-ref">A complete code example for the RTRlib.</span></a> shows a fully functional RPKI validator
+<p>The code in <a class="reference internal" href="#lst-full-example"><span class="std std-numref">Listing 8</span></a> shows a fully functional RPKI validator
 using the RTRlib. It includes all parts explained in the previous section, and
 shows how to setup multiple RPKI cache server connections using either TCP or
 SSH transport sockets. For the latter, you need to compile the RTRlib with

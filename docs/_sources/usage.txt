@@ -167,7 +167,8 @@ overview on important code segments.
 
 ----
 
-First, you have to create a RTR transport socket, e.g., using TCP.
+First, create a RTR transport socket, for instance using TCP as shown in
+:numref:`lst-create-socket`.
 
 .. code-block:: C
     :linenos:
@@ -190,7 +191,8 @@ First, you have to create a RTR transport socket, e.g., using TCP.
 
 
 Afterwards, create a group of RTR cache servers with preference `1`.
-In this example case, it includes only a single cache instance.
+In this example case (see :numref:`lst-create-group`), it includes only a
+single cache instance.
 
 .. code-block:: C
     :linenos:
@@ -204,9 +206,10 @@ In this example case, it includes only a single cache instance.
     groups[0].preference = 1;
 
 
-Now you can initialize the RTR connection manager with a configuration object,
-the preconfigured group(s), number of groups, a refresh interval, an expiration
-interval, and retry interval, as well as distinct callback functions.
+Now initialize the RTR connection manager (:numref:`lst-init-rtrmgr`) providing
+a pointer to a configuration object, the preconfigured group(s), number
+of groups, a refresh interval, an expiration interval, and retry interval,
+as well as distinct callback functions.
 In this case, a refresh interval of 30 seconds, a 600s expiration timeout,
 and a 600s retry interval will be defined.
 
@@ -264,8 +267,8 @@ Validate the relation of prefix `10.10.0.0/24` and its origin AS 12345 as follow
     const uint8_t mask = 24;
     rtr_mgr_validate(conf, 12345, &pref, mask, &result);
 
-For a clean shutdown or exit of your application, you should stop the RTR
-Connection Manager and release any memory allocated.
+For a clean shutdown and exit of the application, first stop the RTR
+Connection Manager, and secondly release any memory allocated.
 
 .. code-block:: C
     :linenos:
@@ -276,10 +279,11 @@ Connection Manager and release any memory allocated.
     rtr_mgr_free(conf);
     free(groups[0].sockets);
 
+
 Complete RTRlib Example
 =======================
 
-The code listing :ref:`lst-full-example` shows a fully functional RPKI validator
+The code in :numref:`lst-full-example` shows a fully functional RPKI validator
 using the RTRlib. It includes all parts explained in the previous section, and
 shows how to setup multiple RPKI cache server connections using either TCP or
 SSH transport sockets. For the latter, you need to compile the RTRlib with

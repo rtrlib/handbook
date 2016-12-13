@@ -147,10 +147,14 @@ The latest release of the RTRlib also supports the Internet-Draft
 the maintenance of router keys which are required to deploy BGPSEC in the future.</p>
 <div class="section" id="background">
 <h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
-<p>The global deployment of a Resource Public Key Infrastructure
-(RPKI <a class="reference internal" href="#rfc-6480" id="id4">[4]</a>) is a first step towards securing the Internet routing.</p>
-<p>RPKI-enabled routers do not store ROAs itself but only the validated content of
-these authorities.
+<p>The global deployment of a <em>Resource Public Key Infrastructure</em>
+(RPKI <a class="reference internal" href="#rfc-6480" id="id4">[4]</a>) is a first step towards securing the Internet routing.
+The RPKI allows the holder of a distinct IP prefix to authorize certain
+autonomous systems (AS) to originate corresponding routes. This authorization is
+cryptographically verifiable through <em>Route Origination Authorizations</em> (ROAs)
+that are stored in the RPKI.</p>
+<p>A RPKI-enabled router does not store such ROAs itself, but only the validated
+content of these authorities.
 To achieve high scalability as well as limit resource utilization on BGP
 routers, the validation of ROAs is performed by trusted RPKI cache servers,
 which are deployed at the network operator site.
@@ -158,14 +162,14 @@ The RPKI-RTR protocol defines a standard mechanism to maintain exchange of
 the prefix origin AS relations between the cache server and routers.
 In combination with a BGP prefix origin validation scheme a router is able to
 verify received BGP updates without suffering from cryptographic complexity.</p>
-<p>The RTRlib is a lightweight C library that implements the RPKI/RTR protocol for
+<p>The RTRlib is a lightweight C library that implements the RPKI-RTR protocol for
 the client end (i.e., routers) and the proposed prefix origin validation scheme.
 The RTRlib provides functions to establish a connection to a single or multiple
 trusted caches using TCP or SSH transport connections, and further allows to
 determine the validation state of prefix to origin AS relations.</p>
 <p>The image in <a class="reference internal" href="#overview"><span class="std std-numref">Fig. 1</span></a> shows a typical RPKI deployment, where trusted
-cache server collect ROAs from global RPKI repositories of RIRs, such as RIPE
-and APNIC.
+cache servers collect ROAs from global RPKI repositories of the RIRs, such as
+RIPE and APNIC.
 Each local RPKI cache periodically updates and verifies the stored ROAs, and
 pushes the preprocessed data to connected RPKI enabled BGP routers using
 the RTR protocol.</p>
@@ -179,8 +183,9 @@ trusted cache servers, and RPKI enabled BGP routers.</span></p>
 <h2>Further Reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
 <p>Detailed insights on the implementation of the RTRlib  and its performance can
 be found in <a class="reference internal" href="#whss-roslr-13" id="id5">[5]</a>.
-Further it complies to the standard specifications and protocols in
-RFCs 6810 <a class="reference internal" href="#rfc-6810" id="id6">[1]</a> and 6811 <a class="reference internal" href="#rfc-6811" id="id7">[2]</a>.</p>
+Further information can also be found in the standard specifications and
+protocols in RFCs 6810 <a class="reference internal" href="#rfc-6810" id="id6">[1]</a> and 6811 <a class="reference internal" href="#rfc-6811" id="id7">[2]</a>, to which
+the RTRlib complies.</p>
 <p class="rubric">References</p>
 <p id="bibtex-bibliography-intro-0"><table class="docutils citation" frame="void" id="rfc-6810" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
