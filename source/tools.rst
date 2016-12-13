@@ -28,8 +28,8 @@ validation results.
     2001:7fb:ff03::/48    None           not found
     ==================== ============== ============
 
-*Note* for all prefixes the RPKI validation results are based on origin AS12654,
-owned by RIPE.
+*Note*: for all prefixes the RPKI validation results are based on
+origin AS 12654 that is owned by RIPE.
 Most examples require a connection to a RPKI cache server, for that we
 provide a public cache with *hostname* ``rpki-validator.realmv6.org``
 and *port* ``8282``.
@@ -132,11 +132,11 @@ ROAs for the given prefix and AS number.
 If multiple ROAs exist for a prefix, they are listed successively separated
 by commas (``,``).
 
-RPKI Validator Web Browser Plugins
-==================================
+RPKI Validator Browser Plugin
+=============================
 
-The RPKI Validator browser plugins allow to check the RPKI validation of
-visited URLs, i.e., the associated IP prefix and origin AS of the URL.
+The RPKI Validator plugin for web browsers allows to check the RPKI validation
+of visited URLs, i.e., the associated IP prefix and origin AS of the URL.
 A small icon indicates the validation state of the visited URL, which is
 either valid (|valid|), invalid (|invalid|) or was not found (|not_found|).
 
@@ -323,5 +323,5 @@ Other Third-Party Tools
 =======================
 
 `RIPE <https://www.ripe.net/manage-ips-and-asns/resource-management/certification/tools-and-resources/>`_
-provides an (almost) complete overview on other tools related to the RPKI and
-BGP security.
+provides an (almost) complete overview on other tools related to RPKI and
+BGP security, in general.
