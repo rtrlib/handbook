@@ -95,6 +95,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#development-with-the-rtrlib">Development with the RTRlib</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#step-by-step-coding-example">Step-by-Step Coding Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#complete-rtrlib-example">Complete RTRlib Example</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="python.html">RTRlib Python Binding</a></li>
@@ -215,7 +216,9 @@ and <a class="reference external" href="https://github.com/rtrlib/rtrlib/wiki">W
 <div class="highlight-Bash"><div class="highlight"><pre><span></span>make doc
 </pre></div>
 </div>
-<p>Further, you can also run the build-in tests provided by the RTRlib package
+<p>Alternatively, we provide a pre-build Doxygen <a class="reference external" href="https://rtrlib.realmv6.org/doxygen/latest">docu</a> online for the latest
+release of the RTRlib.
+Further, you can also run the build-in tests provided by the RTRlib package
 via <cite>make</cite>:</p>
 <div class="highlight-Bash"><div class="highlight"><pre><span></span>make <span class="nb">test</span>
 </pre></div>
@@ -226,24 +229,25 @@ via <cite>make</cite>:</p>
 <span id="devel"></span><h2>Development with the RTRlib<a class="headerlink" href="#development-with-the-rtrlib" title="Permalink to this headline">¶</a></h2>
 <p>The RTRlib shared library is installed to <code class="docutils literal"><span class="pre">/usr/local/lib</span></code> by default,
 and its headers files to <code class="docutils literal"><span class="pre">/usr/local/include</span></code>, respectively.
-Writing an application in C/C++ using the RTRlib just include the main header
-file into the code:</p>
+Writing an application in C/C++ using the RTRlib, you have to include the main
+header file into the code:</p>
 <div class="highlight-C"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;rtrlib/rtrlib.h&quot;</span><span class="cp"></span>
 </pre></div>
 </div>
-<p>The name of the shared library is <cite>rtr</cite>.
+<p>The name of the corresponding shared library is <cite>rtr</cite>.
 To link an application against the RTRlib, pass the following parameter to gcc:</p>
 <div class="highlight-Bash"><div class="highlight"><pre><span></span>-lrtr
 </pre></div>
 </div>
-<p>If the linker reports an error such as <code class="docutils literal"><span class="pre">cannot</span> <span class="pre">find</span> <span class="pre">-lrtr</span></code> the shared library
-cannot be found.
-This typically happens when the RTRlib was not installed to a standard location.
-Thus, pass its location as an absolute path to the compiler:</p>
+<p>If the linker reports an error such as <code class="docutils literal"><span class="pre">cannot</span> <span class="pre">find</span> <span class="pre">-lrtr</span></code>, the RTRlib was
+not installed to a standard location.
+In this case pass its location as an absolute path to the compiler,
+add parameter:</p>
 <div class="highlight-Bash"><div class="highlight"><pre><span></span>-L&lt;/path/to/librtr/&gt;
 </pre></div>
 </div>
-<p>On Linux you can also try to update the linker cache by running:</p>
+<p>On Linux you can alternatively try to update the linker cache instead,
+run:</p>
 <div class="highlight-Bash"><div class="highlight"><pre><span></span>ldconfig
 <span class="c1"># verify with</span>
 ldconfig -p <span class="p">|</span> grep rtr
@@ -257,15 +261,15 @@ the <code class="docutils literal"><span class="pre">cli-validator</span></code>
 The former connects to a single RTR cache server via TCP or SSH and prints
 validated prefix origin data to STDOUT. You can use this tool to get first
 experiences with the RPKI-RTR protocol. With the latter you can validate
-arbitrary prefix to origin relations. Both tools are located in the <code class="docutils literal"><span class="pre">tools/</span></code>
-directory.</p>
-<p>Having a look into the source code of these tools may help to understand and
+arbitrary prefix to origin relations against records of a connected RPKI cache.
+Both tools are located in the <code class="docutils literal"><span class="pre">tools/</span></code> directory.</p>
+<p>Having a look into the source code of these tools will help to understand and
 integrate the RTRlib into your own applications. The following provides an
 overview on important code segments.</p>
 <hr class="docutils" />
-<p>Create a RTR transport socket using TCP</p>
-<div class="literal-block-wrapper container" id="create-socket">
-<div class="code-block-caption"><span class="caption-number">Listing 1 </span><span class="caption-text">Create a RTR transport socket.</span><a class="headerlink" href="#create-socket" title="Permalink to this code">¶</a></div>
+<p>First, you have to create a RTR transport socket, e.g., using TCP.</p>
+<div class="literal-block-wrapper container" id="lst-create-socket">
+<div class="code-block-caption"><span class="caption-number">Listing 1 </span><span class="caption-text">Create a RTR transport socket.</span><a class="headerlink" href="#lst-create-socket" title="Permalink to this code">¶</a></div>
 <div class="highlight-C"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -275,12 +279,18 @@ overview on important code segments.</p>
  7
  8
  9
-10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">tr_socket</span> <span class="n">tr_tcp</span><span class="p">;</span>
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">tr_socket</span> <span class="n">tr_tcp</span><span class="p">;</span>
 <span class="k">struct</span> <span class="n">rtr_socket</span> <span class="n">rtr_tcp</span><span class="p">;</span>
+<span class="kt">char</span> <span class="n">tcp_host</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;rpki-validator.realmv6.org&quot;</span><span class="p">;</span>
+<span class="kt">char</span> <span class="n">tcp_port</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;8282&quot;</span><span class="p">;</span>
+
 <span class="k">struct</span> <span class="n">tr_tcp_config</span> <span class="n">tcp_config</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">&quot;rpki-validator.realmv6.org&quot;</span><span class="p">,</span>   <span class="c1">// TCP host</span>
-    <span class="s">&quot;8282&quot;</span><span class="p">,</span>                         <span class="c1">// TCP port</span>
-    <span class="nb">NULL</span>                <span class="c1">// empty source address</span>
+    <span class="n">tcp_host</span><span class="p">,</span>   <span class="c1">// cache server host</span>
+    <span class="n">tcp_port</span><span class="p">,</span>   <span class="c1">// cache server port</span>
+    <span class="nb">NULL</span>        <span class="c1">// source address, empty</span>
 <span class="p">};</span>
 
 <span class="n">tr_tcp_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tcp_config</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tr_tcp</span><span class="p">);</span>
@@ -288,10 +298,10 @@ overview on important code segments.</p>
 </pre></div>
 </td></tr></table></div>
 </div>
-<p>Create a group of RTR cache servers with preference <cite>1</cite>. In this case, it
-includes only one RTR cache.</p>
-<div class="literal-block-wrapper container" id="create-group">
-<div class="code-block-caption"><span class="caption-number">Listing 2 </span><span class="caption-text">Create a group of RTR caches.</span><a class="headerlink" href="#create-group" title="Permalink to this code">¶</a></div>
+<p>Afterwards, create a group of RTR cache servers with preference <cite>1</cite>.
+In this example case, it includes only a single cache instance.</p>
+<div class="literal-block-wrapper container" id="lst-create-group">
+<div class="code-block-caption"><span class="caption-number">Listing 2 </span><span class="caption-text">Create a group of RTR caches.</span><a class="headerlink" href="#lst-create-group" title="Permalink to this code">¶</a></div>
 <div class="highlight-C"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -304,12 +314,13 @@ includes only one RTR cache.</p>
 </pre></div>
 </td></tr></table></div>
 </div>
-<p>#. Initialize the RTR connection manager with a configuration object, the group(s),
-number of groups, a refresh interval, an expiration interval, and retry interval,
-as well as callback functions. In this case, a refresh interval of 30 seconds,
-a 600s expiration timeout, and a 600s retry interval will be defined.</p>
-<div class="literal-block-wrapper container" id="init-rtrmgr">
-<div class="code-block-caption"><span class="caption-number">Listing 3 </span><span class="caption-text">Initialize the RTR connection manager.</span><a class="headerlink" href="#init-rtrmgr" title="Permalink to this code">¶</a></div>
+<p>Now you can initialize the RTR connection manager with a configuration object,
+the preconfigured group(s), number of groups, a refresh interval, an expiration
+interval, and retry interval, as well as distinct callback functions.
+In this case, a refresh interval of 30 seconds, a 600s expiration timeout,
+and a 600s retry interval will be defined.</p>
+<div class="literal-block-wrapper container" id="lst-init-rtrmgr">
+<div class="code-block-caption"><span class="caption-number">Listing 3 </span><span class="caption-text">Initialize the RTR connection manager.</span><a class="headerlink" href="#lst-init-rtrmgr" title="Permalink to this code">¶</a></div>
 <div class="highlight-C"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">rtr_mgr_config</span> <span class="o">*</span><span class="n">conf</span><span class="p">;</span>
@@ -318,18 +329,19 @@ a 600s expiration timeout, and a 600s retry interval will be defined.</p>
 </pre></div>
 </td></tr></table></div>
 </div>
-<p>Start the RTR Connection Manager</p>
-<div class="literal-block-wrapper container" id="start-rtrmgr">
-<div class="code-block-caption"><span class="caption-number">Listing 4 </span><span class="caption-text">Start the RTR connection manager.</span><a class="headerlink" href="#start-rtrmgr" title="Permalink to this code">¶</a></div>
+<p>Finally, start the RTR Connection Manager.</p>
+<div class="literal-block-wrapper container" id="lst-start-rtrmgr">
+<div class="code-block-caption"><span class="caption-number">Listing 4 </span><span class="caption-text">Start the RTR connection manager.</span><a class="headerlink" href="#lst-start-rtrmgr" title="Permalink to this code">¶</a></div>
 <div class="highlight-C"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">rtr_mgr_start</span><span class="p">(</span><span class="n">conf</span><span class="p">);</span>
 </pre></div>
 </td></tr></table></div>
 </div>
 <p>As soon as an update has been received from the RTR-Server, the callback
 function will be invoked. In this example, <cite>update_cb</cite> will be invoked and
-prints the prefix, the min and max length, as well as the origin AS.</p>
-<div class="literal-block-wrapper container" id="callback">
-<div class="code-block-caption"><span class="caption-number">Listing 5 </span><span class="caption-text">Update callback for prefixes.</span><a class="headerlink" href="#callback" title="Permalink to this code">¶</a></div>
+prints the prefix, its minimum, and maximum length, as well as the corresponding
+origin AS.</p>
+<div class="literal-block-wrapper container" id="lst-callback">
+<div class="code-block-caption"><span class="caption-number">Listing 5 </span><span class="caption-text">Update callback for prefixes received from a RPKI cache.</span><a class="headerlink" href="#lst-callback" title="Permalink to this code">¶</a></div>
 <div class="highlight-C"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -350,9 +362,10 @@ prints the prefix, the min and max length, as well as the origin AS.</p>
 </pre></div>
 </td></tr></table></div>
 </div>
-<p>Validate the relation of prefix <cite>10.10.0.0/24</cite> and its origin AS 12345 as follows.</p>
-<div class="literal-block-wrapper container" id="validate">
-<div class="code-block-caption"><span class="caption-number">Listing 6 </span><span class="caption-text">Validate a prefix to origin AS relation.</span><a class="headerlink" href="#validate" title="Permalink to this code">¶</a></div>
+<p>With a running RTR connection manager, you can also run validation queries.
+Validate the relation of prefix <cite>10.10.0.0/24</cite> and its origin AS 12345 as follows.</p>
+<div class="literal-block-wrapper container" id="lst-validate">
+<div class="code-block-caption"><span class="caption-number">Listing 6 </span><span class="caption-text">Validate a prefix to origin AS relation.</span><a class="headerlink" href="#lst-validate" title="Permalink to this code">¶</a></div>
 <div class="highlight-C"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -365,14 +378,227 @@ prints the prefix, the min and max length, as well as the origin AS.</p>
 </pre></div>
 </td></tr></table></div>
 </div>
-<p>Finally, stop the RTR Connection Manager and release memory.</p>
-<div class="literal-block-wrapper container" id="stop-rtrmgr">
-<div class="code-block-caption"><span class="caption-number">Listing 7 </span><span class="caption-text">Stop the RTR connection manager and cleanup.</span><a class="headerlink" href="#stop-rtrmgr" title="Permalink to this code">¶</a></div>
+<p>For a clean shutdown or exit of your application, you should stop the RTR
+Connection Manager and release any memory allocated.</p>
+<div class="literal-block-wrapper container" id="lst-stop-rtrmgr">
+<div class="code-block-caption"><span class="caption-number">Listing 7 </span><span class="caption-text">Stop the RTR connection manager and cleanup.</span><a class="headerlink" href="#lst-stop-rtrmgr" title="Permalink to this code">¶</a></div>
 <div class="highlight-C"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">rtr_mgr_stop</span><span class="p">(</span><span class="n">conf</span><span class="p">);</span>
 <span class="n">rtr_mgr_free</span><span class="p">(</span><span class="n">conf</span><span class="p">);</span>
 <span class="n">free</span><span class="p">(</span><span class="n">groups</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">sockets</span><span class="p">);</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="complete-rtrlib-example">
+<h2>Complete RTRlib Example<a class="headerlink" href="#complete-rtrlib-example" title="Permalink to this headline">¶</a></h2>
+<p>The code listing <a class="reference internal" href="#lst-full-example"><span class="std std-ref">A complete code example for the RTRlib.</span></a> shows a fully functional RPKI validator
+using the RTRlib. It includes all parts explained in the previous section, and
+shows how to setup multiple RPKI cache server connections using either TCP or
+SSH transport sockets. For the latter, you need to compile the RTRlib with
+<cite>libssh</cite> (version &gt;= 0.5).</p>
+<div class="literal-block-wrapper container" id="lst-full-example">
+<div class="code-block-caption"><span class="caption-number">Listing 8 </span><span class="caption-text">A complete code example for the RTRlib.</span><a class="headerlink" href="#lst-full-example" title="Permalink to this code">¶</a></div>
+<div class="highlight-C"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&quot;rtrlib/rtrlib.h&quot;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+    <span class="c1">//create a SSH transport socket</span>
+    <span class="kt">char</span> <span class="n">ssh_host</span><span class="p">[]</span>     <span class="o">=</span> <span class="s">&quot;123.231.123.221&quot;</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">ssh_user</span><span class="p">[]</span>     <span class="o">=</span> <span class="s">&quot;rpki_user&quot;</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">ssh_hostkey</span><span class="p">[]</span>  <span class="o">=</span> <span class="s">&quot;/etc/rpki-rtr/hostkey&quot;</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">ssh_privkey</span><span class="p">[]</span>  <span class="o">=</span> <span class="s">&quot;/etc/rpki-rtr/client.priv&quot;</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">tr_socket</span> <span class="n">tr_ssh</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">tr_ssh_config</span> <span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">ssh_host</span><span class="p">,</span>       <span class="c1">//IP</span>
+        <span class="mi">22</span><span class="p">,</span>             <span class="c1">//Port</span>
+        <span class="nb">NULL</span><span class="p">,</span>           <span class="c1">//Source address</span>
+        <span class="n">ssh_user</span><span class="p">,</span>
+        <span class="n">ssh_hostkey</span><span class="p">,</span>    <span class="c1">//Server hostkey</span>
+        <span class="n">ssh_privkey</span><span class="p">,</span>    <span class="c1">//Private key</span>
+    <span class="p">};</span>
+    <span class="n">tr_ssh_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">config</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tr_ssh</span><span class="p">);</span>
+
+    <span class="c1">//create a TCP transport socket</span>
+    <span class="k">struct</span> <span class="n">tr_socket</span> <span class="n">tr_tcp</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">tcp_host</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;rpki-validator.realmv6.org&quot;</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">tcp_port</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;8282&quot;</span><span class="p">;</span>
+
+    <span class="k">struct</span> <span class="n">tr_tcp_config</span> <span class="n">tcp_config</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">tcp_host</span><span class="p">,</span> <span class="c1">//IP</span>
+        <span class="n">tcp_port</span><span class="p">,</span> <span class="c1">//Port</span>
+        <span class="nb">NULL</span>      <span class="c1">//Source address</span>
+    <span class="p">};</span>
+    <span class="n">tr_tcp_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tcp_config</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tr_tcp</span><span class="p">);</span>
+
+    <span class="c1">//create 3 rtr_sockets and associate them with the transprort sockets</span>
+    <span class="k">struct</span> <span class="n">rtr_socket</span> <span class="n">rtr_ssh</span><span class="p">,</span> <span class="n">rtr_tcp</span><span class="p">;</span>
+    <span class="n">rtr_ssh</span><span class="p">.</span><span class="n">tr_socket</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">tr_ssh</span><span class="p">;</span>
+    <span class="n">rtr_tcp</span><span class="p">.</span><span class="n">tr_socket</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">tr_tcp</span><span class="p">;</span>
+
+    <span class="c1">//create a rtr_mgr_group array with 2 elements</span>
+    <span class="k">struct</span> <span class="n">rtr_mgr_group</span> <span class="n">groups</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+
+    <span class="c1">//The first group contains both TCP RTR sockets</span>
+    <span class="n">groups</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">sockets</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">rtr_socket</span><span class="o">*</span><span class="p">));</span>
+    <span class="n">groups</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">sockets_len</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">groups</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">sockets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">rtr_tcp</span><span class="p">;</span>
+    <span class="n">groups</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">preference</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>       <span class="c1">//Preference value of this group</span>
+
+    <span class="c1">//The seconds group contains only the SSH RTR socket</span>
+    <span class="n">groups</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">sockets</span> <span class="o">=</span> <span class="n">malloc</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">rtr_socket</span><span class="o">*</span><span class="p">));</span>
+    <span class="n">groups</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">sockets_len</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">groups</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">sockets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">rtr_ssh</span><span class="p">;</span>
+    <span class="n">groups</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">preference</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+
+    <span class="c1">//create a rtr_mgr_config struct that stores the group</span>
+    <span class="k">struct</span> <span class="n">rtr_mgr_config</span> <span class="o">*</span><span class="n">conf</span><span class="p">;</span>
+
+    <span class="c1">//initialize all rtr_sockets in the server pool with the same settings</span>
+    <span class="kt">int</span> <span class="n">ret</span> <span class="o">=</span> <span class="n">rtr_mgr_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">conf</span><span class="p">,</span> <span class="n">groups</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+
+    <span class="c1">//start the connection manager</span>
+    <span class="n">rtr_mgr_start</span><span class="p">(</span><span class="n">conf</span><span class="p">);</span>
+
+    <span class="c1">//wait till at least one rtr_mgr_group is fully synchronized with the server</span>
+    <span class="k">while</span><span class="p">(</span><span class="o">!</span><span class="n">rtr_mgr_conf_in_sync</span><span class="p">(</span><span class="n">conf</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">//validate the BGP-Route 10.10.0.0/24, origin ASN: 12345</span>
+    <span class="k">struct</span> <span class="n">lrtr_ip_addr</span> <span class="n">pref</span><span class="p">;</span>
+    <span class="n">lrtr_ip_str_to_addr</span><span class="p">(</span><span class="s">&quot;10.10.0.0&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">pref</span><span class="p">);</span>
+    <span class="k">enum</span> <span class="n">pfxv_state</span> <span class="n">result</span><span class="p">;</span>
+    <span class="k">const</span> <span class="kt">uint8_t</span> <span class="n">mask</span> <span class="o">=</span> <span class="mi">24</span><span class="p">;</span>
+    <span class="n">rtr_mgr_validate</span><span class="p">(</span><span class="n">conf</span><span class="p">,</span> <span class="mi">12345</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">pref</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">result</span><span class="p">);</span>
+
+    <span class="c1">//output the result of the prefix validation above</span>
+    <span class="c1">//to showcase the returned states.</span>
+    <span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="n">INET_ADDRSTRLEN</span><span class="p">];</span>
+    <span class="n">lrtr_ip_addr_to_str</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pref</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">buffer</span><span class="p">));</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;RESULT: The prefix %s/%i &quot;</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="n">mask</span><span class="p">);</span>
+    <span class="k">switch</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="nl">BGP_PFXV_STATE_VALID</span><span class="p">:</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">&quot;is valid.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="nl">BGP_PFXV_STATE_INVALID</span><span class="p">:</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">&quot;is invalid.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">case</span> <span class="nl">BGP_PFXV_STATE_NOT_FOUND</span><span class="p">:</span>
+            <span class="n">printf</span><span class="p">(</span><span class="s">&quot;was not found.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="k">default</span><span class="o">:</span>
+            <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// cleanup before exit</span>
+    <span class="n">rtr_mgr_stop</span><span class="p">(</span><span class="n">conf</span><span class="p">);</span>
+    <span class="n">rtr_mgr_free</span><span class="p">(</span><span class="n">conf</span><span class="p">);</span>
+    <span class="n">free</span><span class="p">(</span><span class="n">groups</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">sockets</span><span class="p">);</span>
+    <span class="n">free</span><span class="p">(</span><span class="n">groups</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">sockets</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </td></tr></table></div>
 </div>

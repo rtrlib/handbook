@@ -215,6 +215,8 @@ To get a complete reference over all options for the command simply run
 <code class="docutils literal"><span class="pre">rtrclient</span></code> in a shell.</p>
 <p>The following listing shows how to connect the <code class="docutils literal"><span class="pre">rtrclient</span></code> with a cache server
 as well as 10 lines of the resulting output:</p>
+<div class="literal-block-wrapper container" id="lst-rtrclient">
+<div class="code-block-caption"><span class="caption-number">Listing 9 </span><span class="caption-text">Output of the rtrclient tool</span><a class="headerlink" href="#lst-rtrclient" title="Permalink to this code">¶</a></div>
 <div class="highlight-Bash"><div class="highlight"><pre><span></span>rtrclient tcp -k -p rpki-validator.realmv6.org 8282
 Prefix                                     Prefix Length         ASN
 + 89.185.224.0                                <span class="m">19</span> -  <span class="m">19</span>        24971
@@ -228,6 +230,7 @@ Prefix                                     Prefix Length         ASN
 + 2a07:7cc3::                                 <span class="m">32</span> -  <span class="m">32</span>        61232
 + 2a05:b480:fc00::                            <span class="m">48</span> -  <span class="m">48</span>        39126
 </pre></div>
+</div>
 </div>
 <p>It shows ROAs for IPv4 and IPv6 prefixes with allowed range for prefix length
 and the associated origin ASN.
@@ -248,8 +251,10 @@ a known RPKI cache server, afterwards you can validate IP prefixes by typing
 <code class="docutils literal"><span class="pre">ENTER</span></code> to run the validation.
 The result will be shown instantly below the input.
 <em>Note</em>: the <code class="docutils literal"><span class="pre">cli-validator</span></code> can validate IPv4 and IPv6 prefixes by default.</p>
-<p>The following listing shows the validation of all RIPE RIS beacons using our
-cache server:</p>
+<p>Listing <a class="reference internal" href="#lst-validator"><span class="std std-ref">Output of the cli-validator tool</span></a> shows the validation of all RIPE RIS beacons using
+our RPKI cache server instance.</p>
+<div class="literal-block-wrapper container" id="lst-validator">
+<div class="code-block-caption"><span class="caption-number">Listing 10 </span><span class="caption-text">Output of the cli-validator tool</span><a class="headerlink" href="#lst-validator" title="Permalink to this code">¶</a></div>
 <div class="highlight-Bash"><div class="highlight"><pre><span></span>cli-validator rpki-validator.realmv6.org 8282
 93.175.146.0 <span class="m">24</span> 12654
 93.175.146.0 <span class="m">24</span> 12654<span class="p">|</span><span class="m">12654</span> 93.175.146.0 <span class="m">24</span> 24<span class="p">|</span>0
@@ -264,6 +269,7 @@ cache server:</p>
 2001:7fb:ff03:: <span class="m">48</span> 12654
 2001:7fb:ff03:: <span class="m">48</span> 12654<span class="o">||</span>1
 </pre></div>
+</div>
 </div>
 <p>The output is structured into <code class="docutils literal"><span class="pre">input</span> <span class="pre">query</span> <span class="pre">|</span> <span class="pre">ROAs</span> <span class="pre">|</span> <span class="pre">result</span></code>, separated by
 pipe (<code class="docutils literal"><span class="pre">|</span></code>) symbols.
@@ -348,7 +354,7 @@ RPKI MIRO is a monitoring application that consists of three parts:</p>
 <li>statistical analysis of the collected objects.</li>
 </ol>
 <div class="figure" id="id6">
-<img alt="RPKI MIRO screenshot" src="_images/rpki_miro.png" />
+<span id="fig-miro"></span><img alt="RPKI MIRO screenshot" src="_images/rpki_miro.png" />
 <p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Screenshot of the RPKI MIRO web interface.</span></p>
 </div>
 <p>Using RPKI MIRO you can lookup any IP prefix and its associated ROA, e.g. the
@@ -357,7 +363,8 @@ Open a browser and goto URL <a class="reference external" href="http://rpki-brow
 from <code class="docutils literal"><span class="pre">AFRINIC</span></code> to <code class="docutils literal"><span class="pre">RIPE</span></code> and set a filter for the prefix <code class="docutils literal"><span class="pre">93.175.147.0/24</span></code>
 with attribute <code class="docutils literal"><span class="pre">resource</span></code>.
 Expand the ROA tree view on the left side to get the corresponding ROA for the
-beacon prefix, the resulting web view should look like the screenshot above.</p>
+beacon prefix, the resulting web view should look like the screenshot
+in <a class="reference internal" href="#fig-miro"><span class="std std-numref">Fig. 3</span></a>.</p>
 </div>
 <div class="section" id="rpki-rbv">
 <h2>RPKI RBV<a class="headerlink" href="#rpki-rbv" title="Permalink to this headline">¶</a></h2>
@@ -365,9 +372,9 @@ beacon prefix, the resulting web view should look like the screenshot above.</p>
 a RESTful API to validate IP prefix to origin AS relations.
 The validation service can be accessed via a plain and simple
 <a class="reference external" href="http://rpki-rbv.realmv6.org/html/validate.html">web page</a>
-(see image below) or directly using its RESTful API.</p>
+(see also <a class="reference internal" href="#fig-rbv"><span class="std std-numref">Fig. 4</span></a>) or directly using its RESTful API.</p>
 <div class="figure" id="id7">
-<img alt="RPKI RBV screenshot" src="_images/rpki_rbv.png" />
+<span id="fig-rbv"></span><img alt="RPKI RBV screenshot" src="_images/rpki_rbv.png" />
 <p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Screenshot of the RPKI RBV web interface</span></p>
 </div>
 <p>RBV provides two distinct APIs to run RPKI validation queries, the APIs allow
@@ -384,7 +391,9 @@ To test the APIs type the following queries for the RIPE RIS beacon
 rpki-rbv.realmv6.org/api/v2/validity/93.175.146.1
 </pre></div>
 </div>
-<p>The result will be a JSON object as shown below:</p>
+<p>The result will be a JSON object as shown in <a class="reference internal" href="#lst-rbv-json"><span class="std std-numref">Listing 11</span></a>.</p>
+<div class="literal-block-wrapper container" id="lst-rbv-json">
+<div class="code-block-caption"><span class="caption-number">Listing 11 </span><span class="caption-text">Sample JSON output of RPKI RBV</span><a class="headerlink" href="#lst-rbv-json" title="Permalink to this code">¶</a></div>
 <div class="highlight-JSON"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="nt">&quot;validated_route&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -412,6 +421,7 @@ rpki-rbv.realmv6.org/api/v2/validity/93.175.146.1
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
+</div>
 </div>
 <p>For a detailed instruction how to install and set up the API visit
 the <a class="reference external" href="https://github.com/rtrlib/rbv">RBV Repository</a> on GitHub.</p>
