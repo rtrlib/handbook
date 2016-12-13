@@ -102,8 +102,8 @@ a known RPKI cache server, afterwards you can validate IP prefixes by typing
 The result will be shown instantly below the input.
 *Note*: the ``cli-validator`` can validate IPv4 and IPv6 prefixes by default.
 
-The following listing shows the validation of all RIPE RIS beacons using our
-cache server:
+:numref:`lst-validator` shows the validation of all RIPE RIS beacons using
+our RPKI cache server instance.
 
 .. code-block:: Bash
     :caption: Output of the cli-validator tool
@@ -150,14 +150,18 @@ have to download and install the extension themselves as follows:
 #. activate `Developer Mode` via the checkbox in the top right
 #. click the `Load unpacked extension` button and navigate to the source
 
-The following screenshots show the validation results for certain websites
-(*valid*, *invalid*, *not found*) of the RPKI Validator browser plugin for
+The screenshots (see :numref:`fig-valid`, :numref:`fig-invalid`,
+and :numref:`fig-notfound`) show the validation results (*valid*, *invalid*,
+and *not found*) for certain websites of the RPKI Validator browser plugin for
 Firefox:
 
+.. _fig-valid:
 .. figure:: ../images/rbv_valid.png
 
+.. _fig-invalid:
 .. figure:: ../images/rbv_invalid.png
 
+.. _fig-notfound:
 .. figure:: ../images/rbv_notfound.png
 
 .. |valid| image:: ../images/valid.png
@@ -189,10 +193,11 @@ to query a trusted RPKI cache server.
 
 The RPKI READ frontend presents a dashboard like interface showing a live
 overview of the RPKI validation state of all currently advertised IP prefixes
-observed by a certain BGP source.
+observed by a certain BGP source (see :numref:`fig-read`).
 Further, the frontend provides detailed statistics and also allows the user
 to search for results on distinct prefixes.
 
+.. _fig-read:
 .. figure:: ../images/rpki_read.png
    :alt: RPKI READ screenshot
 
@@ -221,6 +226,7 @@ RPKI MIRO is a monitoring application that consists of three parts:
 #. a browser to visualize RPKI objects, and
 #. statistical analysis of the collected objects.
 
+.. _fig-miro:
 .. figure:: ../images/rpki_miro.png
    :alt: RPKI MIRO screenshot
 
@@ -232,7 +238,8 @@ Open a browser and goto URL http://rpki-browser.realmv6.org, in the menu switch
 from ``AFRINIC`` to ``RIPE`` and set a filter for the prefix ``93.175.147.0/24``
 with attribute ``resource``.
 Expand the ROA tree view on the left side to get the corresponding ROA for the
-beacon prefix, the resulting web view should look like the screenshot above.
+beacon prefix, the resulting web view should look like the screenshot
+in :numref:`fig-miro`.
 
 .. _RPKI MIRO: http://rpki-miro.realmv6.org/
 
@@ -243,8 +250,9 @@ The RPKI *RESTful BGP Validator* (`RPKI RBV`_) is web application that provides
 a RESTful API to validate IP prefix to origin AS relations.
 The validation service can be accessed via a plain and simple
 `web page <http://rpki-rbv.realmv6.org/html/validate.html>`_
-(see image below) or directly using its RESTful API.
+(see also :numref:`fig-rbv`) or directly using its RESTful API.
 
+.. _fig-rbv:
 .. figure:: ../images/rpki_rbv.png
    :alt: RPKI RBV screenshot
 
@@ -266,7 +274,7 @@ To test the APIs type the following queries for the RIPE RIS beacon
     rpki-rbv.realmv6.org/api/v1/validity/AS12654/93.175.146.0/24
     rpki-rbv.realmv6.org/api/v2/validity/93.175.146.1
 
-The result will be a JSON object as shown below:
+The result will be a JSON object as shown in :numref:`lst-rbv-json`.
 
 .. code-block:: JSON
     :caption: Sample JSON output of RPKI RBV
