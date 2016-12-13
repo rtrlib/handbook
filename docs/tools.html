@@ -251,7 +251,7 @@ a known RPKI cache server, afterwards you can validate IP prefixes by typing
 <code class="docutils literal"><span class="pre">ENTER</span></code> to run the validation.
 The result will be shown instantly below the input.
 <em>Note</em>: the <code class="docutils literal"><span class="pre">cli-validator</span></code> can validate IPv4 and IPv6 prefixes by default.</p>
-<p>Listing <a class="reference internal" href="#lst-validator"><span class="std std-ref">Output of the cli-validator tool</span></a> shows the validation of all RIPE RIS beacons using
+<p><a class="reference internal" href="#lst-validator"><span class="std std-numref">Listing 10</span></a> shows the validation of all RIPE RIS beacons using
 our RPKI cache server instance.</p>
 <div class="literal-block-wrapper container" id="lst-validator">
 <div class="code-block-caption"><span class="caption-number">Listing 10 </span><span class="caption-text">Output of the cli-validator tool</span><a class="headerlink" href="#lst-validator" title="Permalink to this code">¶</a></div>
@@ -296,17 +296,20 @@ have to download and install the extension themselves as follows:</p>
 <li>activate <cite>Developer Mode</cite> via the checkbox in the top right</li>
 <li>click the <cite>Load unpacked extension</cite> button and navigate to the source</li>
 </ol>
-<p>The following screenshots show the validation results for certain websites
-(<em>valid</em>, <em>invalid</em>, <em>not found</em>) of the RPKI Validator browser plugin for
-Firefox:</p>
-<div class="figure">
-<img alt="_images/rbv_valid.png" src="_images/rbv_valid.png" />
+<p>The screenshots show the validation results (<em>valid</em> <a class="reference internal" href="#fig-valid"><span class="std std-numref">Fig. 2</span></a>,
+<em>invalid</em> <a class="reference internal" href="#fig-invalid"><span class="std std-numref">Fig. 3</span></a>, and <em>not found</em> <a class="reference internal" href="#fig-notfound"><span class="std std-numref">Fig. 4</span></a>)
+for certain websites of the RPKI Validator browser plugin for Firefox.</p>
+<div class="figure" id="id5">
+<span id="fig-valid"></span><img alt="_images/rbv_valid.png" src="_images/rbv_valid.png" />
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Screenshot of RPKI Validator plugin in Firefox showing results <em>valid</em>.</span></p>
 </div>
-<div class="figure">
-<img alt="_images/rbv_invalid.png" src="_images/rbv_invalid.png" />
+<div class="figure" id="id6">
+<span id="fig-invalid"></span><img alt="_images/rbv_invalid.png" src="_images/rbv_invalid.png" />
+<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Screenshot of RPKI Validator plugin in Firefox showing results <em>invalid</em>.</span></p>
 </div>
-<div class="figure">
-<img alt="_images/rbv_notfound.png" src="_images/rbv_notfound.png" />
+<div class="figure" id="id7">
+<span id="fig-notfound"></span><img alt="_images/rbv_notfound.png" src="_images/rbv_notfound.png" />
+<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Screenshot of RPKI Validator plugin in Firefox showing results <em>not found</em>.</span></p>
 </div>
 </div>
 <div class="section" id="rpki-read">
@@ -328,12 +331,12 @@ These prefix to origin AS relations are validated using the RTRlib client
 to query a trusted RPKI cache server.</p>
 <p>The RPKI READ frontend presents a dashboard like interface showing a live
 overview of the RPKI validation state of all currently advertised IP prefixes
-observed by a certain BGP source.
+observed by a certain BGP source (see <a class="reference internal" href="#fig-read"><span class="std std-numref">Fig. 5</span></a>).
 Further, the frontend provides detailed statistics and also allows the user
 to search for results on distinct prefixes.</p>
-<div class="figure" id="id5">
-<img alt="RPKI READ screenshot" src="_images/rpki_read.png" />
-<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Screenshot of the RPKI READ web frontend</span></p>
+<div class="figure" id="id8">
+<span id="fig-read"></span><img alt="RPKI READ screenshot" src="_images/rpki_read.png" />
+<p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Screenshot of the RPKI READ web frontend</span></p>
 </div>
 </div>
 <div class="section" id="rpki-miro">
@@ -353,9 +356,9 @@ RPKI MIRO is a monitoring application that consists of three parts:</p>
 <li>a browser to visualize RPKI objects, and</li>
 <li>statistical analysis of the collected objects.</li>
 </ol>
-<div class="figure" id="id6">
+<div class="figure" id="id9">
 <span id="fig-miro"></span><img alt="RPKI MIRO screenshot" src="_images/rpki_miro.png" />
-<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Screenshot of the RPKI MIRO web interface.</span></p>
+<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">Screenshot of the RPKI MIRO web interface.</span></p>
 </div>
 <p>Using RPKI MIRO you can lookup any IP prefix and its associated ROA, e.g. the
 RIPE RIS beacon <code class="docutils literal"><span class="pre">93.175.147.0/24</span></code>.
@@ -364,7 +367,7 @@ from <code class="docutils literal"><span class="pre">AFRINIC</span></code> to <
 with attribute <code class="docutils literal"><span class="pre">resource</span></code>.
 Expand the ROA tree view on the left side to get the corresponding ROA for the
 beacon prefix, the resulting web view should look like the screenshot
-in <a class="reference internal" href="#fig-miro"><span class="std std-numref">Fig. 3</span></a>.</p>
+in <a class="reference internal" href="#fig-miro"><span class="std std-numref">Fig. 6</span></a>.</p>
 </div>
 <div class="section" id="rpki-rbv">
 <h2>RPKI RBV<a class="headerlink" href="#rpki-rbv" title="Permalink to this headline">¶</a></h2>
@@ -372,10 +375,10 @@ in <a class="reference internal" href="#fig-miro"><span class="std std-numref">F
 a RESTful API to validate IP prefix to origin AS relations.
 The validation service can be accessed via a plain and simple
 <a class="reference external" href="http://rpki-rbv.realmv6.org/html/validate.html">web page</a>
-(see also <a class="reference internal" href="#fig-rbv"><span class="std std-numref">Fig. 4</span></a>) or directly using its RESTful API.</p>
-<div class="figure" id="id7">
+(see also <a class="reference internal" href="#fig-rbv"><span class="std std-numref">Fig. 7</span></a>) or directly using its RESTful API.</p>
+<div class="figure" id="id10">
 <span id="fig-rbv"></span><img alt="RPKI RBV screenshot" src="_images/rpki_rbv.png" />
-<p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Screenshot of the RPKI RBV web interface</span></p>
+<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Screenshot of the RPKI RBV web interface</span></p>
 </div>
 <p>RBV provides two distinct APIs to run RPKI validation queries, the APIs allow
 RESTful GET queries with the following syntax for the URL path:</p>

@@ -102,7 +102,7 @@ a known RPKI cache server, afterwards you can validate IP prefixes by typing
 The result will be shown instantly below the input.
 *Note*: the ``cli-validator`` can validate IPv4 and IPv6 prefixes by default.
 
-Listing :ref:`lst-validator` shows the validation of all RIPE RIS beacons using
+:numref:`lst-validator` shows the validation of all RIPE RIS beacons using
 our RPKI cache server instance.
 
 .. code-block:: Bash
@@ -150,15 +150,25 @@ have to download and install the extension themselves as follows:
 #. activate `Developer Mode` via the checkbox in the top right
 #. click the `Load unpacked extension` button and navigate to the source
 
-The following screenshots show the validation results for certain websites
-(*valid*, *invalid*, *not found*) of the RPKI Validator browser plugin for
-Firefox:
+The screenshots show the validation results (*valid* :numref:`fig-valid`,
+*invalid* :numref:`fig-invalid`, and *not found* :numref:`fig-notfound`)
+for certain websites of the RPKI Validator browser plugin for Firefox.
 
+.. _fig-valid:
 .. figure:: ../images/rbv_valid.png
 
+    Screenshot of RPKI Validator plugin in Firefox showing results *valid*.
+
+.. _fig-invalid:
 .. figure:: ../images/rbv_invalid.png
 
+    Screenshot of RPKI Validator plugin in Firefox showing results *invalid*.
+
+.. _fig-notfound:
 .. figure:: ../images/rbv_notfound.png
+
+    Screenshot of RPKI Validator plugin in Firefox showing results *not found*.
+
 
 .. |valid| image:: ../images/valid.png
 .. |invalid| image:: ../images/invalid.png
@@ -189,10 +199,11 @@ to query a trusted RPKI cache server.
 
 The RPKI READ frontend presents a dashboard like interface showing a live
 overview of the RPKI validation state of all currently advertised IP prefixes
-observed by a certain BGP source.
+observed by a certain BGP source (see :numref:`fig-read`).
 Further, the frontend provides detailed statistics and also allows the user
 to search for results on distinct prefixes.
 
+.. _fig-read:
 .. figure:: ../images/rpki_read.png
    :alt: RPKI READ screenshot
 
