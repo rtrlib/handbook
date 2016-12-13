@@ -150,19 +150,25 @@ have to download and install the extension themselves as follows:
 #. activate `Developer Mode` via the checkbox in the top right
 #. click the `Load unpacked extension` button and navigate to the source
 
-The screenshots (see :numref:`fig-valid`, :numref:`fig-invalid`,
-and :numref:`fig-notfound`) show the validation results (*valid*, *invalid*,
-and *not found*) for certain websites of the RPKI Validator browser plugin for
-Firefox:
+The screenshots show the validation results (*valid* :numref:`fig-valid`,
+*invalid* :numref:`fig-invalid`, and *not found* :numref:`fig-notfound`)
+for certain websites of the RPKI Validator browser plugin for Firefox.
 
 .. _fig-valid:
 .. figure:: ../images/rbv_valid.png
 
+    Screenshot of RPKI Validator plugin in Firefox showing results *valid*.
+
 .. _fig-invalid:
 .. figure:: ../images/rbv_invalid.png
 
+    Screenshot of RPKI Validator plugin in Firefox showing results *invalid*.
+
 .. _fig-notfound:
 .. figure:: ../images/rbv_notfound.png
+
+    Screenshot of RPKI Validator plugin in Firefox showing results *not found*.
+
 
 .. |valid| image:: ../images/valid.png
 .. |invalid| image:: ../images/invalid.png
