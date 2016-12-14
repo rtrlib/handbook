@@ -9,7 +9,6 @@ Tools based on the RTRlib
 In the following sections we give an overview on several software tools, which
 utilize the RTRlib and its features.
 These tools range from low level shell commands to easy-to-use browser plugins.
-
 For all tools we provide small usage examples; where ever appropriate we will
 use the `RIPE RIS Beacons`_ (see :numref:`beacons`) with well known RPKI
 validation results.
@@ -57,8 +56,14 @@ options.
 To get a complete reference over all options for the command simply run
 ``rtrclient`` in a shell.
 
-The following listing shows how to connect the ``rtrclient`` with a cache server
-as well as 10 lines of the resulting output:
+:numref:`lst-rtrclient` shows how to connect the ``rtrclient`` with a cache
+server as well as 10 lines of the resulting output.
+The listing shows ROAs for IPv4 and IPv6 prefixes with allowed range for prefix
+lengths and the associated origin AS number.
+Each line represents either a ROA that was added (``+``) or removed (``-``)
+from the selected RPKI cache server.
+The RTRlib client will receive and print such updates until the program is
+terminated, i.e., by ``CTRL+C``.
 
 .. code-block:: Bash
     :caption: Output of the rtrclient tool
@@ -76,13 +81,6 @@ as well as 10 lines of the resulting output:
     + 2001:13c7:6f08::                            48 -  48        27814
     + 2a07:7cc3::                                 32 -  32        61232
     + 2a05:b480:fc00::                            48 -  48        39126
-
-It shows ROAs for IPv4 and IPv6 prefixes with allowed range for prefix length
-and the associated origin ASN.
-Each line represents either a ROA that was added (``+``) or removed (``-``)
-from the cache server.
-The RTRlib client will receive such Updates until the program is terminated,
-i.e., by ``CTRL+C``.
 
 
 .. _validator:
@@ -104,6 +102,14 @@ The result will be shown instantly below the input.
 
 :numref:`lst-validator` shows the validation of all RIPE RIS beacons using
 our RPKI cache server instance.
+The output is structured into ``input query | ROAs | result``, separated by
+pipe (``|``) symbols.
+The validation results are ``0`` for *valid*, ``1`` for *not found*,
+and ``2`` for *invalid*.
+For *valid* and *invalid* the output shows the matching or conflicting
+ROAs for the given prefix and AS number.
+If multiple ROAs exist for a prefix, they are listed successively separated
+by commas (``,``).
 
 .. code-block:: Bash
     :caption: Output of the cli-validator tool
@@ -123,14 +129,7 @@ our RPKI cache server instance.
     2001:7fb:ff03:: 48 12654
     2001:7fb:ff03:: 48 12654||1
 
-The output is structured into ``input query | ROAs | result``, separated by
-pipe (``|``) symbols.
-The validation results are ``0`` for *valid*, ``1`` for *not found*,
-and ``2`` for *invalid*.
-For *valid* and *invalid* the output shows the matching or conflicting
-ROAs for the given prefix and AS number.
-If multiple ROAs exist for a prefix, they are listed successively separated
-by commas (``,``).
+
 
 RPKI Validator Browser Plugin
 =============================
@@ -141,8 +140,8 @@ A small icon indicates the validation state of the visited URL, which is
 either valid (|valid|), invalid (|invalid|) or was not found (|not_found|).
 
 The plugin is available as an add-on (or extension) for the web browsers
-Firefox_ and Chrome_.
-While the Firefox add-on is available through the add-on store, Chrome users
+Firefox and Chrome .
+While the `Firefox add-on`_ is available through the add-on store, Chrome users
 have to download and install the extension themselves as follows:
 
 #. download the `Chrome extension <https://github.com/rtrlib/chrome-extension>`_ from GitHub
@@ -150,9 +149,9 @@ have to download and install the extension themselves as follows:
 #. activate `Developer Mode` via the checkbox in the top right
 #. click the `Load unpacked extension` button and navigate to the source
 
-The screenshots show the validation results (*valid* :numref:`fig-valid`,
-*invalid* :numref:`fig-invalid`, and *not found* :numref:`fig-notfound`)
-for certain websites of the RPKI Validator browser plugin for Firefox.
+The screenshots show the results of the RPKI Validator browser plugin for
+Firefox (*valid* :numref:`fig-valid`, *invalid* :numref:`fig-invalid`,
+and *not found* :numref:`fig-notfound`) for certain websites .
 
 .. _fig-valid:
 .. figure:: ../images/rbv_valid.png
@@ -174,7 +173,7 @@ for certain websites of the RPKI Validator browser plugin for Firefox.
 .. |invalid| image:: ../images/invalid.png
 .. |not_found| image:: ../images/notFound.png
 
-.. _Firefox: https://addons.mozilla.org/en-US/firefox/addon/rpki-validator/
+.. _Firefox add-on: https://addons.mozilla.org/en-US/firefox/addon/rpki-validator/
 .. _Chrome: https://github.com/rtrlib/chrome-extension
 
 RPKI READ
@@ -201,7 +200,8 @@ The RPKI READ frontend presents a dashboard like interface showing a live
 overview of the RPKI validation state of all currently advertised IP prefixes
 observed by a certain BGP source (see :numref:`fig-read`).
 Further, the frontend provides detailed statistics and also allows the user
-to search for results on distinct prefixes.
+to search for validation results of distinct prefixes or all prefixes originated
+by a certain AS.
 
 .. _fig-read:
 .. figure:: ../images/rpki_read.png
@@ -218,7 +218,7 @@ RPKI MIRO
 
 The RPKI *Monitoring and Inspection of RPKI Objects* (`RPKI MIRO`_)
 aims for easy access to RPKI certificates, revocation lists, ROAs etc.
-to finally give Internet operators more confidence in their data.
+to give network operators more confidence in their data.
 Though, RPKI is a powerful tool, its success depends on several aspects.
 One crucial piece is the correctness of the RPKI data.
 RPKI data is public but might be hard to inspect outside of shell-like
@@ -265,13 +265,13 @@ The validation service can be accessed via a plain and simple
    Screenshot of the RPKI RBV web interface
 
 RBV provides two distinct APIs to run RPKI validation queries, the APIs allow
-RESTful GET queries with the following syntax for the URL path:
+RESTful GET queries with the following syntax and formatting of the URL path:
 
 #. ``/api/v1/validity/<asn>/<prefix>/<masklen>``
 #. ``/api/v2/validity/<host>``
 
 *Note*: the AS number in ``<asn>`` has to be prepended with *AS*;
-and ``<host>`` can either be an IP address or a DSN hostname.
+and ``<host>`` can either be an IP address or a DNS hostname.
 To test the APIs type the following queries for the RIPE RIS beacon
 ``93.175.146.0/24`` into the address bar of your favorite web browser:
 
@@ -313,7 +313,7 @@ The result will be a JSON object as shown in :numref:`lst-rbv-json`.
         }
     }
 
-For a detailed instruction how to install and set up the API visit
+For detailed instruction how to install and set up the API visit
 the `RBV Repository <https://github.com/rtrlib/rbv>`_ on GitHub.
 
 .. _RPKI RBV: https://rpki-rbv.realmv6.org/

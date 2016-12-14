@@ -262,11 +262,13 @@ The former connects to a single RTR cache server via TCP or SSH and prints
 validated prefix origin data to STDOUT. You can use this tool to get first
 experiences with the RPKI-RTR protocol. With the latter you can validate
 arbitrary prefix to origin relations against records of a connected RPKI cache.
-Both tools are located in the <code class="docutils literal"><span class="pre">tools/</span></code> directory.</p>
-<p>Having a look into the source code of these tools will help to understand and
-integrate the RTRlib into your own applications. The following provides an
-overview on important code segments.</p>
+Both tools are located in the <code class="docutils literal"><span class="pre">tools/</span></code> directory. Having a look into the
+source code of these tools will help to understand and integrate the RTRlib
+into applications.</p>
 <hr class="docutils" />
+<p>Any application using the RTRlib will have to setup a RTR connection manager
+that handles the synchronization with one (or multiple) trusted RPKI cache
+server(s). The following provides an overview on important code segments.</p>
 <p>First, create a RTR transport socket, for instance using TCP as shown in
 <a class="reference internal" href="#lst-create-socket"><span class="std std-numref">Listing 1</span></a>.</p>
 <div class="literal-block-wrapper container" id="lst-create-socket">
@@ -365,7 +367,7 @@ origin AS.</p>
 </pre></div>
 </td></tr></table></div>
 </div>
-<p>With a running RTR connection manager, you can also run validation queries.
+<p>With a running RTR connection manager, you can also execute validation queries.
 Validate the relation of prefix <cite>10.10.0.0/24</cite> and its origin AS 12345 as follows.</p>
 <div class="literal-block-wrapper container" id="lst-validate">
 <div class="code-block-caption"><span class="caption-number">Listing 6 </span><span class="caption-text">Validate a prefix to origin AS relation</span><a class="headerlink" href="#lst-validate" title="Permalink to this code">¶</a></div>
@@ -399,8 +401,8 @@ Connection Manager, and secondly release any memory allocated.</p>
 <p>The code in <a class="reference internal" href="#lst-full-example"><span class="std std-numref">Listing 8</span></a> shows a fully functional RPKI validator
 using the RTRlib. It includes all parts explained in the previous section, and
 shows how to setup multiple RPKI cache server connections using either TCP or
-SSH transport sockets. For the latter, you need to compile the RTRlib with
-<cite>libssh</cite> (version &gt;= 0.5).</p>
+SSH transport sockets. For the latter, the RTRlib has to be build and installed
+with <cite>libssh</cite> support.</p>
 <div class="literal-block-wrapper container" id="lst-full-example">
 <div class="code-block-caption"><span class="caption-number">Listing 8 </span><span class="caption-text">A complete code example for the RTRlib</span><a class="headerlink" href="#lst-full-example" title="Permalink to this code">¶</a></div>
 <div class="highlight-C"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
