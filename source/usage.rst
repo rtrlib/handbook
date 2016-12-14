@@ -70,8 +70,8 @@ The contents of the RTRlib source code has the following subdirectory structure:
 - ``tests/``      Function tests and unit tests
 - ``tools/``      Contains ``rtrclient`` and ``cli-validator``
 
-Afterwards, build the library as follows (we recommend an `out-of-source` build)
-using `cmake`:
+Afterwards, the library can be build as follows (we recommend an `out-of-source`
+build) using `cmake`:
 
 .. code-block:: Bash
 
@@ -89,14 +89,16 @@ To enable debug symbols and messages, change the `cmake` command to:
 
     cmake -D CMAKE_BUILD_TYPE=Debug ../
 
-If `Doxygen` is available, you can build the documentation, by running:
+
+For developers we provide a pre-build Doxygen API reference docu_ online for
+the latest release of the RTRlib. Alternatively, and if `Doxygen` is available,
+you can build the documentation as follows:
 
 .. code-block:: Bash
 
     make doc
 
-Alternatively, we provide a pre-build Doxygen docu_ online for the latest
-release of the RTRlib.
+
 Further, you can also run the build-in tests provided by the RTRlib package
 via `make`:
 
@@ -116,8 +118,8 @@ Development with the RTRlib
 
 The RTRlib shared library is installed to ``/usr/local/lib`` by default,
 and its headers files to ``/usr/local/include``, respectively.
-Writing an application in C/C++ using the RTRlib, you have to include the main
-header file into the code:
+To write an application in C/C++ using the RTRlib, include the main header file
+into the code:
 
 .. code-block:: C
 
@@ -130,9 +132,9 @@ To link an application against the RTRlib, pass the following parameter to gcc:
 
     -lrtr
 
-If the linker reports an error such as ``cannot find -lrtr``, the RTRlib was
-not installed to a standard location.
-In this case pass its location as an absolute path to the compiler,
+If the linker reports an error such as ``cannot find -lrtr``, probably the
+RTRlib was not installed to a standard location.
+In this case, pass its location as an absolute path to the compiler,
 add parameter:
 
 .. code-block:: Bash
@@ -172,7 +174,7 @@ First, create a RTR transport socket, for instance using TCP as shown in
 
 .. code-block:: C
     :linenos:
-    :caption: Create a RTR transport socket.
+    :caption: Create a RTR transport socket
     :name: lst-create-socket
 
     struct tr_socket tr_tcp;
@@ -196,7 +198,7 @@ single cache instance.
 
 .. code-block:: C
     :linenos:
-    :caption: Create a group of RTR caches.
+    :caption: Create a group of RTR caches
     :name: lst-create-group
 
     rtr_mgr_group groups[1];
@@ -227,7 +229,7 @@ Finally, start the RTR Connection Manager.
 
 .. code-block:: C
     :linenos:
-    :caption: Start the RTR connection manager.
+    :caption: Start the RTR connection manager
     :name: lst-start-rtrmgr
 
     rtr_mgr_start(conf);
@@ -240,7 +242,7 @@ origin AS.
 
 .. code-block:: C
     :linenos:
-    :caption: Update callback for prefixes received from a RPKI cache.
+    :caption: RTR connection manager update callback
     :name: lst-callback
 
     static void update_cb(struct pfx_table* p, const pfx_record rec, const bool added){
@@ -258,7 +260,7 @@ Validate the relation of prefix `10.10.0.0/24` and its origin AS 12345 as follow
 
 .. code-block:: C
     :linenos:
-    :caption: Validate a prefix to origin AS relation.
+    :caption: Validate a prefix to origin AS relation
     :name: lst-validate
 
     struct lrtr_ip_addr pref;
@@ -272,7 +274,7 @@ Connection Manager, and secondly release any memory allocated.
 
 .. code-block:: C
     :linenos:
-    :caption: Stop the RTR connection manager and cleanup.
+    :caption: RTR connection manager cleanup
     :name: lst-stop-rtrmgr
 
     rtr_mgr_stop(conf);
@@ -291,7 +293,7 @@ SSH transport sockets. For the latter, you need to compile the RTRlib with
 
 .. code-block:: C
     :linenos:
-    :caption: A complete code example for the RTRlib.
+    :caption: A complete code example for the RTRlib
     :name: lst-full-example
 
     #include <stdio.h>
