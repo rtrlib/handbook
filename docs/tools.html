@@ -147,8 +147,8 @@
 <span id="tools"></span><h1>Tools based on the RTRlib<a class="headerlink" href="#tools-based-on-the-rtrlib" title="Permalink to this headline">¶</a></h1>
 <p>In the following sections we give an overview on several software tools, which
 utilize the RTRlib and its features.
-These tools range from low level shell commands to easy-to-use browser plugins.</p>
-<p>For all tools we provide small usage examples; where ever appropriate we will
+These tools range from low level shell commands to easy-to-use browser plugins.
+For all tools we provide small usage examples; where ever appropriate we will
 use the <a class="reference external" href="https://www.ripe.net/analyse/internet-measurements/routing-information-service-ris/current-ris-routing-beacons">RIPE RIS Beacons</a> (see <a class="reference internal" href="#beacons"><span class="std std-numref">Table 1</span></a>) with well known RPKI
 validation results.</p>
 <table border="1" class="docutils" id="id4">
@@ -213,8 +213,14 @@ hostname and port of a RPKI cache server; additionally you can set several
 options.
 To get a complete reference over all options for the command simply run
 <code class="docutils literal"><span class="pre">rtrclient</span></code> in a shell.</p>
-<p>The following listing shows how to connect the <code class="docutils literal"><span class="pre">rtrclient</span></code> with a cache server
-as well as 10 lines of the resulting output:</p>
+<p><a class="reference internal" href="#lst-rtrclient"><span class="std std-numref">Listing 9</span></a> shows how to connect the <code class="docutils literal"><span class="pre">rtrclient</span></code> with a cache
+server as well as 10 lines of the resulting output.
+The listing shows ROAs for IPv4 and IPv6 prefixes with allowed range for prefix
+lengths and the associated origin AS number.
+Each line represents either a ROA that was added (<code class="docutils literal"><span class="pre">+</span></code>) or removed (<code class="docutils literal"><span class="pre">-</span></code>)
+from the selected RPKI cache server.
+The RTRlib client will receive and print such updates until the program is
+terminated, i.e., by <code class="docutils literal"><span class="pre">CTRL+C</span></code>.</p>
 <div class="literal-block-wrapper container" id="lst-rtrclient">
 <div class="code-block-caption"><span class="caption-number">Listing 9 </span><span class="caption-text">Output of the rtrclient tool</span><a class="headerlink" href="#lst-rtrclient" title="Permalink to this code">¶</a></div>
 <div class="highlight-Bash"><div class="highlight"><pre><span></span>rtrclient tcp -k -p rpki-validator.realmv6.org 8282
@@ -232,12 +238,6 @@ Prefix                                     Prefix Length         ASN
 </pre></div>
 </div>
 </div>
-<p>It shows ROAs for IPv4 and IPv6 prefixes with allowed range for prefix length
-and the associated origin ASN.
-Each line represents either a ROA that was added (<code class="docutils literal"><span class="pre">+</span></code>) or removed (<code class="docutils literal"><span class="pre">-</span></code>)
-from the cache server.
-The RTRlib client will receive such Updates until the program is terminated,
-i.e., by <code class="docutils literal"><span class="pre">CTRL+C</span></code>.</p>
 </div>
 <div class="section" id="rtrlib-validator">
 <span id="validator"></span><h2>RTRlib Validator<a class="headerlink" href="#rtrlib-validator" title="Permalink to this headline">¶</a></h2>
@@ -252,7 +252,15 @@ a known RPKI cache server, afterwards you can validate IP prefixes by typing
 The result will be shown instantly below the input.
 <em>Note</em>: the <code class="docutils literal"><span class="pre">cli-validator</span></code> can validate IPv4 and IPv6 prefixes by default.</p>
 <p><a class="reference internal" href="#lst-validator"><span class="std std-numref">Listing 10</span></a> shows the validation of all RIPE RIS beacons using
-our RPKI cache server instance.</p>
+our RPKI cache server instance.
+The output is structured into <code class="docutils literal"><span class="pre">input</span> <span class="pre">query</span> <span class="pre">|</span> <span class="pre">ROAs</span> <span class="pre">|</span> <span class="pre">result</span></code>, separated by
+pipe (<code class="docutils literal"><span class="pre">|</span></code>) symbols.
+The validation results are <code class="docutils literal"><span class="pre">0</span></code> for <em>valid</em>, <code class="docutils literal"><span class="pre">1</span></code> for <em>not found</em>,
+and <code class="docutils literal"><span class="pre">2</span></code> for <em>invalid</em>.
+For <em>valid</em> and <em>invalid</em> the output shows the matching or conflicting
+ROAs for the given prefix and AS number.
+If multiple ROAs exist for a prefix, they are listed successively separated
+by commas (<code class="docutils literal"><span class="pre">,</span></code>).</p>
 <div class="literal-block-wrapper container" id="lst-validator">
 <div class="code-block-caption"><span class="caption-number">Listing 10 </span><span class="caption-text">Output of the cli-validator tool</span><a class="headerlink" href="#lst-validator" title="Permalink to this code">¶</a></div>
 <div class="highlight-Bash"><div class="highlight"><pre><span></span>cli-validator rpki-validator.realmv6.org 8282
@@ -271,14 +279,6 @@ our RPKI cache server instance.</p>
 </pre></div>
 </div>
 </div>
-<p>The output is structured into <code class="docutils literal"><span class="pre">input</span> <span class="pre">query</span> <span class="pre">|</span> <span class="pre">ROAs</span> <span class="pre">|</span> <span class="pre">result</span></code>, separated by
-pipe (<code class="docutils literal"><span class="pre">|</span></code>) symbols.
-The validation results are <code class="docutils literal"><span class="pre">0</span></code> for <em>valid</em>, <code class="docutils literal"><span class="pre">1</span></code> for <em>not found</em>,
-and <code class="docutils literal"><span class="pre">2</span></code> for <em>invalid</em>.
-For <em>valid</em> and <em>invalid</em> the output shows the matching or conflicting
-ROAs for the given prefix and AS number.
-If multiple ROAs exist for a prefix, they are listed successively separated
-by commas (<code class="docutils literal"><span class="pre">,</span></code>).</p>
 </div>
 <div class="section" id="rpki-validator-browser-plugin">
 <h2>RPKI Validator Browser Plugin<a class="headerlink" href="#rpki-validator-browser-plugin" title="Permalink to this headline">¶</a></h2>
@@ -287,8 +287,8 @@ of visited URLs, i.e., the associated IP prefix and origin AS of the URL.
 A small icon indicates the validation state of the visited URL, which is
 either valid (<img alt="valid" src="_images/valid.png" />), invalid (<img alt="invalid" src="_images/invalid.png" />) or was not found (<img alt="not_found" src="_images/notFound.png" />).</p>
 <p>The plugin is available as an add-on (or extension) for the web browsers
-<a class="reference external" href="https://addons.mozilla.org/en-US/firefox/addon/rpki-validator/">Firefox</a> and <a class="reference external" href="https://github.com/rtrlib/chrome-extension">Chrome</a>.
-While the Firefox add-on is available through the add-on store, Chrome users
+Firefox and Chrome .
+While the <a class="reference external" href="https://addons.mozilla.org/en-US/firefox/addon/rpki-validator/">Firefox add-on</a> is available through the add-on store, Chrome users
 have to download and install the extension themselves as follows:</p>
 <ol class="arabic simple">
 <li>download the <a class="reference external" href="https://github.com/rtrlib/chrome-extension">Chrome extension</a> from GitHub</li>
@@ -296,9 +296,9 @@ have to download and install the extension themselves as follows:</p>
 <li>activate <cite>Developer Mode</cite> via the checkbox in the top right</li>
 <li>click the <cite>Load unpacked extension</cite> button and navigate to the source</li>
 </ol>
-<p>The screenshots show the validation results (<em>valid</em> <a class="reference internal" href="#fig-valid"><span class="std std-numref">Fig. 2</span></a>,
-<em>invalid</em> <a class="reference internal" href="#fig-invalid"><span class="std std-numref">Fig. 3</span></a>, and <em>not found</em> <a class="reference internal" href="#fig-notfound"><span class="std std-numref">Fig. 4</span></a>)
-for certain websites of the RPKI Validator browser plugin for Firefox.</p>
+<p>The screenshots show the results of the RPKI Validator browser plugin for
+Firefox (<em>valid</em> <a class="reference internal" href="#fig-valid"><span class="std std-numref">Fig. 2</span></a>, <em>invalid</em> <a class="reference internal" href="#fig-invalid"><span class="std std-numref">Fig. 3</span></a>,
+and <em>not found</em> <a class="reference internal" href="#fig-notfound"><span class="std std-numref">Fig. 4</span></a>) for certain websites .</p>
 <div class="figure" id="id5">
 <span id="fig-valid"></span><img alt="_images/rbv_valid.png" src="_images/rbv_valid.png" />
 <p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Screenshot of RPKI Validator plugin in Firefox showing result <em>valid</em>.</span></p>
@@ -333,7 +333,8 @@ to query a trusted RPKI cache server.</p>
 overview of the RPKI validation state of all currently advertised IP prefixes
 observed by a certain BGP source (see <a class="reference internal" href="#fig-read"><span class="std std-numref">Fig. 5</span></a>).
 Further, the frontend provides detailed statistics and also allows the user
-to search for results on distinct prefixes.</p>
+to search for validation results of distinct prefixes or all prefixes originated
+by a certain AS.</p>
 <div class="figure" id="id8">
 <span id="fig-read"></span><img alt="RPKI READ screenshot" src="_images/rpki_read.png" />
 <p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Screenshot of the RPKI READ web frontend</span></p>
@@ -343,7 +344,7 @@ to search for results on distinct prefixes.</p>
 <h2>RPKI MIRO<a class="headerlink" href="#rpki-miro" title="Permalink to this headline">¶</a></h2>
 <p>The RPKI <em>Monitoring and Inspection of RPKI Objects</em> (<a class="reference external" href="http://rpki-miro.realmv6.org/">RPKI MIRO</a>)
 aims for easy access to RPKI certificates, revocation lists, ROAs etc.
-to finally give Internet operators more confidence in their data.
+to give network operators more confidence in their data.
 Though, RPKI is a powerful tool, its success depends on several aspects.
 One crucial piece is the correctness of the RPKI data.
 RPKI data is public but might be hard to inspect outside of shell-like
@@ -381,13 +382,13 @@ The validation service can be accessed via a plain and simple
 <p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Screenshot of the RPKI RBV web interface</span></p>
 </div>
 <p>RBV provides two distinct APIs to run RPKI validation queries, the APIs allow
-RESTful GET queries with the following syntax for the URL path:</p>
+RESTful GET queries with the following syntax and formatting of the URL path:</p>
 <ol class="arabic simple">
 <li><code class="docutils literal"><span class="pre">/api/v1/validity/&lt;asn&gt;/&lt;prefix&gt;/&lt;masklen&gt;</span></code></li>
 <li><code class="docutils literal"><span class="pre">/api/v2/validity/&lt;host&gt;</span></code></li>
 </ol>
 <p><em>Note</em>: the AS number in <code class="docutils literal"><span class="pre">&lt;asn&gt;</span></code> has to be prepended with <em>AS</em>;
-and <code class="docutils literal"><span class="pre">&lt;host&gt;</span></code> can either be an IP address or a DSN hostname.
+and <code class="docutils literal"><span class="pre">&lt;host&gt;</span></code> can either be an IP address or a DNS hostname.
 To test the APIs type the following queries for the RIPE RIS beacon
 <code class="docutils literal"><span class="pre">93.175.146.0/24</span></code> into the address bar of your favorite web browser:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>rpki-rbv.realmv6.org/api/v1/validity/AS12654/93.175.146.0/24
@@ -426,7 +427,7 @@ rpki-rbv.realmv6.org/api/v2/validity/93.175.146.1
 </pre></div>
 </div>
 </div>
-<p>For a detailed instruction how to install and set up the API visit
+<p>For detailed instruction how to install and set up the API visit
 the <a class="reference external" href="https://github.com/rtrlib/rbv">RBV Repository</a> on GitHub.</p>
 </div>
 <div class="section" id="other-third-party-tools">
