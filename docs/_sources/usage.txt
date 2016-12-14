@@ -16,7 +16,7 @@ Debian Linux
 ------------
 
 If you are running Debian (Jessie), you can install the library via the APT
-package manager, as follows
+package manager, as follows:
 
 .. code-block:: Bash
 
@@ -26,7 +26,7 @@ Apple macOS
 -----------
 
 For macOS we provide a *Homebrew* tap_ to easily install the RTRlib.
-First, install Homebrew_ and afterwards install RTRlib as follows:
+First, install Homebrew_ and afterwards install the RTRlib package:
 
 .. code-block:: Bash
 
@@ -43,14 +43,14 @@ On any other Linux OS you will have to build and install the RTRlib from source.
 The following minimal requirements have to be met, before building the library:
 
 - the build system is based on `cmake`, version >= 2.6
-- `libssh` to establish SSH transport connections, version >= 0.5.0
+- `libssh`, to establish SSH transport connections, version >= 0.5.0
 
 Optional requirements are:
 
-- `cmocka` a framework to run RTRlib unit tests
-- `doxygen` to build the RTRlib API documentation
+- `cmocka`, a framework to run RTRlib unit tests
+- `doxygen`, to build the RTRlib API documentation
 
-If the requirements are installed, the library can be build.
+If the requirements are installed, the library and tools can be build.
 First, either download or clone the RTRlib source code as follows:
 
 .. code-block:: Bash
@@ -70,8 +70,8 @@ The contents of the RTRlib source code has the following subdirectory structure:
 - ``tests/``      Function tests and unit tests
 - ``tools/``      Contains ``rtrclient`` and ``cli-validator``
 
-Afterwards, the library can be build as follows (we recommend an `out-of-source`
-build) using `cmake`:
+Afterwards, the library can be build (we recommend an `out-of-source` build)
+using `cmake`:
 
 .. code-block:: Bash
 
@@ -90,7 +90,7 @@ To enable debug symbols and messages, change the `cmake` command to:
     cmake -D CMAKE_BUILD_TYPE=Debug ../
 
 
-For developers we provide a pre-build Doxygen API reference docu_ online for
+For developers we provide a pre-build Doxygen `API reference`_ online for
 the latest release of the RTRlib. Alternatively, and if `Doxygen` is available,
 you can build the documentation as follows:
 
@@ -108,7 +108,7 @@ via `make`:
 
 .. _README: https://github.com/rtrlib/rtrlib/
 .. _Wiki: https://github.com/rtrlib/rtrlib/wiki
-.. _docu: https://rtrlib.realmv6.org/doxygen/latest
+.. _API reference: https://rtrlib.realmv6.org/doxygen/latest
 .. _mailing list: https://groups.google.com/forum/#!forum/rtrlib
 
 .. _devel:

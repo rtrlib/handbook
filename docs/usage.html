@@ -153,7 +153,7 @@
 <div class="section" id="debian-linux">
 <h3>Debian Linux<a class="headerlink" href="#debian-linux" title="Permalink to this headline">¶</a></h3>
 <p>If you are running Debian (Jessie), you can install the library via the APT
-package manager, as follows</p>
+package manager, as follows:</p>
 <div class="highlight-Bash"><div class="highlight"><pre><span></span>sudo apt-get install librtr0
 </pre></div>
 </div>
@@ -161,7 +161,7 @@ package manager, as follows</p>
 <div class="section" id="apple-macos">
 <h3>Apple macOS<a class="headerlink" href="#apple-macos" title="Permalink to this headline">¶</a></h3>
 <p>For macOS we provide a <em>Homebrew</em> <a class="reference external" href="https://github.com/rtrlib/homebrew-pils">tap</a> to easily install the RTRlib.
-First, install <a class="reference external" href="http://brew.sh">Homebrew</a> and afterwards install RTRlib as follows:</p>
+First, install <a class="reference external" href="http://brew.sh">Homebrew</a> and afterwards install the RTRlib package:</p>
 <div class="highlight-Bash"><div class="highlight"><pre><span></span>brew tap rtrlib/pils
 brew install rtrlib
 </pre></div>
@@ -173,14 +173,14 @@ brew install rtrlib
 The following minimal requirements have to be met, before building the library:</p>
 <ul class="simple">
 <li>the build system is based on <cite>cmake</cite>, version &gt;= 2.6</li>
-<li><cite>libssh</cite> to establish SSH transport connections, version &gt;= 0.5.0</li>
+<li><cite>libssh</cite>, to establish SSH transport connections, version &gt;= 0.5.0</li>
 </ul>
 <p>Optional requirements are:</p>
 <ul class="simple">
-<li><cite>cmocka</cite> a framework to run RTRlib unit tests</li>
-<li><cite>doxygen</cite> to build the RTRlib API documentation</li>
+<li><cite>cmocka</cite>, a framework to run RTRlib unit tests</li>
+<li><cite>doxygen</cite>, to build the RTRlib API documentation</li>
 </ul>
-<p>If the requirements are installed, the library can be build.
+<p>If the requirements are installed, the library and tools can be build.
 First, either download or clone the RTRlib source code as follows:</p>
 <div class="highlight-Bash"><div class="highlight"><pre><span></span>wget https://github.com/rtrlib/rtrlib/archive/v0.3.6.tar.gz
 tar xzf v0.3.6.tar.gz
@@ -198,8 +198,8 @@ git clone https://github.com/rtrlib/rtrlib/
 <li><code class="docutils literal"><span class="pre">tests/</span></code>      Function tests and unit tests</li>
 <li><code class="docutils literal"><span class="pre">tools/</span></code>      Contains <code class="docutils literal"><span class="pre">rtrclient</span></code> and <code class="docutils literal"><span class="pre">cli-validator</span></code></li>
 </ul>
-<p>Afterwards, the library can be build as follows (we recommend an <cite>out-of-source</cite>
-build) using <cite>cmake</cite>:</p>
+<p>Afterwards, the library can be build (we recommend an <cite>out-of-source</cite> build)
+using <cite>cmake</cite>:</p>
 <div class="highlight-Bash"><div class="highlight"><pre><span></span>mkdir build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> build
 cmake -DCMAKE_BUILD_TYPE<span class="o">=</span>Release ../
 make
@@ -212,7 +212,7 @@ and <a class="reference external" href="https://github.com/rtrlib/rtrlib/wiki">W
 <div class="highlight-Bash"><div class="highlight"><pre><span></span>cmake -D <span class="nv">CMAKE_BUILD_TYPE</span><span class="o">=</span>Debug ../
 </pre></div>
 </div>
-<p>For developers we provide a pre-build Doxygen API reference <a class="reference external" href="https://rtrlib.realmv6.org/doxygen/latest">docu</a> online for
+<p>For developers we provide a pre-build Doxygen <a class="reference external" href="https://rtrlib.realmv6.org/doxygen/latest">API reference</a> online for
 the latest release of the RTRlib. Alternatively, and if <cite>Doxygen</cite> is available,
 you can build the documentation as follows:</p>
 <div class="highlight-Bash"><div class="highlight"><pre><span></span>make doc

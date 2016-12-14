@@ -157,17 +157,17 @@ for certain websites of the RPKI Validator browser plugin for Firefox.
 .. _fig-valid:
 .. figure:: ../images/rbv_valid.png
 
-    Screenshot of RPKI Validator plugin in Firefox showing results *valid*.
+    Screenshot of RPKI Validator plugin in Firefox showing result *valid*.
 
 .. _fig-invalid:
 .. figure:: ../images/rbv_invalid.png
 
-    Screenshot of RPKI Validator plugin in Firefox showing results *invalid*.
+    Screenshot of RPKI Validator plugin in Firefox showing result *invalid*.
 
 .. _fig-notfound:
 .. figure:: ../images/rbv_notfound.png
 
-    Screenshot of RPKI Validator plugin in Firefox showing results *not found*.
+    Screenshot of RPKI Validator plugin in Firefox showing result *not found*.
 
 
 .. |valid| image:: ../images/valid.png

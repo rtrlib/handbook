@@ -16,7 +16,7 @@ Debian Linux
 ------------
 
 If you are running Debian (Jessie), you can install the library via the APT
-package manager, as follows
+package manager, as follows:
 
 .. code-block:: Bash
 
@@ -26,7 +26,7 @@ Apple macOS
 -----------
 
 For macOS we provide a *Homebrew* tap_ to easily install the RTRlib.
-First, install Homebrew_ and afterwards install RTRlib as follows:
+First, install Homebrew_ and afterwards install the RTRlib package:
 
 .. code-block:: Bash
 
@@ -43,14 +43,14 @@ On any other Linux OS you will have to build and install the RTRlib from source.
 The following minimal requirements have to be met, before building the library:
 
 - the build system is based on `cmake`, version >= 2.6
-- `libssh` to establish SSH transport connections, version >= 0.5.0
+- `libssh`, to establish SSH transport connections, version >= 0.5.0
 
 Optional requirements are:
 
-- `cmocka` a framework to run RTRlib unit tests
-- `doxygen` to build the RTRlib API documentation
+- `cmocka`, a framework to run RTRlib unit tests
+- `doxygen`, to build the RTRlib API documentation
 
-If the requirements are installed, the library can be build.
+If the requirements are installed, the library and tools can be build.
 First, either download or clone the RTRlib source code as follows:
 
 .. code-block:: Bash
@@ -70,8 +70,8 @@ The contents of the RTRlib source code has the following subdirectory structure:
 - ``tests/``      Function tests and unit tests
 - ``tools/``      Contains ``rtrclient`` and ``cli-validator``
 
-Afterwards, the library can be build as follows (we recommend an `out-of-source`
-build) using `cmake`:
+Afterwards, the library can be build (we recommend an `out-of-source` build)
+using `cmake`:
 
 .. code-block:: Bash
 
@@ -90,7 +90,7 @@ To enable debug symbols and messages, change the `cmake` command to:
     cmake -D CMAKE_BUILD_TYPE=Debug ../
 
 
-For developers we provide a pre-build Doxygen API reference docu_ online for
+For developers we provide a pre-build Doxygen `API reference`_ online for
 the latest release of the RTRlib. Alternatively, and if `Doxygen` is available,
 you can build the documentation as follows:
 
@@ -108,7 +108,7 @@ via `make`:
 
 .. _README: https://github.com/rtrlib/rtrlib/
 .. _Wiki: https://github.com/rtrlib/rtrlib/wiki
-.. _docu: https://rtrlib.realmv6.org/doxygen/latest
+.. _API reference: https://rtrlib.realmv6.org/doxygen/latest
 .. _mailing list: https://groups.google.com/forum/#!forum/rtrlib
 
 .. _devel:
@@ -161,13 +161,15 @@ The former connects to a single RTR cache server via TCP or SSH and prints
 validated prefix origin data to STDOUT. You can use this tool to get first
 experiences with the RPKI-RTR protocol. With the latter you can validate
 arbitrary prefix to origin relations against records of a connected RPKI cache.
-Both tools are located in the ``tools/`` directory.
-
-Having a look into the source code of these tools will help to understand and
-integrate the RTRlib into your own applications. The following provides an
-overview on important code segments.
+Both tools are located in the ``tools/`` directory. Having a look into the
+source code of these tools will help to understand and integrate the RTRlib
+into applications.
 
 ----
+
+Any application using the RTRlib will have to setup a RTR connection manager
+that handles the synchronization with one (or multiple) trusted RPKI cache
+server(s). The following provides an overview on important code segments.
 
 First, create a RTR transport socket, for instance using TCP as shown in
 :numref:`lst-create-socket`.
@@ -255,7 +257,7 @@ origin AS.
         printf("%-18s %3u-%-3u %10u\n", ip, rec.min_len, rec.max_len, rec.asn);
     }
 
-With a running RTR connection manager, you can also run validation queries.
+With a running RTR connection manager, you can also execute validation queries.
 Validate the relation of prefix `10.10.0.0/24` and its origin AS 12345 as follows.
 
 .. code-block:: C
@@ -288,8 +290,8 @@ Complete RTRlib Example
 The code in :numref:`lst-full-example` shows a fully functional RPKI validator
 using the RTRlib. It includes all parts explained in the previous section, and
 shows how to setup multiple RPKI cache server connections using either TCP or
-SSH transport sockets. For the latter, you need to compile the RTRlib with
-`libssh` (version >= 0.5).
+SSH transport sockets. For the latter, the RTRlib has to be build and installed
+with `libssh` support.
 
 .. code-block:: C
     :linenos:
