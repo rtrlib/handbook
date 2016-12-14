@@ -8,7 +8,8 @@ The RTRlib implements the client-side of the RPKI-RTR protocol :cite:`RFC-6810`
 and the BGP Prefix Origin Validation :cite:`RFC-6811`.
 The latest release of the RTRlib also supports the Internet-Draft
 :cite:`draft-ietf-sidr-rpki-rtr-rfc6810-bis` to enable
-the maintenance of router keys which are required to deploy BGPSEC in the future.
+the maintenance of router keys which are required to deploy
+BGPsec :cite:`draft-ietf-sidr-bgpsec-overview` in the future.
 
 Background
 ==========
@@ -54,9 +55,12 @@ Further Reading
 
 Detailed insights on the implementation of the RTRlib  and its performance can
 be found in :cite:`whss-roslr-13`.
-Further information can also be found in the standard specifications and
+Further information is available in the standard specifications and
 protocols in RFCs 6810 :cite:`RFC-6810` and 6811 :cite:`RFC-6811`, to which
 the RTRlib complies.
+Even more background material on BGP security extensions can be found in
+:cite:`RFC-7353`, :cite:`draft-ietf-sidr-bgpsec-overview`,
+and :cite:`draft-ietf-sidr-bgpsec-protocol`
 
 .. only:: html
 
