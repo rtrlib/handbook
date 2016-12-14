@@ -37,9 +37,8 @@ The RTRlib provides functions to establish a connection to a single or multiple
 trusted caches using TCP or SSH transport connections, and further allows to
 determine the validation state of prefix to origin AS relations.
 
-The image in :numref:`overview` shows a typical RPKI deployment, where trusted
-cache servers collect ROAs from global RPKI repositories of the RIRs, such as
-RIPE and APNIC.
+:numref:`overview` shows a typical RPKI deployment, where trusted cache servers
+collect ROAs from global RPKI repositories of the RIRs, such as RIPE and APNIC.
 Each local RPKI cache periodically updates and verifies the stored ROAs, and
 pushes the preprocessed data to connected RPKI enabled BGP routers using
 the RTR protocol.
