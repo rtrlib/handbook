@@ -4,13 +4,17 @@
 Usage of the RTRlib C Library
 *****************************
 
+The RTRlib is supported by most Linux distributions as well as Apple macOS.
+Before you start using or developing with RTRlib C library you have to prepare
+your OS environment by installing a recent release.
+
 
 .. _install:
 
 Installation
 ============
 
-The RTRlib is supported by most Linux distributions as well as Apple macOS.
+To install or build the RTRlib from source follow the steps described here.
 
 Debian Linux
 ------------
@@ -18,7 +22,7 @@ Debian Linux
 If you are running Debian (Jessie), you can install the library via the APT
 package manager, as follows:
 
-.. code-block:: Bash
+.. code-block:: bash
 
     sudo apt-get install librtr0
 
@@ -28,7 +32,7 @@ Apple macOS
 For macOS we provide a *Homebrew* tap_ to easily install the RTRlib.
 First, install Homebrew_ and afterwards install the RTRlib package:
 
-.. code-block:: Bash
+.. code-block:: bash
 
     brew tap rtrlib/pils
     brew install rtrlib
@@ -53,7 +57,7 @@ Optional requirements are:
 If the requirements are installed, the library and tools can be build.
 First, either download or clone the RTRlib source code as follows:
 
-.. code-block:: Bash
+.. code-block:: bash
 
     wget https://github.com/rtrlib/rtrlib/archive/v0.3.6.tar.gz
     tar xzf v0.3.6.tar.gz
@@ -73,7 +77,7 @@ The contents of the RTRlib source code has the following subdirectory structure:
 Afterwards, the library can be build (we recommend an `out-of-source` build)
 using `cmake`:
 
-.. code-block:: Bash
+.. code-block:: bash
 
     mkdir build && cd build
     cmake -DCMAKE_BUILD_TYPE=Release ../
@@ -81,11 +85,11 @@ using `cmake`:
     sudo make install
 
 If the build command fails with any error, please consult the RTRlib README_
-and Wiki_, you may also join our `mailing list`_.
+and Wiki_, you may also join our `mailing list`_ or open an issue on Github_.
 
 To enable debug symbols and messages, change the `cmake` command to:
 
-.. code-block:: Bash
+.. code-block:: bash
 
     cmake -D CMAKE_BUILD_TYPE=Debug ../
 
@@ -94,7 +98,7 @@ For developers we provide a pre-build Doxygen `API reference`_ online for
 the latest release of the RTRlib. Alternatively, and if `Doxygen` is available,
 you can build the documentation as follows:
 
-.. code-block:: Bash
+.. code-block:: bash
 
     make doc
 
@@ -102,11 +106,12 @@ you can build the documentation as follows:
 Further, you can also run the build-in tests provided by the RTRlib package
 via `make`:
 
-.. code-block:: Bash
+.. code-block:: bash
 
     make test
 
-.. _README: https://github.com/rtrlib/rtrlib/
+.. _README: https://github.com/rtrlib/rtrlib/blob/master/README
+.. _Github: https://github.com/rtrlib/rtrlib/issues
 .. _Wiki: https://github.com/rtrlib/rtrlib/wiki
 .. _API reference: https://rtrlib.realmv6.org/doxygen/latest
 .. _mailing list: https://groups.google.com/forum/#!forum/rtrlib
@@ -128,7 +133,7 @@ into the code:
 The name of the corresponding shared library is `rtr`.
 To link an application against the RTRlib, pass the following parameter to gcc:
 
-.. code-block:: Bash
+.. code-block:: bash
 
     -lrtr
 
@@ -137,14 +142,14 @@ RTRlib was not installed to a standard location.
 In this case, pass its location as an absolute path to the compiler,
 add parameter:
 
-.. code-block:: Bash
+.. code-block:: bash
 
     -L</path/to/librtr/>
 
 On Linux you can alternatively try to update the linker cache instead,
 run:
 
-.. code-block:: Bash
+.. code-block:: bash
 
     ldconfig
     # verify with
@@ -216,6 +221,7 @@ of groups, a refresh interval, an expiration interval, and retry interval,
 as well as distinct callback functions.
 In this case, a refresh interval of 30 seconds, a 600s expiration timeout,
 and a 600s retry interval will be defined.
+Afterwards, start the RTR Connection Manager.
 
 .. code-block:: C
     :linenos:
@@ -226,21 +232,13 @@ and a 600s retry interval will be defined.
     int ret = rtr_mgr_init(&conf, groups, 1, 30, 600, 600,
                            pfx_update_fp, spki_update_fp, status_fp, NULL);
 
-
-Finally, start the RTR Connection Manager.
-
-.. code-block:: C
-    :linenos:
-    :caption: Start the RTR connection manager
-    :name: lst-start-rtrmgr
-
     rtr_mgr_start(conf);
 
 
 As soon as an update has been received from the RTR-Server, the callback
-function will be invoked. In this example, `update_cb` will be invoked and
-prints the prefix, its minimum, and maximum length, as well as the corresponding
-origin AS.
+function will be invoked. In this example, `update_cb` (see :numref:`lst-callback`)
+is called which prints the prefix, its minimum, and maximum length, as well as
+the corresponding origin AS.
 
 .. code-block:: C
     :linenos:
@@ -258,7 +256,8 @@ origin AS.
     }
 
 With a running RTR connection manager, you can also execute validation queries.
-Validate the relation of prefix `10.10.0.0/24` and its origin AS 12345 as follows.
+Validate the relation of prefix `10.10.0.0/24` and its origin AS 12345 as shown
+in :numref:`lst-validate`.
 
 .. code-block:: C
     :linenos:
@@ -272,7 +271,8 @@ Validate the relation of prefix `10.10.0.0/24` and its origin AS 12345 as follow
     rtr_mgr_validate(conf, 12345, &pref, mask, &result);
 
 For a clean shutdown and exit of the application, first stop the RTR
-Connection Manager, and secondly release any memory allocated.
+Connection Manager, and secondly release any memory allocated
+(see :numref:`lst-stop-rtrmgr`).
 
 .. code-block:: C
     :linenos:

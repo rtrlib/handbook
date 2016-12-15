@@ -151,6 +151,9 @@ An even more detailed documentation on the API and further usage examples can
 be found on <a class="reference external" href="https://python-rtrlib.readthedocs.io">readthedocs.io</a>.</p>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>The RTRlib Python binding runs on Linux and Apple macOS like the C library. It
+supports both Python 2 and Python 3, in any recent release, detailed requirements
+and install instructions are described here.</p>
 <div class="section" id="requirements">
 <h3>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h3>
 <p>The Python binding for the RTRlib has several dependencies. For compilation
@@ -176,12 +179,12 @@ or just run <code class="docutils literal"><span class="pre">pip</span> <span cl
 <p>The setup process of the RTRlib Python binding is straight forward and complies
 to well-known Python standards.
 First download the source code from Github:</p>
-<div class="highlight-Bash"><div class="highlight"><pre><span></span>git clone https://github.com/rtrlib/python-binding.git
+<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/rtrlib/python-binding.git
 <span class="nb">cd</span> python-binding
 </pre></div>
 </div>
 <p>And second, build and install the package using Python commands:</p>
-<div class="highlight-Bash"><div class="highlight"><pre><span></span>python setup.py build
+<div class="highlight-bash"><div class="highlight"><pre><span></span>python setup.py build
 python setup.py install
 </pre></div>
 </div>
@@ -194,10 +197,10 @@ on the RTRlib Pythin binding. The functionality basically reflects the
 <cite>cli-validator</cite> tool shipped with the RTRlib C library (see <a class="reference internal" href="tools.html#validator"><span class="std std-ref">RTRlib Validator</span></a>).</p>
 <hr class="docutils" />
 <p>First, import the required Python packages as shown in
-<a class="reference internal" href="#lst-python-import"><span class="std std-numref">Listing 9</span></a>, namely <cite>rtrlib</cite> but also some future imports in
+<a class="reference internal" href="#lst-python-import"><span class="std std-numref">Listing 8</span></a>, namely <cite>rtrlib</cite> but also some future imports in
 case of Python 2.</p>
 <div class="literal-block-wrapper container" id="lst-python-import">
-<div class="code-block-caption"><span class="caption-number">Listing 9 </span><span class="caption-text">Import RTRlib package</span><a class="headerlink" href="#lst-python-import" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 8 </span><span class="caption-text">Import RTRlib package</span><a class="headerlink" href="#lst-python-import" title="Permalink to this code">¶</a></div>
 <div class="highlight-Python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># uncomment future imports, required for Python 2</span>
@@ -207,10 +210,10 @@ case of Python 2.</p>
 </td></tr></table></div>
 </div>
 <p>Afterwards, initialized and start an instance of the <em>RTRManager</em>,
-see <a class="reference internal" href="#lst-python-rtrmgr"><span class="std std-numref">Listing 10</span></a>, mandatory parameters are <em>host</em> and <em>port</em> of
+see <a class="reference internal" href="#lst-python-rtrmgr"><span class="std std-numref">Listing 9</span></a>, mandatory parameters are <em>host</em> and <em>port</em> of
 a trusted RPKI cache server.</p>
 <div class="literal-block-wrapper container" id="lst-python-rtrmgr">
-<div class="code-block-caption"><span class="caption-number">Listing 10 </span><span class="caption-text">Setup and run RTRManager</span><a class="headerlink" href="#lst-python-rtrmgr" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 9 </span><span class="caption-text">Setup and run RTRManager</span><a class="headerlink" href="#lst-python-rtrmgr" title="Permalink to this code">¶</a></div>
 <div class="highlight-Python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">mgr</span> <span class="o">=</span> <span class="n">RTRManager</span><span class="p">(</span><span class="s1">&#39;rpki-validator.realmv6.org&#39;</span><span class="p">,</span> <span class="mi">8282</span><span class="p">)</span>
 <span class="n">mgr</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
@@ -218,11 +221,11 @@ a trusted RPKI cache server.</p>
 </td></tr></table></div>
 </div>
 <p>As soon as the <em>RTRManager</em> is up and running, it can validate any prefix to
-origin AS relation as shown in <a class="reference internal" href="#lst-python-validate"><span class="std std-numref">Listing 11</span></a>. The return value
+origin AS relation as shown in <a class="reference internal" href="#lst-python-validate"><span class="std std-numref">Listing 10</span></a>. The return value
 in result contains the corresponding validation state, i.e., <em>valid</em>, <em>invalid</em>,
 or <em>not_found</em>; other return values indicate an error during validation.</p>
 <div class="literal-block-wrapper container" id="lst-python-validate">
-<div class="code-block-caption"><span class="caption-number">Listing 11 </span><span class="caption-text">Validate prefix to origin AS relation</span><a class="headerlink" href="#lst-python-validate" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 10 </span><span class="caption-text">Validate prefix to origin AS relation</span><a class="headerlink" href="#lst-python-validate" title="Permalink to this code">¶</a></div>
 <div class="highlight-Python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3

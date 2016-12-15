@@ -85,7 +85,7 @@
             
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage of the RTRlib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage of the RTRlib C Library</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python.html">RTRlib Python Binding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tools.html">Tools based on the RTRlib</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">BGP Routing Daemons with RPKR/RTR</a><ul>
@@ -157,16 +157,16 @@ More information on the building process can be found in the README of BIRD.</p>
 <p>Before any validations with BIRD can be done, it must be configured accordingly.
 First, a ROA table and the validation function must be added to <code class="code bash docutils literal"><span class="pre">/usr/local/etc/bird.conf</span></code>.
 At the top of this file write:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roa table rtr_roa_table <span class="p">;</span>
+<div class="highlight-cfg"><div class="highlight"><pre><span></span>roa table rtr_roa_table;
 
-<span class="k">function</span> test_ripe_beacons<span class="o">()</span>
-<span class="o">{</span>
-  print <span class="s2">&quot;Testing ROA&quot;</span><span class="p">;</span>
-  print <span class="s2">&quot;Should be TRUE TRUE TRUE:&quot;</span>,
-    <span class="s2">&quot; &quot;</span>, roa_check<span class="o">(</span>rtr_roa_table, 84.205.83.0/24, 12654<span class="o">)</span> <span class="o">=</span> ROA_UNKNOWN,
-    <span class="s2">&quot; &quot;</span>, roa_check<span class="o">(</span>rtr_roa_table, 93.175.146.0/24, 12654<span class="o">)</span> <span class="o">=</span> ROA_VALID,
-    <span class="s2">&quot; &quot;</span>, roa_check<span class="o">(</span>rtr_roa_table, 93.175.147.0/24, 12654<span class="o">)</span> <span class="o">=</span> ROA_INVALID<span class="p">;</span>
-<span class="o">}</span>
+function test_ripe_beacons()
+{
+    print &quot;Testing ROA&quot;;
+    print &quot;Should be TRUE TRUE TRUE:&quot;,
+    &quot; &quot;, roa_check(rtr_roa_table, 84.205.83.0/24, 12654) = ROA_UNKNOWN,
+    &quot; &quot;, roa_check(rtr_roa_table, 93.175.146.0/24, 12654) = ROA_VALID,
+    &quot; &quot;, roa_check(rtr_roa_table, 93.175.147.0/24, 12654) = ROA_INVALID;
+}
 </pre></div>
 </div>
 <p>The first line automatically creates a ROA table when the BIRD daemon is started.

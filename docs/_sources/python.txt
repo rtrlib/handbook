@@ -11,6 +11,10 @@ be found on `readthedocs.io`_.
 Installation
 ============
 
+The RTRlib Python binding runs on Linux and Apple macOS like the C library. It
+supports both Python 2 and Python 3, in any recent release, detailed requirements
+and install instructions are described here.
+
 Requirements
 ------------
 
@@ -39,14 +43,14 @@ The setup process of the RTRlib Python binding is straight forward and complies
 to well-known Python standards.
 First download the source code from Github:
 
-.. code-block:: Bash
+.. code-block:: bash
 
     git clone https://github.com/rtrlib/python-binding.git
     cd python-binding
 
 And second, build and install the package using Python commands:
 
-.. code-block:: Bash
+.. code-block:: bash
 
     python setup.py build
     python setup.py install

@@ -208,22 +208,22 @@ it will be installed automatically.</p>
 <em>SSH</em> transport sockets.
 It then communicates with the cache server utilizing the RTR protocol provided
 by the RTRlib to receive all cryptographically verified ROAs from the cache.
-To run the programm you have to specify the transport protocol as well as the
+To run the program you have to specify the transport protocol as well as the
 hostname and port of a RPKI cache server; additionally you can set several
 options.
 To get a complete reference over all options for the command simply run
 <code class="docutils literal"><span class="pre">rtrclient</span></code> in a shell.</p>
-<p><a class="reference internal" href="#lst-rtrclient"><span class="std std-numref">Listing 12</span></a> shows how to connect the <code class="docutils literal"><span class="pre">rtrclient</span></code> with a cache
+<p><a class="reference internal" href="#lst-rtrclient"><span class="std std-numref">Listing 11</span></a> shows how to connect the <code class="docutils literal"><span class="pre">rtrclient</span></code> with a cache
 server as well as 10 lines of the resulting output.
 The listing shows ROAs for IPv4 and IPv6 prefixes with allowed range for prefix
 lengths and the associated origin AS number.
 Each line represents either a ROA that was added (<code class="docutils literal"><span class="pre">+</span></code>) or removed (<code class="docutils literal"><span class="pre">-</span></code>)
 from the selected RPKI cache server.
 The RTRlib client will receive and print such updates until the program is
-terminated, i.e., by <code class="docutils literal"><span class="pre">CTRL+C</span></code>.</p>
+terminated, i.e., by <code class="docutils literal"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">c</span></code>.</p>
 <div class="literal-block-wrapper container" id="lst-rtrclient">
-<div class="code-block-caption"><span class="caption-number">Listing 12 </span><span class="caption-text">Output of the rtrclient tool</span><a class="headerlink" href="#lst-rtrclient" title="Permalink to this code">¶</a></div>
-<div class="highlight-Bash"><div class="highlight"><pre><span></span>rtrclient tcp -k -p rpki-validator.realmv6.org 8282
+<div class="code-block-caption"><span class="caption-number">Listing 11 </span><span class="caption-text">Output of the rtrclient tool</span><a class="headerlink" href="#lst-rtrclient" title="Permalink to this code">¶</a></div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rtrclient tcp -k -p rpki-validator.realmv6.org 8282
 Prefix                                     Prefix Length         ASN
 + 89.185.224.0                                <span class="m">19</span> -  <span class="m">19</span>        24971
 + 180.234.81.0                                <span class="m">24</span> -  <span class="m">24</span>        45951
@@ -251,7 +251,7 @@ a known RPKI cache server, afterwards you can validate IP prefixes by typing
 <code class="docutils literal"><span class="pre">ENTER</span></code> to run the validation.
 The result will be shown instantly below the input.
 <em>Note</em>: the <code class="docutils literal"><span class="pre">cli-validator</span></code> can validate IPv4 and IPv6 prefixes by default.</p>
-<p><a class="reference internal" href="#lst-validator"><span class="std std-numref">Listing 13</span></a> shows the validation of all RIPE RIS beacons using
+<p><a class="reference internal" href="#lst-validator"><span class="std std-numref">Listing 12</span></a> shows the validation of all RIPE RIS beacons using
 our RPKI cache server instance.
 The output is structured into <code class="docutils literal"><span class="pre">input</span> <span class="pre">query</span> <span class="pre">|</span> <span class="pre">ROAs</span> <span class="pre">|</span> <span class="pre">result</span></code>, separated by
 pipe (<code class="docutils literal"><span class="pre">|</span></code>) symbols.
@@ -262,8 +262,8 @@ ROAs for the given prefix and AS number.
 If multiple ROAs exist for a prefix, they are listed successively separated
 by commas (<code class="docutils literal"><span class="pre">,</span></code>).</p>
 <div class="literal-block-wrapper container" id="lst-validator">
-<div class="code-block-caption"><span class="caption-number">Listing 13 </span><span class="caption-text">Output of the cli-validator tool</span><a class="headerlink" href="#lst-validator" title="Permalink to this code">¶</a></div>
-<div class="highlight-Bash"><div class="highlight"><pre><span></span>cli-validator rpki-validator.realmv6.org 8282
+<div class="code-block-caption"><span class="caption-number">Listing 12 </span><span class="caption-text">Output of the cli-validator tool</span><a class="headerlink" href="#lst-validator" title="Permalink to this code">¶</a></div>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>cli-validator rpki-validator.realmv6.org 8282
 93.175.146.0 <span class="m">24</span> 12654
 93.175.146.0 <span class="m">24</span> 12654<span class="p">|</span><span class="m">12654</span> 93.175.146.0 <span class="m">24</span> 24<span class="p">|</span>0
 2001:7fb:fd02:: <span class="m">48</span> 12654
@@ -395,9 +395,9 @@ To test the APIs type the following queries for the RIPE RIS beacon
 rpki-rbv.realmv6.org/api/v2/validity/93.175.146.1
 </pre></div>
 </div>
-<p>The result will be a JSON object as shown in <a class="reference internal" href="#lst-rbv-json"><span class="std std-numref">Listing 14</span></a>.</p>
+<p>The result will be a JSON object as shown in <a class="reference internal" href="#lst-rbv-json"><span class="std std-numref">Listing 13</span></a>.</p>
 <div class="literal-block-wrapper container" id="lst-rbv-json">
-<div class="code-block-caption"><span class="caption-number">Listing 14 </span><span class="caption-text">Sample JSON output of RPKI RBV</span><a class="headerlink" href="#lst-rbv-json" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 13 </span><span class="caption-text">Sample JSON output of RPKI RBV</span><a class="headerlink" href="#lst-rbv-json" title="Permalink to this code">¶</a></div>
 <div class="highlight-JSON"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="nt">&quot;validated_route&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>

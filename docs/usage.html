@@ -147,14 +147,17 @@
             
   <div class="section" id="usage-of-the-rtrlib-c-library">
 <span id="usage"></span><h1>Usage of the RTRlib C Library<a class="headerlink" href="#usage-of-the-rtrlib-c-library" title="Permalink to this headline">¶</a></h1>
+<p>The RTRlib is supported by most Linux distributions as well as Apple macOS.
+Before you start using or developing with RTRlib C library you have to prepare
+your OS environment by installing a recent release.</p>
 <div class="section" id="installation">
 <span id="install"></span><h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>The RTRlib is supported by most Linux distributions as well as Apple macOS.</p>
+<p>To install or build the RTRlib from source follow the steps described here.</p>
 <div class="section" id="debian-linux">
 <h3>Debian Linux<a class="headerlink" href="#debian-linux" title="Permalink to this headline">¶</a></h3>
 <p>If you are running Debian (Jessie), you can install the library via the APT
 package manager, as follows:</p>
-<div class="highlight-Bash"><div class="highlight"><pre><span></span>sudo apt-get install librtr0
+<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo apt-get install librtr0
 </pre></div>
 </div>
 </div>
@@ -162,7 +165,7 @@ package manager, as follows:</p>
 <h3>Apple macOS<a class="headerlink" href="#apple-macos" title="Permalink to this headline">¶</a></h3>
 <p>For macOS we provide a <em>Homebrew</em> <a class="reference external" href="https://github.com/rtrlib/homebrew-pils">tap</a> to easily install the RTRlib.
 First, install <a class="reference external" href="http://brew.sh">Homebrew</a> and afterwards install the RTRlib package:</p>
-<div class="highlight-Bash"><div class="highlight"><pre><span></span>brew tap rtrlib/pils
+<div class="highlight-bash"><div class="highlight"><pre><span></span>brew tap rtrlib/pils
 brew install rtrlib
 </pre></div>
 </div>
@@ -182,7 +185,7 @@ The following minimal requirements have to be met, before building the library:<
 </ul>
 <p>If the requirements are installed, the library and tools can be build.
 First, either download or clone the RTRlib source code as follows:</p>
-<div class="highlight-Bash"><div class="highlight"><pre><span></span>wget https://github.com/rtrlib/rtrlib/archive/v0.3.6.tar.gz
+<div class="highlight-bash"><div class="highlight"><pre><span></span>wget https://github.com/rtrlib/rtrlib/archive/v0.3.6.tar.gz
 tar xzf v0.3.6.tar.gz
 <span class="nb">cd</span> rtrlib-0.3.6
 <span class="c1"># or</span>
@@ -200,27 +203,27 @@ git clone https://github.com/rtrlib/rtrlib/
 </ul>
 <p>Afterwards, the library can be build (we recommend an <cite>out-of-source</cite> build)
 using <cite>cmake</cite>:</p>
-<div class="highlight-Bash"><div class="highlight"><pre><span></span>mkdir build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> build
+<div class="highlight-bash"><div class="highlight"><pre><span></span>mkdir build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> build
 cmake -DCMAKE_BUILD_TYPE<span class="o">=</span>Release ../
 make
 sudo make install
 </pre></div>
 </div>
-<p>If the build command fails with any error, please consult the RTRlib <a class="reference external" href="https://github.com/rtrlib/rtrlib/">README</a>
-and <a class="reference external" href="https://github.com/rtrlib/rtrlib/wiki">Wiki</a>, you may also join our <a class="reference external" href="https://groups.google.com/forum/#!forum/rtrlib">mailing list</a>.</p>
+<p>If the build command fails with any error, please consult the RTRlib <a class="reference external" href="https://github.com/rtrlib/rtrlib/blob/master/README">README</a>
+and <a class="reference external" href="https://github.com/rtrlib/rtrlib/wiki">Wiki</a>, you may also join our <a class="reference external" href="https://groups.google.com/forum/#!forum/rtrlib">mailing list</a> or open an issue on <a class="reference external" href="https://github.com/rtrlib/rtrlib/issues">Github</a>.</p>
 <p>To enable debug symbols and messages, change the <cite>cmake</cite> command to:</p>
-<div class="highlight-Bash"><div class="highlight"><pre><span></span>cmake -D <span class="nv">CMAKE_BUILD_TYPE</span><span class="o">=</span>Debug ../
+<div class="highlight-bash"><div class="highlight"><pre><span></span>cmake -D <span class="nv">CMAKE_BUILD_TYPE</span><span class="o">=</span>Debug ../
 </pre></div>
 </div>
 <p>For developers we provide a pre-build Doxygen <a class="reference external" href="https://rtrlib.realmv6.org/doxygen/latest">API reference</a> online for
 the latest release of the RTRlib. Alternatively, and if <cite>Doxygen</cite> is available,
 you can build the documentation as follows:</p>
-<div class="highlight-Bash"><div class="highlight"><pre><span></span>make doc
+<div class="highlight-bash"><div class="highlight"><pre><span></span>make doc
 </pre></div>
 </div>
 <p>Further, you can also run the build-in tests provided by the RTRlib package
 via <cite>make</cite>:</p>
-<div class="highlight-Bash"><div class="highlight"><pre><span></span>make <span class="nb">test</span>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>make <span class="nb">test</span>
 </pre></div>
 </div>
 </div>
@@ -236,19 +239,19 @@ into the code:</p>
 </div>
 <p>The name of the corresponding shared library is <cite>rtr</cite>.
 To link an application against the RTRlib, pass the following parameter to gcc:</p>
-<div class="highlight-Bash"><div class="highlight"><pre><span></span>-lrtr
+<div class="highlight-bash"><div class="highlight"><pre><span></span>-lrtr
 </pre></div>
 </div>
 <p>If the linker reports an error such as <code class="docutils literal"><span class="pre">cannot</span> <span class="pre">find</span> <span class="pre">-lrtr</span></code>, probably the
 RTRlib was not installed to a standard location.
 In this case, pass its location as an absolute path to the compiler,
 add parameter:</p>
-<div class="highlight-Bash"><div class="highlight"><pre><span></span>-L&lt;/path/to/librtr/&gt;
+<div class="highlight-bash"><div class="highlight"><pre><span></span>-L&lt;/path/to/librtr/&gt;
 </pre></div>
 </div>
 <p>On Linux you can alternatively try to update the linker cache instead,
 run:</p>
-<div class="highlight-Bash"><div class="highlight"><pre><span></span>ldconfig
+<div class="highlight-bash"><div class="highlight"><pre><span></span>ldconfig
 <span class="c1"># verify with</span>
 ldconfig -p <span class="p">|</span> grep rtr
 </pre></div>
@@ -323,30 +326,28 @@ a pointer to a configuration object, the preconfigured group(s), number
 of groups, a refresh interval, an expiration interval, and retry interval,
 as well as distinct callback functions.
 In this case, a refresh interval of 30 seconds, a 600s expiration timeout,
-and a 600s retry interval will be defined.</p>
+and a 600s retry interval will be defined.
+Afterwards, start the RTR Connection Manager.</p>
 <div class="literal-block-wrapper container" id="lst-init-rtrmgr">
 <div class="code-block-caption"><span class="caption-number">Listing 3 </span><span class="caption-text">Initialize the RTR connection manager.</span><a class="headerlink" href="#lst-init-rtrmgr" title="Permalink to this code">¶</a></div>
 <div class="highlight-C"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">rtr_mgr_config</span> <span class="o">*</span><span class="n">conf</span><span class="p">;</span>
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">rtr_mgr_config</span> <span class="o">*</span><span class="n">conf</span><span class="p">;</span>
 <span class="kt">int</span> <span class="n">ret</span> <span class="o">=</span> <span class="n">rtr_mgr_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">conf</span><span class="p">,</span> <span class="n">groups</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span>
                        <span class="n">pfx_update_fp</span><span class="p">,</span> <span class="n">spki_update_fp</span><span class="p">,</span> <span class="n">status_fp</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
-</pre></div>
-</td></tr></table></div>
-</div>
-<p>Finally, start the RTR Connection Manager.</p>
-<div class="literal-block-wrapper container" id="lst-start-rtrmgr">
-<div class="code-block-caption"><span class="caption-number">Listing 4 </span><span class="caption-text">Start the RTR connection manager</span><a class="headerlink" href="#lst-start-rtrmgr" title="Permalink to this code">¶</a></div>
-<div class="highlight-C"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">rtr_mgr_start</span><span class="p">(</span><span class="n">conf</span><span class="p">);</span>
+
+<span class="n">rtr_mgr_start</span><span class="p">(</span><span class="n">conf</span><span class="p">);</span>
 </pre></div>
 </td></tr></table></div>
 </div>
 <p>As soon as an update has been received from the RTR-Server, the callback
-function will be invoked. In this example, <cite>update_cb</cite> will be invoked and
-prints the prefix, its minimum, and maximum length, as well as the corresponding
-origin AS.</p>
+function will be invoked. In this example, <cite>update_cb</cite> (see <a class="reference internal" href="#lst-callback"><span class="std std-numref">Listing 4</span></a>)
+is called which prints the prefix, its minimum, and maximum length, as well as
+the corresponding origin AS.</p>
 <div class="literal-block-wrapper container" id="lst-callback">
-<div class="code-block-caption"><span class="caption-number">Listing 5 </span><span class="caption-text">RTR connection manager update callback</span><a class="headerlink" href="#lst-callback" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 4 </span><span class="caption-text">RTR connection manager update callback</span><a class="headerlink" href="#lst-callback" title="Permalink to this code">¶</a></div>
 <div class="highlight-C"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -368,9 +369,10 @@ origin AS.</p>
 </td></tr></table></div>
 </div>
 <p>With a running RTR connection manager, you can also execute validation queries.
-Validate the relation of prefix <cite>10.10.0.0/24</cite> and its origin AS 12345 as follows.</p>
+Validate the relation of prefix <cite>10.10.0.0/24</cite> and its origin AS 12345 as shown
+in <a class="reference internal" href="#lst-validate"><span class="std std-numref">Listing 5</span></a>.</p>
 <div class="literal-block-wrapper container" id="lst-validate">
-<div class="code-block-caption"><span class="caption-number">Listing 6 </span><span class="caption-text">Validate a prefix to origin AS relation</span><a class="headerlink" href="#lst-validate" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 5 </span><span class="caption-text">Validate a prefix to origin AS relation</span><a class="headerlink" href="#lst-validate" title="Permalink to this code">¶</a></div>
 <div class="highlight-C"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -384,9 +386,10 @@ Validate the relation of prefix <cite>10.10.0.0/24</cite> and its origin AS 1234
 </td></tr></table></div>
 </div>
 <p>For a clean shutdown and exit of the application, first stop the RTR
-Connection Manager, and secondly release any memory allocated.</p>
+Connection Manager, and secondly release any memory allocated
+(see <a class="reference internal" href="#lst-stop-rtrmgr"><span class="std std-numref">Listing 6</span></a>).</p>
 <div class="literal-block-wrapper container" id="lst-stop-rtrmgr">
-<div class="code-block-caption"><span class="caption-number">Listing 7 </span><span class="caption-text">RTR connection manager cleanup</span><a class="headerlink" href="#lst-stop-rtrmgr" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 6 </span><span class="caption-text">RTR connection manager cleanup</span><a class="headerlink" href="#lst-stop-rtrmgr" title="Permalink to this code">¶</a></div>
 <div class="highlight-C"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">rtr_mgr_stop</span><span class="p">(</span><span class="n">conf</span><span class="p">);</span>
@@ -398,13 +401,13 @@ Connection Manager, and secondly release any memory allocated.</p>
 </div>
 <div class="section" id="complete-rtrlib-example">
 <h2>Complete RTRlib Example<a class="headerlink" href="#complete-rtrlib-example" title="Permalink to this headline">¶</a></h2>
-<p>The code in <a class="reference internal" href="#lst-full-example"><span class="std std-numref">Listing 8</span></a> shows a fully functional RPKI validator
+<p>The code in <a class="reference internal" href="#lst-full-example"><span class="std std-numref">Listing 7</span></a> shows a fully functional RPKI validator
 using the RTRlib. It includes all parts explained in the previous section, and
 shows how to setup multiple RPKI cache server connections using either TCP or
 SSH transport sockets. For the latter, the RTRlib has to be build and installed
 with <cite>libssh</cite> support.</p>
 <div class="literal-block-wrapper container" id="lst-full-example">
-<div class="code-block-caption"><span class="caption-number">Listing 8 </span><span class="caption-text">A complete code example for the RTRlib</span><a class="headerlink" href="#lst-full-example" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 7 </span><span class="caption-text">A complete code example for the RTRlib</span><a class="headerlink" href="#lst-full-example" title="Permalink to this code">¶</a></div>
 <div class="highlight-C"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
   2
   3

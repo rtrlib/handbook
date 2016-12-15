@@ -31,18 +31,18 @@ Before any validations with BIRD can be done, it must be configured accordingly.
 First, a ROA table and the validation function must be added to :bash:`/usr/local/etc/bird.conf`.
 At the top of this file write:
 
-.. code-block:: bash
+.. code-block:: cfg
 
-  roa table rtr_roa_table ;
+    roa table rtr_roa_table;
 
-  function test_ripe_beacons()
-  {
-    print "Testing ROA";
-    print "Should be TRUE TRUE TRUE:",
-      " ", roa_check(rtr_roa_table, 84.205.83.0/24, 12654) = ROA_UNKNOWN,
-      " ", roa_check(rtr_roa_table, 93.175.146.0/24, 12654) = ROA_VALID,
-      " ", roa_check(rtr_roa_table, 93.175.147.0/24, 12654) = ROA_INVALID;
-  }
+    function test_ripe_beacons()
+    {
+        print "Testing ROA";
+        print "Should be TRUE TRUE TRUE:",
+        " ", roa_check(rtr_roa_table, 84.205.83.0/24, 12654) = ROA_UNKNOWN,
+        " ", roa_check(rtr_roa_table, 93.175.146.0/24, 12654) = ROA_VALID,
+        " ", roa_check(rtr_roa_table, 93.175.147.0/24, 12654) = ROA_INVALID;
+    }
 
 The first line automatically creates a ROA table when the BIRD daemon is started.
 The function itself checks for three entries in the ROA table

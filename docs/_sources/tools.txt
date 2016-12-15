@@ -50,7 +50,7 @@ To establish a connection with a RPKI cache server the client can use *TCP* or
 *SSH* transport sockets.
 It then communicates with the cache server utilizing the RTR protocol provided
 by the RTRlib to receive all cryptographically verified ROAs from the cache.
-To run the programm you have to specify the transport protocol as well as the
+To run the program you have to specify the transport protocol as well as the
 hostname and port of a RPKI cache server; additionally you can set several
 options.
 To get a complete reference over all options for the command simply run
@@ -63,9 +63,9 @@ lengths and the associated origin AS number.
 Each line represents either a ROA that was added (``+``) or removed (``-``)
 from the selected RPKI cache server.
 The RTRlib client will receive and print such updates until the program is
-terminated, i.e., by ``CTRL+C``.
+terminated, i.e., by ``ctrl + c``.
 
-.. code-block:: Bash
+.. code-block:: bash
     :caption: Output of the rtrclient tool
     :name: lst-rtrclient
 
@@ -111,7 +111,7 @@ ROAs for the given prefix and AS number.
 If multiple ROAs exist for a prefix, they are listed successively separated
 by commas (``,``).
 
-.. code-block:: Bash
+.. code-block:: bash
     :caption: Output of the cli-validator tool
     :name: lst-validator
 
