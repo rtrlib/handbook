@@ -155,16 +155,19 @@ and *not found* :numref:`fig-notfound`) for certain websites .
 
 .. _fig-valid:
 .. figure:: ../images/rbv_valid.png
+    :width: 90 %
 
     Screenshot of RPKI Validator plugin in Firefox showing result *valid*.
 
 .. _fig-invalid:
 .. figure:: ../images/rbv_invalid.png
+    :width: 90 %
 
     Screenshot of RPKI Validator plugin in Firefox showing result *invalid*.
 
 .. _fig-notfound:
 .. figure:: ../images/rbv_notfound.png
+    :width: 90 %
 
     Screenshot of RPKI Validator plugin in Firefox showing result *not found*.
 
@@ -206,6 +209,7 @@ by a certain AS.
 .. _fig-read:
 .. figure:: ../images/rpki_read.png
    :alt: RPKI READ screenshot
+   :width: 90 %
 
    Screenshot of the RPKI READ web frontend
 
@@ -235,6 +239,7 @@ RPKI MIRO is a monitoring application that consists of three parts:
 .. _fig-miro:
 .. figure:: ../images/rpki_miro.png
    :alt: RPKI MIRO screenshot
+   :width: 90 %
 
    Screenshot of the RPKI MIRO web interface.
 
@@ -261,6 +266,7 @@ The validation service can be accessed via a plain and simple
 .. _fig-rbv:
 .. figure:: ../images/rpki_rbv.png
    :alt: RPKI RBV screenshot
+   :width: 75 %
 
    Screenshot of the RPKI RBV web interface
 
