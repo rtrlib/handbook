@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Usage of the RTRlib &mdash; The RTRlib Handbook 0.1 documentation</title>
+  <title>Usage of the RTRlib C Library &mdash; The RTRlib Handbook 0.1 documentation</title>
   
 
   
@@ -86,15 +86,15 @@
             
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Usage of the RTRlib</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#build-and-install-the-rtrlib">Build and Install the RTRlib</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Usage of the RTRlib C Library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#debian-linux">Debian Linux</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#apple-macos">Apple macOS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#from-source">From Source</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#development-with-the-rtrlib">Development with the RTRlib</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#step-by-step-coding-example">Step-by-Step Coding Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#development-with-rtrlib">Development with RTRlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-by-step-example">Step-by-Step Example</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#complete-rtrlib-example">Complete RTRlib Example</a></li>
 </ul>
 </li>
@@ -131,7 +131,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>Usage of the RTRlib</li>
+    <li>Usage of the RTRlib C Library</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -145,10 +145,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="usage-of-the-rtrlib">
-<span id="usage"></span><h1>Usage of the RTRlib<a class="headerlink" href="#usage-of-the-rtrlib" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="build-and-install-the-rtrlib">
-<span id="install"></span><h2>Build and Install the RTRlib<a class="headerlink" href="#build-and-install-the-rtrlib" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="usage-of-the-rtrlib-c-library">
+<span id="usage"></span><h1>Usage of the RTRlib C Library<a class="headerlink" href="#usage-of-the-rtrlib-c-library" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="installation">
+<span id="install"></span><h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>The RTRlib is supported by most Linux distributions as well as Apple macOS.</p>
 <div class="section" id="debian-linux">
 <h3>Debian Linux<a class="headerlink" href="#debian-linux" title="Permalink to this headline">¶</a></h3>
@@ -225,8 +225,8 @@ via <cite>make</cite>:</p>
 </div>
 </div>
 </div>
-<div class="section" id="development-with-the-rtrlib">
-<span id="devel"></span><h2>Development with the RTRlib<a class="headerlink" href="#development-with-the-rtrlib" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="development-with-rtrlib">
+<span id="devel"></span><h2>Development with RTRlib<a class="headerlink" href="#development-with-rtrlib" title="Permalink to this headline">¶</a></h2>
 <p>The RTRlib shared library is installed to <code class="docutils literal"><span class="pre">/usr/local/lib</span></code> by default,
 and its headers files to <code class="docutils literal"><span class="pre">/usr/local/include</span></code>, respectively.
 To write an application in C/C++ using the RTRlib, include the main header file
@@ -254,8 +254,8 @@ ldconfig -p <span class="p">|</span> grep rtr
 </pre></div>
 </div>
 </div>
-<div class="section" id="step-by-step-coding-example">
-<span id="coding"></span><h2>Step-by-Step Coding Example<a class="headerlink" href="#step-by-step-coding-example" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="step-by-step-example">
+<span id="coding"></span><h2>Step-by-Step Example<a class="headerlink" href="#step-by-step-example" title="Permalink to this headline">¶</a></h2>
 <p>The RTRlib package includes two command line tools, the <code class="docutils literal"><span class="pre">rtrclient</span></code> and
 the <code class="docutils literal"><span class="pre">cli-validator</span></code>, see also <a class="reference internal" href="tools.html#tools"><span class="std std-ref">Tools based on the RTRlib</span></a>.
 The former connects to a single RTR cache server via TCP or SSH and prints

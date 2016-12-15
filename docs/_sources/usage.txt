@@ -1,14 +1,14 @@
 .. _usage:
 
-*******************
-Usage of the RTRlib
-*******************
+*****************************
+Usage of the RTRlib C Library
+*****************************
 
 
 .. _install:
 
-Build and Install the RTRlib
-============================
+Installation
+============
 
 The RTRlib is supported by most Linux distributions as well as Apple macOS.
 
@@ -113,8 +113,8 @@ via `make`:
 
 .. _devel:
 
-Development with the RTRlib
-===========================
+Development with RTRlib
+=======================
 
 The RTRlib shared library is installed to ``/usr/local/lib`` by default,
 and its headers files to ``/usr/local/include``, respectively.
@@ -152,8 +152,8 @@ run:
 
 .. _coding:
 
-Step-by-Step Coding Example
-===========================
+Step-by-Step Example
+====================
 
 The RTRlib package includes two command line tools, the ``rtrclient`` and
 the ``cli-validator``, see also :ref:`tools`.
