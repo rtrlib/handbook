@@ -144,8 +144,9 @@
             
   <div class="section" id="rtrlib-python-binding">
 <h1>RTRlib Python Binding<a class="headerlink" href="#rtrlib-python-binding" title="Permalink to this headline">¶</a></h1>
-<p>The RTRlib can also be used for scripting in Python using the <a class="reference external" href="https://github.com/rtrlib/python-binding">RTRlib Python
-binding</a>.
+<p>The RTRlib is now also available for scripting in Python using the
+<a class="reference external" href="https://github.com/rtrlib/python-binding">RTRlib Python binding</a>.
+This section gives a quick overview on the usage of the Python binding.
 An even more detailed documentation on the API and further usage examples can
 be found on <a class="reference external" href="https://python-rtrlib.readthedocs.io">readthedocs.io</a>.</p>
 <div class="section" id="installation">
@@ -190,7 +191,8 @@ python setup.py install
 <h2>Step-by-Step Example<a class="headerlink" href="#step-by-step-example" title="Permalink to this headline">¶</a></h2>
 <p>The following code listings show how to implement a simple RPKI validator based
 on the RTRlib Pythin binding. The functionality basically reflects the
-<cite>cli-validator</cite> tool shipped with the RTRlib C library (see <code class="xref std std-numref docutils literal"><span class="pre">validator</span></code>).</p>
+<cite>cli-validator</cite> tool shipped with the RTRlib C library (see <a class="reference internal" href="tools.html#validator"><span class="std std-ref">RTRlib Validator</span></a>).</p>
+<hr class="docutils" />
 <p>First, import the required Python packages as shown in
 <a class="reference internal" href="#lst-python-import"><span class="std std-numref">Listing 9</span></a>, namely <cite>rtrlib</cite> but also some future imports in
 case of Python 2.</p>
@@ -216,7 +218,9 @@ a trusted RPKI cache server.</p>
 </td></tr></table></div>
 </div>
 <p>As soon as the <em>RTRManager</em> is up and running, it can validate any prefix to
-origin AS relation as shown in <a class="reference internal" href="#lst-python-validate"><span class="std std-numref">Listing 11</span></a>.</p>
+origin AS relation as shown in <a class="reference internal" href="#lst-python-validate"><span class="std std-numref">Listing 11</span></a>. The return value
+in result contains the corresponding validation state, i.e., <em>valid</em>, <em>invalid</em>,
+or <em>not_found</em>; other return values indicate an error during validation.</p>
 <div class="literal-block-wrapper container" id="lst-python-validate">
 <div class="code-block-caption"><span class="caption-number">Listing 11 </span><span class="caption-text">Validate prefix to origin AS relation</span><a class="headerlink" href="#lst-python-validate" title="Permalink to this code">¶</a></div>
 <div class="highlight-Python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1

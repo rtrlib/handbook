@@ -2,8 +2,9 @@
 RTRlib Python Binding
 *********************
 
-The RTRlib can also be used for scripting in Python using the `RTRlib Python
-binding`_.
+The RTRlib is now also available for scripting in Python using the
+`RTRlib Python binding`_.
+This section gives a quick overview on the usage of the Python binding.
 An even more detailed documentation on the API and further usage examples can
 be found on `readthedocs.io`_.
 
@@ -55,7 +56,9 @@ Step-by-Step Example
 
 The following code listings show how to implement a simple RPKI validator based
 on the RTRlib Pythin binding. The functionality basically reflects the
-`cli-validator` tool shipped with the RTRlib C library (see :numref:`validator`).
+`cli-validator` tool shipped with the RTRlib C library (see :ref:`validator`).
+
+----
 
 First, import the required Python packages as shown in
 :numref:`lst-python-import`, namely `rtrlib` but also some future imports in
@@ -83,7 +86,9 @@ a trusted RPKI cache server.
     mgr.start()
 
 As soon as the *RTRManager* is up and running, it can validate any prefix to
-origin AS relation as shown in :numref:`lst-python-validate`.
+origin AS relation as shown in :numref:`lst-python-validate`. The return value
+in result contains the corresponding validation state, i.e., *valid*, *invalid*,
+or *not_found*; other return values indicate an error during validation.
 
 .. code-block:: Python
     :linenos:
