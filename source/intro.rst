@@ -45,6 +45,7 @@ the RTR protocol.
 
 .. _overview:
 .. figure:: ../images/rpki-rtr-overview.jpg
+    :width: 90 %
 
     Overview on a typical RPKI deployment, showing global RPKI repositories,
     trusted cache servers, and RPKI enabled BGP routers.
