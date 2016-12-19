@@ -45,8 +45,6 @@ At the top of this file write:
 The first line automatically creates a ROA table when the BIRD daemon is started.
 The function itself checks for three entries in the ROA table
 and prints the corresponding validity status.
-See :ref:`tools` for more information.
-
 The BIRD socket must now be opened. In order to do that type the following command:
 
 .. code-block:: bash
@@ -58,7 +56,7 @@ That's necessary to view the output of the ``test_ripe_beacons`` function.
 ``/tmp/bird.ctl`` is the location and name of the socket that will be created.
 It is required by the ``bird-rtrlib-cli`` which we will install next.
 
-Open a new terminal. To try out whether BIRD receives actual responses,
+Open another new terminal. To try out whether BIRD receives actual responses,
 there is an IPC that runs on the BIRD socket.
 Clone the `BIRD-RTRlib-CLI` repository on GitHub and build it:
 
