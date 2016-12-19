@@ -139,14 +139,12 @@
             
   <div class="section" id="bgp-routing-daemons-with-rpkr-rtr">
 <span id="bgprd"></span><h1>BGP Routing Daemons with RPKR/RTR<a class="headerlink" href="#bgp-routing-daemons-with-rpkr-rtr" title="Permalink to this headline">¶</a></h1>
-<p>For several Routing Daemons such as <a class="reference external" href="http://www.nongnu.org/quagga/">Quagga</a>
-and <a class="reference external" href="http://bird.network.cz/">BIRD</a> exist RPKI enabled extensions that are
-based on the RTRlib.</p>
+<p>For several Routing Daemons such as <cite>Quagga</cite> <a class="footnote-reference" href="#quagga" id="id1">[1]</a> and <cite>BIRD</cite> <a class="footnote-reference" href="#bird" id="id2">[2]</a>
+exist RPKI enabled extensions that are based on the RTRlib.</p>
 <div class="section" id="the-bird-internet-routing-daemon">
 <h2>The BIRD Internet Routing Daemon<a class="headerlink" href="#the-bird-internet-routing-daemon" title="Permalink to this headline">¶</a></h2>
-<p>To set up BIRD, first <a class="reference external" href="http://bird.network.cz/?download">download</a> the latest
-release, unzip and change into the source directory.
-To build BIRD, run:</p>
+<p>To set up BIRD, first download <a class="footnote-reference" href="#bird-download" id="id3">[3]</a> the latest release, unzip and
+change into the source directory. To build BIRD, run:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>./configure
 make
 make install
@@ -157,16 +155,16 @@ More information on the building process can be found in the README of BIRD.</p>
 <p>Before any validations with BIRD can be done, it must be configured accordingly.
 First, a ROA table and the validation function must be added to <code class="code bash docutils literal"><span class="pre">/usr/local/etc/bird.conf</span></code>.
 At the top of this file write:</p>
-<div class="highlight-cfg"><div class="highlight"><pre><span></span>roa table rtr_roa_table;
+<div class="highlight-bash"><div class="highlight"><pre><span></span>roa table rtr_roa_table<span class="p">;</span>
 
-function test_ripe_beacons()
-{
-    print &quot;Testing ROA&quot;;
-    print &quot;Should be TRUE TRUE TRUE:&quot;,
-    &quot; &quot;, roa_check(rtr_roa_table, 84.205.83.0/24, 12654) = ROA_UNKNOWN,
-    &quot; &quot;, roa_check(rtr_roa_table, 93.175.146.0/24, 12654) = ROA_VALID,
-    &quot; &quot;, roa_check(rtr_roa_table, 93.175.147.0/24, 12654) = ROA_INVALID;
-}
+<span class="k">function</span> test_ripe_beacons<span class="o">()</span>
+<span class="o">{</span>
+    print <span class="s2">&quot;Testing ROA&quot;</span><span class="p">;</span>
+    print <span class="s2">&quot;Should be TRUE TRUE TRUE:&quot;</span>,
+    <span class="s2">&quot; &quot;</span>, roa_check<span class="o">(</span>rtr_roa_table, 84.205.83.0/24, 12654<span class="o">)</span> <span class="o">=</span> ROA_UNKNOWN,
+    <span class="s2">&quot; &quot;</span>, roa_check<span class="o">(</span>rtr_roa_table, 93.175.146.0/24, 12654<span class="o">)</span> <span class="o">=</span> ROA_VALID,
+    <span class="s2">&quot; &quot;</span>, roa_check<span class="o">(</span>rtr_roa_table, 93.175.147.0/24, 12654<span class="o">)</span> <span class="o">=</span> ROA_INVALID<span class="p">;</span>
+<span class="o">}</span>
 </pre></div>
 </div>
 <p>The first line automatically creates a ROA table when the BIRD daemon is started.
@@ -183,13 +181,14 @@ That&#8217;s necessary to view the output of the <code class="docutils literal">
 It is required by the <code class="docutils literal"><span class="pre">bird-rtrlib-cli</span></code> which we will install next.</p>
 <p>Open a new terminal. To try out whether BIRD receives actual responses,
 there is an IPC that runs on the BIRD socket.
-Clone the <a class="reference external" href="https://github.com/rtrlib/bird-rtrlib-cli">BIRD-RTRlib-CLI</a>
-repository on GitHub and build it:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>cmake .
+Clone the <cite>BIRD-RTRlib-CLI</cite> repository on GitHub and build it:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/rtrlib/bird-rtrlib-cli
+<span class="nb">cd</span> bird-rtrlib-cli
+cmake .
 make
 </pre></div>
 </div>
-<p>In case that the RTRlib was not installed in the default directory, run</p>
+<p>In case that the RTRlib was not installed into the default directory, run</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>cmake -DRTRLIB_INCLUDE<span class="o">=</span>&lt;rtrlib&gt; -DRTRLIB_LIBRARY<span class="o">=</span>&lt;/path/to/rtrlib.<span class="o">[</span>a<span class="p">|</span>so<span class="p">|</span>dylib<span class="o">]</span>&gt; .
 make
 </pre></div>
@@ -210,7 +209,8 @@ Now connect to the BIRD socket and receive the RPKI data with the following comm
 <div class="line"><code class="code bash docutils literal"><span class="pre">-t</span></code>: the table in which the gathered rpki-data is filled into. We created this one earlier in the bird.conf</div>
 <div class="line"><br /></div>
 </div>
-<p>After executing this line, you will see that, after establishing a connection to the cache server, the ROA entries are piped into the BIRD ROA table.
+<p>After executing this line, you will see that, after establishing a connection
+to the cache server, the ROA entries are piped into the BIRD ROA table.
 Head back to the BRID directory and start the BIRD CLI with the following command:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>sudo ./birdc -s /tmp/bird.ctl
 </pre></div>
@@ -228,7 +228,8 @@ To list all the entries from the ROA table enter:</p>
 </div>
 <p>Type <code class="docutils literal"><span class="pre">q</span></code> to exit. There will be a lot of similar output.
 The content of the <code class="docutils literal"><span class="pre">bird-rtrlib-cli</span></code> was successfully written to the ROA table.
-Search, for example, for the prefix <code class="docutils literal"><span class="pre">93.175.146.0/24</span></code> and BIRD will return the entry with its corresponding ASN.</p>
+Search, for example, for the prefix <code class="docutils literal"><span class="pre">93.175.146.0/24</span></code> and BIRD will return
+the entry with its corresponding ASN.</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>bird&gt; show roa 93.175.146.0/24
 93.175.146.0/24 max <span class="m">24</span> as 12654
 </pre></div>
@@ -238,7 +239,8 @@ Search, for example, for the prefix <code class="docutils literal"><span class="
 <span class="o">(</span>void<span class="o">)</span>
 </pre></div>
 </div>
-<p>To see the output of the function, switch to the terminal that is running the BIRD daemon. The output will look like:</p>
+<p>To see the output of the function, switch to the terminal that is running the
+BIRD daemon. The output will look like:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>bird: Testing ROA
 bird: Should be TRUE TRUE TRUE: TRUE TRUE TRUE
 </pre></div>
@@ -247,17 +249,20 @@ bird: Should be TRUE TRUE TRUE: TRUE TRUE TRUE
 </div>
 <div class="section" id="the-quagga-routing-software-suite">
 <h2>The Quagga Routing Software Suite<a class="headerlink" href="#the-quagga-routing-software-suite" title="Permalink to this headline">¶</a></h2>
-<p>A Routing Daemon such as Quagga implements TCP/IP routing via protocols such as OSPF, RIP and BGP. It acts as a router that fetches and shares routing information
+<p>A Routing Daemon such as Quagga implements TCP/IP routing via protocols such as
+OSPF, RIP and BGP. It acts as a router that fetches and shares routing information
 with other routers. Regarding BGP, Quagga supports version 4.
-An unofficial release implements support for the RPKI so BGP updates can be verified against a ROA. Doing so requires the support of the RTRlib so Quagga can
-initialize a connection to a cache server using the RTR protocol.</p>
-<p>To install Quagga, clone the Git repository from <a class="reference external" href="https://github.com/rtrlib/quagga-rtrlib">here</a> and switch the branch like this:</p>
+An unofficial release implements support for the RPKI so BGP updates can be
+verified against a ROA. Doing so requires the support of the RTRlib so Quagga
+can initialize a connection to a cache server using the RTR protocol.</p>
+<p>To install Quagga, clone the Git repository and switch the branch like this:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/rtrlib/quagga-rtrlib.git
 <span class="nb">cd</span> quagga-rtrlib
 git checkout feature/rtrlib
 </pre></div>
 </div>
-<p>This repository is a fork of the original and implements RPKI support. Before building it, make sure your system meets the perquisites:</p>
+<p>This repository is a fork of the original and implements RPKI support. Before
+building it, make sure your system meets the perquisites:</p>
 <ul class="simple">
 <li>automake:     1.9.6</li>
 <li>autoconf:     2.59</li>
@@ -265,7 +270,8 @@ git checkout feature/rtrlib
 <li>texinfo:      4.7</li>
 <li>GNU AWK:      3.1.5</li>
 </ul>
-<p>If all of these packages are installed, Quagga can be build. Some steps might require <code class="docutils literal"><span class="pre">sudo</span></code> privileges:</p>
+<p>If all of these packages are installed, Quagga can be build. Some steps might
+require <code class="docutils literal"><span class="pre">sudo</span></code> privileges:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>./bootstrap
 ./configure --enable-rpki
 make
@@ -273,13 +279,33 @@ make install
 </pre></div>
 </div>
 <p>The <code class="docutils literal"><span class="pre">--enable-rpki</span></code> option tells the configure script to include the RTRlib.</p>
-<p>Now that Quagga is built, start the BGP and Zebra daemons. Zebra acts as a process between the package stream of the kernel and daemons like BGP or OSPF.
+<p>Now that Quagga is built, start the BGP and Zebra daemons. Zebra acts as a
+process between the package stream of the kernel and daemons like BGP or OSPF.
 Execute <code class="docutils literal"><span class="pre">bgpd</span></code> and <code class="docutils literal"><span class="pre">zebra</span></code>:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>./bgpd/bgpd
 ./zebra/zebra
 </pre></div>
 </div>
 <p>To interact with BGPD, connect to it via <code class="docutils literal"><span class="pre">vtysh</span></code>, a command line interface that gains access to such daemons.</p>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="quagga" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Quagga &#8211; <a class="reference external" href="http://www.nongnu.org/quagga/">http://www.nongnu.org/quagga/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="bird" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>BIRD &#8211; <a class="reference external" href="http://bird.network.cz/">http://bird.network.cz/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="bird-download" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>BIRD download &#8211; <a class="reference external" href="http://bird.network.cz/?download">http://bird.network.cz/?download</a></td></tr>
+</tbody>
+</table>
 </div>
 </div>
 
