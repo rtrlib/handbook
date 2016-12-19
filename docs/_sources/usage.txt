@@ -29,16 +29,18 @@ package manager, as follows:
 Apple macOS
 -----------
 
-For macOS we provide a *Homebrew* tap_ to easily install the RTRlib.
-First, install Homebrew_ and afterwards install the RTRlib package:
+For macOS we provide a *Homebrew* tap [#tap]_ to easily install the RTRlib.
+First, install Homebrew [#homebrew] and afterwards install the RTRlib package:
 
 .. code-block:: bash
 
     brew tap rtrlib/pils
     brew install rtrlib
 
-.. _Homebrew: http://brew.sh
-.. _tap: https://github.com/rtrlib/homebrew-pils
+.. rubric:: Footnotes
+
+.. [#homebrew]  Homebrew -- http://brew.sh
+.. [#tap]       RTRlib tap -- https://github.com/rtrlib/homebrew-pils
 
 From Source
 -----------
@@ -84,8 +86,9 @@ using `cmake`:
     make
     sudo make install
 
-If the build command fails with any error, please consult the RTRlib README_
-and Wiki_, you may also join our `mailing list`_ or open an issue on Github_.
+If the build command fails with any error, please consult the RTRlib README [#readme]_
+and Wiki [#wiki]_, you may also join our `mailing list` [#mailinglist]_ or open
+an issue on Github [#issue]_.
 
 To enable debug symbols and messages, change the `cmake` command to:
 
@@ -94,9 +97,9 @@ To enable debug symbols and messages, change the `cmake` command to:
     cmake -D CMAKE_BUILD_TYPE=Debug ../
 
 
-For developers we provide a pre-build Doxygen `API reference`_ online for
-the latest release of the RTRlib. Alternatively, and if `Doxygen` is available,
-you can build the documentation as follows:
+For developers we provide a pre-build Doxygen API reference [#doxygen]_ online
+for the latest release of the RTRlib. Alternatively, and if `Doxygen` is
+available, you can build the documentation as follows:
 
 .. code-block:: bash
 
@@ -110,11 +113,13 @@ via `make`:
 
     make test
 
-.. _README: https://github.com/rtrlib/rtrlib/blob/master/README
-.. _Github: https://github.com/rtrlib/rtrlib/issues
-.. _Wiki: https://github.com/rtrlib/rtrlib/wiki
-.. _API reference: https://rtrlib.realmv6.org/doxygen/latest
-.. _mailing list: https://groups.google.com/forum/#!forum/rtrlib
+.. rubric:: Footnotes
+
+.. [#readme]        README -- https://github.com/rtrlib/rtrlib/blob/master/README
+.. [#wiki]          Wiki -- https://github.com/rtrlib/rtrlib/wiki
+.. [#mailinglist]   Mailing list -- https://groups.google.com/forum/#!forum/rtrlib
+.. [#issue]         Issue tracker -- https://github.com/rtrlib/rtrlib/issues
+.. [#doxygen]       API reference -- https://rtrlib.realmv6.org/doxygen/latest
 
 .. _devel:
 

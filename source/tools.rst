@@ -4,14 +4,12 @@
 Tools based on the RTRlib
 *************************
 
-.. _RIPE RIS Beacons: https://www.ripe.net/analyse/internet-measurements/routing-information-service-ris/current-ris-routing-beacons
-
 In the following sections we give an overview on several software tools, which
 utilize the RTRlib and its features.
 These tools range from low level shell commands to easy-to-use browser plugins.
 For all tools we provide small usage examples; where ever appropriate we will
-use the `RIPE RIS Beacons`_ (see :numref:`beacons`) with well known RPKI
-validation results.
+use the `RIPE RIS Beacons` [#ripe-beacons]_ (see :numref:`beacons`) with well known
+RPKI validation results.
 
 .. _beacons:
 .. table:: RIPE RIS beacons for RPKI tests
@@ -33,7 +31,6 @@ Most examples require a connection to a RPKI cache server, for that we
 provide a public cache with *hostname* ``rpki-validator.realmv6.org``
 and *port* ``8282``.
 
-
 .. _rtrclient:
 
 RTRlib Client
@@ -43,8 +40,6 @@ The RTRlib client (``rtrclient``) is a default part of the RTRlib package.
 It emulates an RPKI enabled BGP router by using  the client side functionality
 of the RTR protocol to connect to a trusted RPKI cache server and receive all
 currently valid ROAs.
-By following the instruction given in the previous section (:ref:`install`)
-it will be installed automatically.
 
 To establish a connection with a RPKI cache server the client can use *TCP* or
 *SSH* transport sockets.
@@ -141,10 +136,10 @@ either valid (|valid|), invalid (|invalid|) or was not found (|not_found|).
 
 The plugin is available as an add-on (or extension) for the web browsers
 Firefox and Chrome .
-While the `Firefox add-on`_ is available through the add-on store, Chrome users
-have to download and install the extension themselves as follows:
+While the `Firefox add-on` [#firefox]_ is available through the add-on store,
+Chrome users have to download and install the extension themselves as follows:
 
-#. download the `Chrome extension <https://github.com/rtrlib/chrome-extension>`_ from GitHub
+#. download the `Chrome extension` [#chrome]_ from GitHub
 #. open a new tab in Chrome and enter ``chrome://extensions``
 #. activate `Developer Mode` via the checkbox in the top right
 #. click the `Load unpacked extension` button and navigate to the source
@@ -155,21 +150,21 @@ and *not found* :numref:`fig-notfound`) for certain websites .
 
 .. _fig-valid:
 .. figure:: ../images/rbv_valid.png
-    :width: 90 %
+    :width: 80 %
     :align: center
 
     Screenshot of RPKI Validator plugin in Firefox showing result *valid*.
 
 .. _fig-invalid:
 .. figure:: ../images/rbv_invalid.png
-    :width: 90 %
+    :width: 80 %
     :align: center
 
     Screenshot of RPKI Validator plugin in Firefox showing result *invalid*.
 
 .. _fig-notfound:
 .. figure:: ../images/rbv_notfound.png
-    :width: 90 %
+    :width: 80 %
     :align: center
 
     Screenshot of RPKI Validator plugin in Firefox showing result *not found*.
@@ -179,13 +174,10 @@ and *not found* :numref:`fig-notfound`) for certain websites .
 .. |invalid| image:: ../images/invalid.png
 .. |not_found| image:: ../images/notFound.png
 
-.. _Firefox add-on: https://addons.mozilla.org/en-US/firefox/addon/rpki-validator/
-.. _Chrome: https://github.com/rtrlib/chrome-extension
-
 RPKI READ
 =========
 
-The *RPKI Realtime Dashboard* (`RPKI READ`_) aims to provide a consistent
+The *RPKI Realtime Dashboard* (`RPKI READ` [#rpki-read]_) aims to provide a consistent
 (and live) view on the RPKI validation state of currently announced IP prefixes.
 That is, it verifies relation of an IP prefix and its BGP origin AS
 (autonomous system) utilizing the RPKI.
@@ -195,8 +187,8 @@ The RPKI READ monitoring system has two parts:
 #. the backend storing latest validation results in a database, and
 #. the (web) frontend displaying these results as well as an overview of statistics derived from them.
 
-The backend connects to a live BGP stream, e.g. of a BGPmon_ instance or via
-BGPstream_.
+The backend connects to a live BGP stream, e.g. of a BGPmon [#bgpmon]_ instance
+or via BGPstream [#bgpstream]_.
 It then parses  received BGP messages and extracts IP prefixes and origin AS
 information.
 These prefix to origin AS relations are validated using the RTRlib client
@@ -217,14 +209,10 @@ by a certain AS.
 
    Screenshot of the RPKI READ web frontend
 
-.. _RPKI READ: https://rpki-read.realmv6.org/
-.. _BGPmon: http://www.bgpmon.io/
-.. _BGPstream: https://bgpstream.caida.org/
-
 RPKI MIRO
 =========
 
-The RPKI *Monitoring and Inspection of RPKI Objects* (`RPKI MIRO`_)
+The RPKI *Monitoring and Inspection of RPKI Objects* (`RPKI MIRO` [#rpki-miro]_)
 aims for easy access to RPKI certificates, revocation lists, ROAs etc.
 to give network operators more confidence in their data.
 Though, RPKI is a powerful tool, its success depends on several aspects.
@@ -257,21 +245,19 @@ Expand the ROA tree view on the left side to get the corresponding ROA for the
 beacon prefix, the resulting web view should look like the screenshot
 in :numref:`fig-miro`.
 
-.. _RPKI MIRO: http://rpki-miro.realmv6.org/
 
 RPKI RBV
 ========
 
-The RPKI *RESTful BGP Validator* (`RPKI RBV`_) is web application that provides
-a RESTful API to validate IP prefix to origin AS relations.
-The validation service can be accessed via a plain and simple
-`web page <http://rpki-rbv.realmv6.org/html/validate.html>`_
-(see also :numref:`fig-rbv`) or directly using its RESTful API.
+The RPKI *RESTful BGP Validator* (`RPKI RBV` [#rpki-rbv]_) is web application
+that provides a RESTful API to validate IP prefix to origin AS relations.
+The validation service can be accessed via a plain and simple web page (see
+also :numref:`fig-rbv`) or directly using its RESTful API.
 
 .. _fig-rbv:
 .. figure:: ../images/rpki_rbv.png
    :alt: RPKI RBV screenshot
-   :width: 75 %
+   :width: 70 %
    :align: center
 
    Screenshot of the RPKI RBV web interface
@@ -326,14 +312,23 @@ The result will be a JSON object as shown in :numref:`lst-rbv-json`.
     }
 
 For detailed instruction how to install and set up the API visit
-the `RBV Repository <https://github.com/rtrlib/rbv>`_ on GitHub.
-
-.. _RPKI RBV: https://rpki-rbv.realmv6.org/
-.. _RBV Github: https://github.com/rtrlib/rbv
+the `RBV Repository` on GitHub [#rbv-git]_.
 
 Other Third-Party Tools
 =======================
 
-`RIPE <https://www.ripe.net/manage-ips-and-asns/resource-management/certification/tools-and-resources/>`_
-provides an (almost) complete overview on other tools related to RPKI and
-BGP security, in general.
+The `RIPE Tools and Resources` [#ripe-tools]_ webpage provides an (almost)
+complete overview on other tools related to RPKI and BGP security, in general.
+
+.. rubric:: Footnotes
+
+.. [#ripe-beacons]  https://www.ripe.net/analyse/internet-measurements/routing-information-service-ris/current-ris-routing-beacons
+.. [#firefox]       Firefox add-on -- https://addons.mozilla.org/en-US/firefox/addon/rpki-validator/
+.. [#chrome]        Chrome Extension -- https://github.com/rtrlib/chrome-extension
+.. [#rpki-read]     RPKI READ -- https://rpki-read.realmv6.org/
+.. [#bgpmon]        BGPmon -- http://www.bgpmon.io/
+.. [#bgpstream]     BGPstream -- https://bgpstream.caida.org/
+.. [#rpki-miro]     RPKI MIRO -- http://rpki-miro.realmv6.org/
+.. [#rpki-rbv]      RPKI RBV -- https://rpki-rbv.realmv6.org/
+.. [#rbv-git]       RPKI RBV Github -- https://github.com/rtrlib/rbv
+.. [#ripe-tools]    https://www.ripe.net/manage-ips-and-asns/resource-management/certification/tools-and-resources/

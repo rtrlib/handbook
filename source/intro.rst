@@ -34,7 +34,7 @@ verify received BGP updates without suffering from cryptographic complexity.
 The RTRlib is a lightweight C library that implements the RPKI-RTR protocol for
 the client end (i.e., routers) and the proposed prefix origin validation scheme.
 The RTRlib provides functions to establish a connection to a single or multiple
-trusted caches using TCP or SSH transport connections, and further allows to
+trusted caches using TCP and SSH transport connections, and further allows to
 determine the validation state of prefix to origin AS relations.
 
 :numref:`overview` shows a typical RPKI deployment, where trusted cache servers

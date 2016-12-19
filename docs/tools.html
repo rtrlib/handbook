@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Tools based on the RTRlib &mdash; The RTRlib Handbook 0.1 documentation</title>
+  <title>Tools based on the RTRlib &mdash; The RTRlib Handbook 0.3 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="The RTRlib Handbook 0.1 documentation" href="index.html"/>
+    <link rel="top" title="The RTRlib Handbook 0.3 documentation" href="index.html"/>
         <link rel="next" title="BGP Routing Daemons with RPKR/RTR" href="bgprd.html"/>
         <link rel="prev" title="RTRlib Python Binding" href="python.html"/> 
 
@@ -63,7 +63,7 @@
             
             
               <div class="version">
-                0.1
+                0.3
               </div>
             
           
@@ -149,10 +149,10 @@
 utilize the RTRlib and its features.
 These tools range from low level shell commands to easy-to-use browser plugins.
 For all tools we provide small usage examples; where ever appropriate we will
-use the <a class="reference external" href="https://www.ripe.net/analyse/internet-measurements/routing-information-service-ris/current-ris-routing-beacons">RIPE RIS Beacons</a> (see <a class="reference internal" href="#beacons"><span class="std std-numref">Table 1</span></a>) with well known RPKI
-validation results.</p>
-<table border="1" class="docutils" id="id4">
-<span id="beacons"></span><caption><span class="caption-number">Table 1 </span><span class="caption-text">RIPE RIS beacons for RPKI tests</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+use the <cite>RIPE RIS Beacons</cite> <a class="footnote-reference" href="#ripe-beacons" id="id1">[1]</a> (see <a class="reference internal" href="#beacons"><span class="std std-numref">Table 1</span></a>) with well known
+RPKI validation results.</p>
+<table border="1" class="docutils" id="id14">
+<span id="beacons"></span><caption><span class="caption-number">Table 1 </span><span class="caption-text">RIPE RIS beacons for RPKI tests</span><a class="headerlink" href="#id14" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="43%" />
 <col width="30%" />
@@ -201,9 +201,7 @@ and <em>port</em> <code class="docutils literal"><span class="pre">8282</span></
 <p>The RTRlib client (<code class="docutils literal"><span class="pre">rtrclient</span></code>) is a default part of the RTRlib package.
 It emulates an RPKI enabled BGP router by using  the client side functionality
 of the RTR protocol to connect to a trusted RPKI cache server and receive all
-currently valid ROAs.
-By following the instruction given in the previous section (<a class="reference internal" href="usage.html#install"><span class="std std-ref">Installation</span></a>)
-it will be installed automatically.</p>
+currently valid ROAs.</p>
 <p>To establish a connection with a RPKI cache server the client can use <em>TCP</em> or
 <em>SSH</em> transport sockets.
 It then communicates with the cache server utilizing the RTR protocol provided
@@ -288,10 +286,10 @@ A small icon indicates the validation state of the visited URL, which is
 either valid (<img alt="valid" src="_images/valid.png" />), invalid (<img alt="invalid" src="_images/invalid.png" />) or was not found (<img alt="not_found" src="_images/notFound.png" />).</p>
 <p>The plugin is available as an add-on (or extension) for the web browsers
 Firefox and Chrome .
-While the <a class="reference external" href="https://addons.mozilla.org/en-US/firefox/addon/rpki-validator/">Firefox add-on</a> is available through the add-on store, Chrome users
-have to download and install the extension themselves as follows:</p>
+While the <cite>Firefox add-on</cite> <a class="footnote-reference" href="#firefox" id="id2">[2]</a> is available through the add-on store,
+Chrome users have to download and install the extension themselves as follows:</p>
 <ol class="arabic simple">
-<li>download the <a class="reference external" href="https://github.com/rtrlib/chrome-extension">Chrome extension</a> from GitHub</li>
+<li>download the <cite>Chrome extension</cite> <a class="footnote-reference" href="#chrome" id="id3">[3]</a> from GitHub</li>
 <li>open a new tab in Chrome and enter <code class="docutils literal"><span class="pre">chrome://extensions</span></code></li>
 <li>activate <cite>Developer Mode</cite> via the checkbox in the top right</li>
 <li>click the <cite>Load unpacked extension</cite> button and navigate to the source</li>
@@ -299,22 +297,22 @@ have to download and install the extension themselves as follows:</p>
 <p>The screenshots show the results of the RPKI Validator browser plugin for
 Firefox (<em>valid</em> <a class="reference internal" href="#fig-valid"><span class="std std-numref">Fig. 2</span></a>, <em>invalid</em> <a class="reference internal" href="#fig-invalid"><span class="std std-numref">Fig. 3</span></a>,
 and <em>not found</em> <a class="reference internal" href="#fig-notfound"><span class="std std-numref">Fig. 4</span></a>) for certain websites .</p>
-<div class="figure align-center" id="id5">
-<span id="fig-valid"></span><a class="reference internal image-reference" href="_images/rbv_valid.png"><img alt="_images/rbv_valid.png" src="_images/rbv_valid.png" style="width: 90%;" /></a>
+<div class="figure align-center" id="id15">
+<span id="fig-valid"></span><a class="reference internal image-reference" href="_images/rbv_valid.png"><img alt="_images/rbv_valid.png" src="_images/rbv_valid.png" style="width: 85%;" /></a>
 <p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Screenshot of RPKI Validator plugin in Firefox showing result <em>valid</em>.</span></p>
 </div>
-<div class="figure align-center" id="id6">
-<span id="fig-invalid"></span><a class="reference internal image-reference" href="_images/rbv_invalid.png"><img alt="_images/rbv_invalid.png" src="_images/rbv_invalid.png" style="width: 90%;" /></a>
+<div class="figure align-center" id="id16">
+<span id="fig-invalid"></span><a class="reference internal image-reference" href="_images/rbv_invalid.png"><img alt="_images/rbv_invalid.png" src="_images/rbv_invalid.png" style="width: 85%;" /></a>
 <p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Screenshot of RPKI Validator plugin in Firefox showing result <em>invalid</em>.</span></p>
 </div>
-<div class="figure align-center" id="id7">
-<span id="fig-notfound"></span><a class="reference internal image-reference" href="_images/rbv_notfound.png"><img alt="_images/rbv_notfound.png" src="_images/rbv_notfound.png" style="width: 90%;" /></a>
+<div class="figure align-center" id="id17">
+<span id="fig-notfound"></span><a class="reference internal image-reference" href="_images/rbv_notfound.png"><img alt="_images/rbv_notfound.png" src="_images/rbv_notfound.png" style="width: 85%;" /></a>
 <p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Screenshot of RPKI Validator plugin in Firefox showing result <em>not found</em>.</span></p>
 </div>
 </div>
 <div class="section" id="rpki-read">
 <h2>RPKI READ<a class="headerlink" href="#rpki-read" title="Permalink to this headline">¶</a></h2>
-<p>The <em>RPKI Realtime Dashboard</em> (<a class="reference external" href="https://rpki-read.realmv6.org/">RPKI READ</a>) aims to provide a consistent
+<p>The <em>RPKI Realtime Dashboard</em> (<cite>RPKI READ</cite> <a class="footnote-reference" href="#id11" id="id4">[4]</a>) aims to provide a consistent
 (and live) view on the RPKI validation state of currently announced IP prefixes.
 That is, it verifies relation of an IP prefix and its BGP origin AS
 (autonomous system) utilizing the RPKI.</p>
@@ -323,8 +321,8 @@ That is, it verifies relation of an IP prefix and its BGP origin AS
 <li>the backend storing latest validation results in a database, and</li>
 <li>the (web) frontend displaying these results as well as an overview of statistics derived from them.</li>
 </ol>
-<p>The backend connects to a live BGP stream, e.g. of a <a class="reference external" href="http://www.bgpmon.io/">BGPmon</a> instance or via
-<a class="reference external" href="https://bgpstream.caida.org/">BGPstream</a>.
+<p>The backend connects to a live BGP stream, e.g. of a BGPmon <a class="footnote-reference" href="#bgpmon" id="id5">[5]</a> instance
+or via BGPstream <a class="footnote-reference" href="#bgpstream" id="id6">[6]</a>.
 It then parses  received BGP messages and extracts IP prefixes and origin AS
 information.
 These prefix to origin AS relations are validated using the RTRlib client
@@ -335,14 +333,14 @@ observed by a certain BGP source (see <a class="reference internal" href="#fig-r
 Further, the frontend provides detailed statistics and also allows the user
 to search for validation results of distinct prefixes or all prefixes originated
 by a certain AS.</p>
-<div class="figure align-center" id="id8">
-<span id="fig-read"></span><a class="reference internal image-reference" href="_images/rpki_read.png"><img alt="RPKI READ screenshot" src="_images/rpki_read.png" style="width: 90%;" /></a>
+<div class="figure align-center" id="id18">
+<span id="fig-read"></span><a class="reference internal image-reference" href="_images/rpki_read.png"><img alt="RPKI READ screenshot" src="_images/rpki_read.png" style="width: 85%;" /></a>
 <p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Screenshot of the RPKI READ web frontend</span></p>
 </div>
 </div>
 <div class="section" id="rpki-miro">
 <h2>RPKI MIRO<a class="headerlink" href="#rpki-miro" title="Permalink to this headline">¶</a></h2>
-<p>The RPKI <em>Monitoring and Inspection of RPKI Objects</em> (<a class="reference external" href="http://rpki-miro.realmv6.org/">RPKI MIRO</a>)
+<p>The RPKI <em>Monitoring and Inspection of RPKI Objects</em> (<cite>RPKI MIRO</cite> <a class="footnote-reference" href="#id12" id="id7">[7]</a>)
 aims for easy access to RPKI certificates, revocation lists, ROAs etc.
 to give network operators more confidence in their data.
 Though, RPKI is a powerful tool, its success depends on several aspects.
@@ -357,8 +355,8 @@ RPKI MIRO is a monitoring application that consists of three parts:</p>
 <li>a browser to visualize RPKI objects, and</li>
 <li>statistical analysis of the collected objects.</li>
 </ol>
-<div class="figure align-center" id="id9">
-<span id="fig-miro"></span><a class="reference internal image-reference" href="_images/rpki_miro.png"><img alt="RPKI MIRO screenshot" src="_images/rpki_miro.png" style="width: 90%;" /></a>
+<div class="figure align-center" id="id19">
+<span id="fig-miro"></span><a class="reference internal image-reference" href="_images/rpki_miro.png"><img alt="RPKI MIRO screenshot" src="_images/rpki_miro.png" style="width: 85%;" /></a>
 <p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">Screenshot of the RPKI MIRO web interface.</span></p>
 </div>
 <p>Using RPKI MIRO you can lookup any IP prefix and its associated ROA, e.g. the
@@ -372,13 +370,12 @@ in <a class="reference internal" href="#fig-miro"><span class="std std-numref">F
 </div>
 <div class="section" id="rpki-rbv">
 <h2>RPKI RBV<a class="headerlink" href="#rpki-rbv" title="Permalink to this headline">¶</a></h2>
-<p>The RPKI <em>RESTful BGP Validator</em> (<a class="reference external" href="https://rpki-rbv.realmv6.org/">RPKI RBV</a>) is web application that provides
-a RESTful API to validate IP prefix to origin AS relations.
-The validation service can be accessed via a plain and simple
-<a class="reference external" href="http://rpki-rbv.realmv6.org/html/validate.html">web page</a>
-(see also <a class="reference internal" href="#fig-rbv"><span class="std std-numref">Fig. 7</span></a>) or directly using its RESTful API.</p>
-<div class="figure align-center" id="id10">
-<span id="fig-rbv"></span><a class="reference internal image-reference" href="_images/rpki_rbv.png"><img alt="RPKI RBV screenshot" src="_images/rpki_rbv.png" style="width: 75%;" /></a>
+<p>The RPKI <em>RESTful BGP Validator</em> (<cite>RPKI RBV</cite> <a class="footnote-reference" href="#id13" id="id8">[8]</a>) is web application
+that provides a RESTful API to validate IP prefix to origin AS relations.
+The validation service can be accessed via a plain and simple web page (see
+also <a class="reference internal" href="#fig-rbv"><span class="std std-numref">Fig. 7</span></a>) or directly using its RESTful API.</p>
+<div class="figure align-center" id="id20">
+<span id="fig-rbv"></span><a class="reference internal image-reference" href="_images/rpki_rbv.png"><img alt="RPKI RBV screenshot" src="_images/rpki_rbv.png" style="width: 70%;" /></a>
 <p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Screenshot of the RPKI RBV web interface</span></p>
 </div>
 <p>RBV provides two distinct APIs to run RPKI validation queries, the APIs allow
@@ -428,13 +425,73 @@ rpki-rbv.realmv6.org/api/v2/validity/93.175.146.1
 </div>
 </div>
 <p>For detailed instruction how to install and set up the API visit
-the <a class="reference external" href="https://github.com/rtrlib/rbv">RBV Repository</a> on GitHub.</p>
+the <cite>RBV Repository</cite> on GitHub <a class="footnote-reference" href="#rbv-git" id="id9">[9]</a>.</p>
 </div>
 <div class="section" id="other-third-party-tools">
 <h2>Other Third-Party Tools<a class="headerlink" href="#other-third-party-tools" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://www.ripe.net/manage-ips-and-asns/resource-management/certification/tools-and-resources/">RIPE</a>
-provides an (almost) complete overview on other tools related to RPKI and
-BGP security, in general.</p>
+<p>The <cite>RIPE Tools and Resources</cite> <a class="footnote-reference" href="#ripe-tools" id="id10">[10]</a> webpage provides an (almost)
+complete overview on other tools related to RPKI and BGP security, in general.</p>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="ripe-beacons" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://www.ripe.net/analyse/internet-measurements/routing-information-service-ris/current-ris-routing-beacons">https://www.ripe.net/analyse/internet-measurements/routing-information-service-ris/current-ris-routing-beacons</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="firefox" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>Firefox add-on &#8211; <a class="reference external" href="https://addons.mozilla.org/en-US/firefox/addon/rpki-validator/">https://addons.mozilla.org/en-US/firefox/addon/rpki-validator/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="chrome" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>Chrome Extension &#8211; <a class="reference external" href="https://github.com/rtrlib/chrome-extension">https://github.com/rtrlib/chrome-extension</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id11" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td>RPKI READ &#8211; <a class="reference external" href="https://rpki-read.realmv6.org/">https://rpki-read.realmv6.org/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="bgpmon" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[5]</a></td><td>BGPmon &#8211; <a class="reference external" href="http://www.bgpmon.io/">http://www.bgpmon.io/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="bgpstream" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[6]</a></td><td>BGPstream &#8211; <a class="reference external" href="https://bgpstream.caida.org/">https://bgpstream.caida.org/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id12" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id7">[7]</a></td><td>RPKI MIRO &#8211; <a class="reference external" href="http://rpki-miro.realmv6.org/">http://rpki-miro.realmv6.org/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id13" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id8">[8]</a></td><td>RPKI RBV &#8211; <a class="reference external" href="https://rpki-rbv.realmv6.org/">https://rpki-rbv.realmv6.org/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="rbv-git" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id9">[9]</a></td><td>RPKI RBV Github &#8211; <a class="reference external" href="https://github.com/rtrlib/rbv">https://github.com/rtrlib/rbv</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="ripe-tools" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id10">[10]</a></td><td><a class="reference external" href="https://www.ripe.net/manage-ips-and-asns/resource-management/certification/tools-and-resources/">https://www.ripe.net/manage-ips-and-asns/resource-management/certification/tools-and-resources/</a></td></tr>
+</tbody>
+</table>
 </div>
 </div>
 
@@ -457,7 +514,7 @@ BGP security, in general.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016, Colin Sames, Marcel Röthke, Sebastian Meiling.
+        &copy; Copyright 2016, Sebastian Meiling, Marcel Röthke, Colin Sames.
 
     </p>
   </div>
@@ -479,7 +536,7 @@ BGP security, in general.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.1',
+            VERSION:'0.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

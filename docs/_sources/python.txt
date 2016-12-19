@@ -3,10 +3,10 @@ RTRlib Python Binding
 *********************
 
 The RTRlib is now also available for scripting in Python using the
-`RTRlib Python binding`_.
+`RTRlib Python binding` [#rtrlib-python]_.
 This section gives a quick overview on the usage of the Python binding.
 An even more detailed documentation on the API and further usage examples can
-be found on `readthedocs.io`_.
+be found on `readthedocs.io` [#readthedocs]_.
 
 Installation
 ============
@@ -110,5 +110,5 @@ or *not_found*; other return values indicate an error during validation.
         print('Invalid response')
 
 
-.. _`RTRlib Python binding`: https://github.com/rtrlib/python-binding
-.. _`readthedocs.io`: https://python-rtrlib.readthedocs.io
+.. [#rtrlib-python] RTRlib Python binding -- https://github.com/rtrlib/python-binding
+.. [#readthedocs]   ReadTheDocs --  https://python-rtrlib.readthedocs.io
