@@ -15,14 +15,15 @@ Background
 ==========
 
 The global deployment of a *Resource Public Key Infrastructure*
-(RPKI :cite:`RFC-6480`) is a first step towards securing the Internet routing.
+(RPKI :cite:`RFC-6480`) is one step towards securing the Internet routing
+through cryptography.
 The RPKI allows the holder of a distinct IP prefix to authorize certain
 autonomous systems (AS) to originate corresponding routes. This authorization is
 cryptographically verifiable through *Route Origination Authorizations* (ROAs)
 that are stored in the RPKI.
 
 A RPKI-enabled router does not store such ROAs itself, but only the validated
-content of these authorities.
+content of those.
 To achieve high scalability as well as limit resource utilization on BGP
 routers, the validation of ROAs is performed by trusted RPKI cache servers,
 which are deployed at the network operator site.
