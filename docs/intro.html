@@ -128,7 +128,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/intro.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/intro.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -149,13 +149,14 @@ BGPsec <a class="reference internal" href="#draft-ietf-sidr-bgpsec-overview" id=
 <div class="section" id="background">
 <h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
 <p>The global deployment of a <em>Resource Public Key Infrastructure</em>
-(RPKI <a class="reference internal" href="#rfc-6480" id="id5">[5]</a>) is a first step towards securing the Internet routing.
+(RPKI <a class="reference internal" href="#rfc-6480" id="id5">[5]</a>) is one step towards securing the Internet routing
+through cryptography.
 The RPKI allows the holder of a distinct IP prefix to authorize certain
 autonomous systems (AS) to originate corresponding routes. This authorization is
 cryptographically verifiable through <em>Route Origination Authorizations</em> (ROAs)
 that are stored in the RPKI.</p>
-<p>A RPKI-enabled router does not store such ROAs itself, but only the validated
-content of these authorities.
+<p>A RPKI enabled router does not store such ROAs itself, but only the validated
+content of those.
 To achieve high scalability as well as limit resource utilization on BGP
 routers, the validation of ROAs is performed by trusted RPKI cache servers,
 which are deployed at the network operator site.

@@ -127,7 +127,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/bgprd.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/bgprd.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -170,8 +170,7 @@ At the top of this file write:</p>
 <p>The first line automatically creates a ROA table when the BIRD daemon is started.
 The function itself checks for three entries in the ROA table
 and prints the corresponding validity status.
-See <a class="reference internal" href="tools.html#tools"><span class="std std-ref">Tools based on the RTRlib</span></a> for more information.</p>
-<p>The BIRD socket must now be opened. In order to do that type the following command:</p>
+The BIRD socket must now be opened. In order to do that type the following command:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>./bird -c /usr/local/etc/bird.conf -s /tmp/bird.ctl -d
 </pre></div>
 </div>
@@ -179,7 +178,7 @@ See <a class="reference internal" href="tools.html#tools"><span class="std std-r
 That&#8217;s necessary to view the output of the <code class="docutils literal"><span class="pre">test_ripe_beacons</span></code> function.
 <code class="docutils literal"><span class="pre">/tmp/bird.ctl</span></code> is the location and name of the socket that will be created.
 It is required by the <code class="docutils literal"><span class="pre">bird-rtrlib-cli</span></code> which we will install next.</p>
-<p>Open a new terminal. To try out whether BIRD receives actual responses,
+<p>Open another new terminal. To try out whether BIRD receives actual responses,
 there is an IPC that runs on the BIRD socket.
 Clone the <cite>BIRD-RTRlib-CLI</cite> repository on GitHub and build it:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/rtrlib/bird-rtrlib-cli

@@ -132,7 +132,7 @@
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/python.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/python.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -199,7 +199,7 @@ on the RTRlib Pythin binding. The functionality basically reflects the
 <p>First, import the required Python packages as shown in
 <a class="reference internal" href="#lst-python-import"><span class="std std-numref">Listing 8</span></a>, namely <cite>rtrlib</cite> but also some future imports in
 case of Python 2.</p>
-<div class="literal-block-wrapper container" id="lst-python-import">
+<div class="literal-block-wrapper docutils container" id="lst-python-import">
 <div class="code-block-caption"><span class="caption-number">Listing 8 </span><span class="caption-text">Import RTRlib package</span><a class="headerlink" href="#lst-python-import" title="Permalink to this code">¶</a></div>
 <div class="highlight-Python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -212,7 +212,7 @@ case of Python 2.</p>
 <p>Afterwards, initialized and start an instance of the <em>RTRManager</em>,
 see <a class="reference internal" href="#lst-python-rtrmgr"><span class="std std-numref">Listing 9</span></a>, mandatory parameters are <em>host</em> and <em>port</em> of
 a trusted RPKI cache server.</p>
-<div class="literal-block-wrapper container" id="lst-python-rtrmgr">
+<div class="literal-block-wrapper docutils container" id="lst-python-rtrmgr">
 <div class="code-block-caption"><span class="caption-number">Listing 9 </span><span class="caption-text">Setup and run RTRManager</span><a class="headerlink" href="#lst-python-rtrmgr" title="Permalink to this code">¶</a></div>
 <div class="highlight-Python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">mgr</span> <span class="o">=</span> <span class="n">RTRManager</span><span class="p">(</span><span class="s1">&#39;rpki-validator.realmv6.org&#39;</span><span class="p">,</span> <span class="mi">8282</span><span class="p">)</span>
@@ -224,7 +224,7 @@ a trusted RPKI cache server.</p>
 origin AS relation as shown in <a class="reference internal" href="#lst-python-validate"><span class="std std-numref">Listing 10</span></a>. The return value
 in result contains the corresponding validation state, i.e., <em>valid</em>, <em>invalid</em>,
 or <em>not_found</em>; other return values indicate an error during validation.</p>
-<div class="literal-block-wrapper container" id="lst-python-validate">
+<div class="literal-block-wrapper docutils container" id="lst-python-validate">
 <div class="code-block-caption"><span class="caption-number">Listing 10 </span><span class="caption-text">Validate prefix to origin AS relation</span><a class="headerlink" href="#lst-python-validate" title="Permalink to this code">¶</a></div>
 <div class="highlight-Python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
