@@ -5,8 +5,8 @@ Usage of the RTRlib C Library
 *****************************
 
 The RTRlib is supported by most Linux distributions as well as Apple macOS.
-Before you start using or developing with RTRlib C library you have to prepare
-your OS environment by installing a recent release.
+Before you start using or developing with the RTRlib C library, you have to
+prepare your OS environment by installing a recent release package.
 
 
 .. _install:
@@ -19,7 +19,7 @@ To install or build the RTRlib from source follow the steps described here.
 Debian Linux
 ------------
 
-If you are running Debian (Jessie), you can install the library via the APT
+If you are running Debian (Jessie), you can install the RTRlib via the APT
 package manager, as follows:
 
 .. code-block:: bash
@@ -29,7 +29,7 @@ package manager, as follows:
 Apple macOS
 -----------
 
-For macOS we provide a *Homebrew tap* [#tap]_ to easily install the RTRlib.
+For macOS we provide a *Homebrew tap* to easily install the RTRlib.
 First, setup Homebrew [#homebrew]_ and afterwards install the RTRlib package:
 
 .. code-block:: bash
@@ -40,7 +40,6 @@ First, setup Homebrew [#homebrew]_ and afterwards install the RTRlib package:
 .. rubric:: Footnotes
 
 .. [#homebrew]  Homebrew -- http://brew.sh
-.. [#tap]       RTRlib tap -- https://github.com/rtrlib/homebrew-pils
 
 From Source
 -----------
@@ -56,7 +55,7 @@ Optional requirements are:
 - `cmocka`, a framework to run RTRlib unit tests
 - `doxygen`, to build the RTRlib API documentation
 
-If the requirements are available in the system, the library and tools can be build.
+If the requirements are fulfilled in the system, the library and tools can be build.
 First, either download or clone the RTRlib source code as follows:
 
 .. code-block:: bash
@@ -97,9 +96,9 @@ To enable debug symbols and messages, change the `cmake` command to:
     cmake -D CMAKE_BUILD_TYPE=Debug ../
 
 
-For developers we provide a pre-build Doxygen API reference [#doxygen]_ online
+For developers we provide a pre-build Doxygen API reference online [#doxygen]_
 for the latest release of the RTRlib. Alternatively, and if `Doxygen` is
-available, you can build the documentation locally as follows:
+available on your system, you can build the documentation locally as follows:
 
 .. code-block:: bash
 
