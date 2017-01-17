@@ -18,7 +18,7 @@ The global deployment of a *Resource Public Key Infrastructure*
 (RPKI :cite:`RFC-6480`) is one step towards securing the Internet routing
 through cryptography.
 The RPKI allows the holder of a distinct IP prefix to authorize certain
-autonomous systems (AS) to originate corresponding routes. This authorization is
+autonomous systems (AS) to originate corresponding routes, which is
 cryptographically verifiable through *Route Origination Authorizations* (ROAs)
 that are stored in the RPKI.
 

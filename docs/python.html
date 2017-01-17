@@ -144,11 +144,11 @@
             
   <div class="section" id="rtrlib-python-binding">
 <h1>RTRlib Python Binding<a class="headerlink" href="#rtrlib-python-binding" title="Permalink to this headline">¶</a></h1>
-<p>The RTRlib is now also available for scripting in Python using the
+<p>The RTRlib is also available for scripting in Python using the
 <cite>RTRlib Python binding</cite> <a class="footnote-reference" href="#rtrlib-python" id="id1">[1]</a>.
 This section gives a quick overview on the usage of the Python binding.
 An even more detailed documentation on the API and further usage examples can
-be found on <cite>readthedocs.io</cite> <a class="footnote-reference" href="#readthedocs" id="id2">[2]</a>.</p>
+be found on the corresponding <cite>readthedocs.io</cite> <a class="footnote-reference" href="#readthedocs" id="id2">[2]</a> page.</p>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>The RTRlib Python binding runs on Linux and Apple macOS like the C library. It
@@ -178,7 +178,7 @@ or just run <code class="docutils literal"><span class="pre">pip</span> <span cl
 <h3>Build and Install<a class="headerlink" href="#build-and-install" title="Permalink to this headline">¶</a></h3>
 <p>The setup process of the RTRlib Python binding is straight forward and complies
 to well-known Python standards.
-First download the source code from Github:</p>
+First, download the source code from Github:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/rtrlib/python-binding.git
 <span class="nb">cd</span> python-binding
 </pre></div>
@@ -193,12 +193,11 @@ python setup.py install
 <div class="section" id="step-by-step-example">
 <h2>Step-by-Step Example<a class="headerlink" href="#step-by-step-example" title="Permalink to this headline">¶</a></h2>
 <p>The following code listings show how to implement a simple RPKI validator based
-on the RTRlib Pythin binding. The functionality basically reflects the
+on the RTRlib Python binding. The functionality basically reflects the
 <cite>cli-validator</cite> tool shipped with the RTRlib C library (see <a class="reference internal" href="tools.html#validator"><span class="std std-ref">RTRlib Validator</span></a>).</p>
 <hr class="docutils" />
-<p>First, import the required Python packages as shown in
-<a class="reference internal" href="#lst-python-import"><span class="std std-numref">Listing 8</span></a>, namely <cite>rtrlib</cite> but also some future imports in
-case of Python 2.</p>
+<p>First, import required Python packages as shown in <a class="reference internal" href="#lst-python-import"><span class="std std-numref">Listing 8</span></a>;
+namely <cite>rtrlib</cite>, but also some future imports in case of Python 2.</p>
 <div class="literal-block-wrapper docutils container" id="lst-python-import">
 <div class="code-block-caption"><span class="caption-number">Listing 8 </span><span class="caption-text">Import RTRlib package</span><a class="headerlink" href="#lst-python-import" title="Permalink to this code">¶</a></div>
 <div class="highlight-Python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1

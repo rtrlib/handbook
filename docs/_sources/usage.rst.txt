@@ -29,8 +29,8 @@ package manager, as follows:
 Apple macOS
 -----------
 
-For macOS we provide a *Homebrew* tap [#tap]_ to easily install the RTRlib.
-First, install Homebrew [#homebrew] and afterwards install the RTRlib package:
+For macOS we provide a *Homebrew tap* [#tap]_ to easily install the RTRlib.
+First, setup Homebrew [#homebrew]_ and afterwards install the RTRlib package:
 
 .. code-block:: bash
 
@@ -56,7 +56,7 @@ Optional requirements are:
 - `cmocka`, a framework to run RTRlib unit tests
 - `doxygen`, to build the RTRlib API documentation
 
-If the requirements are installed, the library and tools can be build.
+If the requirements are available in the system, the library and tools can be build.
 First, either download or clone the RTRlib source code as follows:
 
 .. code-block:: bash
@@ -99,7 +99,7 @@ To enable debug symbols and messages, change the `cmake` command to:
 
 For developers we provide a pre-build Doxygen API reference [#doxygen]_ online
 for the latest release of the RTRlib. Alternatively, and if `Doxygen` is
-available, you can build the documentation as follows:
+available, you can build the documentation locally as follows:
 
 .. code-block:: bash
 
@@ -136,7 +136,8 @@ into the code:
     #include "rtrlib/rtrlib.h"
 
 The name of the corresponding shared library is `rtr`.
-To link an application against the RTRlib, pass the following parameter to gcc:
+To link an application against the RTRlib, pass the following parameter to the
+compiler:
 
 .. code-block:: bash
 
@@ -170,16 +171,16 @@ the ``cli-validator``, see also :ref:`tools`.
 The former connects to a single RTR cache server via TCP or SSH and prints
 validated prefix origin data to STDOUT. You can use this tool to get first
 experiences with the RPKI-RTR protocol. With the latter you can validate
-arbitrary prefix to origin relations against records of a connected RPKI cache.
-Both tools are located in the ``tools/`` directory. Having a look into the
-source code of these tools will help to understand and integrate the RTRlib
-into applications.
+arbitrary prefix origin AS relations against records received from a connected
+RPKI cache. Both tools are located in the ``tools/`` directory. Having a look
+into the source code of these tools will help to understand and integrate the
+RTRlib into applications.
 
 ----
 
 Any application using the RTRlib will have to setup a RTR connection manager
-that handles the synchronization with one (or multiple) trusted RPKI cache
-server(s). The following provides an overview on important code segments.
+that handles synchronization with one (or multiple) trusted RPKI cache server(s).
+The following provides an overview on important code segments.
 
 First, create a RTR transport socket, for instance using TCP as shown in
 :numref:`lst-create-socket`.
@@ -205,8 +206,8 @@ First, create a RTR transport socket, for instance using TCP as shown in
 
 
 Afterwards, create a group of RTR cache servers with preference `1`.
-In this example case (see :numref:`lst-create-group`), it includes only a
-single cache instance.
+In this example (see :numref:`lst-create-group`), it includes only a single
+cache instance.
 
 .. code-block:: C
     :linenos:
@@ -261,8 +262,8 @@ the corresponding origin AS.
     }
 
 With a running RTR connection manager, you can also execute validation queries.
-Validate the relation of prefix `10.10.0.0/24` and its origin AS 12345 as shown
-in :numref:`lst-validate`.
+For instance, validate the relation of prefix `10.10.0.0/24` and its origin
+AS 12345 as shown in :numref:`lst-validate`.
 
 .. code-block:: C
     :linenos:

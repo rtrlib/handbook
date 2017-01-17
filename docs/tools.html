@@ -149,8 +149,8 @@
 utilize the RTRlib and its features.
 These tools range from low level shell commands to easy-to-use browser plugins.
 For all tools we provide small usage examples; where ever appropriate we will
-use the <cite>RIPE RIS Beacons</cite> <a class="footnote-reference" href="#ripe-beacons" id="id1">[1]</a> (see <a class="reference internal" href="#beacons"><span class="std std-numref">Table 1</span></a>) with well known
-RPKI validation results.</p>
+use the <cite>RIPE RIS Beacons</cite> <a class="footnote-reference" href="#ripe-beacons" id="id1">[1]</a> (see <a class="reference internal" href="#beacons"><span class="std std-numref">Table 1</span></a>) with well
+known RPKI validation results to show case the tool.</p>
 <table border="1" class="docutils" id="id14">
 <span id="beacons"></span><caption><span class="caption-number">Table 1 </span><span class="caption-text">RIPE RIS beacons for RPKI tests</span><a class="headerlink" href="#id14" title="Permalink to this table">¶</a></caption>
 <colgroup>
@@ -191,9 +191,9 @@ RPKI validation results.</p>
 </tr>
 </tbody>
 </table>
-<p><em>Note</em>: for all prefixes the RPKI validation results are based on
-origin AS 12654 that is owned by RIPE.
-Most examples require a connection to a RPKI cache server, for that we
+<p><em>Note</em>: for all prefixes RPKI validation results are based on origin AS 12654
+that is owned by RIPE.
+Most examples also require a connection to a RPKI cache server, for that we
 provide a public cache with <em>hostname</em> <code class="docutils literal"><span class="pre">rpki-validator.realmv6.org</span></code>
 and <em>port</em> <code class="docutils literal"><span class="pre">8282</span></code>.</p>
 <div class="section" id="rtrlib-client">
@@ -201,7 +201,7 @@ and <em>port</em> <code class="docutils literal"><span class="pre">8282</span></
 <p>The RTRlib client (<code class="docutils literal"><span class="pre">rtrclient</span></code>) is a default part of the RTRlib package.
 It emulates a RPKI enabled BGP router by using  the client side functionality
 of the RTR protocol to connect to a trusted RPKI cache server and receive all
-currently valid ROAs.</p>
+currently valid ROAs.s</p>
 <p>To establish a connection with a RPKI cache server the client can use <em>TCP</em> or
 <em>SSH</em> transport sockets.
 It then communicates with the cache server utilizing the RTR protocol provided
@@ -283,7 +283,7 @@ by commas (<code class="docutils literal"><span class="pre">,</span></code>).</p
 <p>The RPKI Validator plugin for web browsers allows to check the RPKI validation
 of visited URLs, i.e., the associated IP prefix and origin AS of the URL.
 A small icon indicates the validation state of the visited URL, which is
-either valid (<img alt="valid" src="_images/valid.png" />), invalid (<img alt="invalid" src="_images/invalid.png" />) or was not found (<img alt="not_found" src="_images/notFound.png" />).</p>
+either valid (<img alt="valid" src="_images/valid.png" />), invalid (<img alt="invalid" src="_images/invalid.png" />), or not found (<img alt="not_found" src="_images/notFound.png" />).</p>
 <p>The plugin is available as an add-on (or extension) for the web browsers
 Firefox and Chrome .
 While the <cite>Firefox add-on</cite> <a class="footnote-reference" href="#firefox" id="id2">[2]</a> is available through the add-on store,
@@ -312,20 +312,20 @@ and <em>not found</em> <a class="reference internal" href="#fig-notfound"><span 
 </div>
 <div class="section" id="rpki-read">
 <h2>RPKI READ<a class="headerlink" href="#rpki-read" title="Permalink to this headline">¶</a></h2>
-<p>The <em>RPKI Realtime Dashboard</em> (<cite>RPKI READ</cite> <a class="footnote-reference" href="#id11" id="id4">[4]</a>) aims to provide a consistent
-(and live) view on the RPKI validation state of currently announced IP prefixes.
-That is, it verifies relation of an IP prefix and its BGP origin AS
+<p>The <em>RPKI Realtime Dashboard</em> (<cite>RPKI READ</cite> <a class="footnote-reference" href="#id11" id="id4">[4]</a>) aims to provide a
+consistent (and live) view on the RPKI validation state of currently announced
+IP prefixes. That is, it verifies relation of an IP prefix and its BGP origin AS
 (autonomous system) utilizing the RPKI.</p>
 <p>The RPKI READ monitoring system has two parts:</p>
 <ol class="arabic simple">
-<li>the backend storing latest validation results in a database, and</li>
-<li>the (web) frontend displaying these results as well as an overview of statistics derived from them.</li>
+<li>the backend, storing latest validation results in a database, and</li>
+<li>the (web) frontend, displaying these results as well as an overview of statistics derived from them.</li>
 </ol>
 <p>The backend connects to a live BGP stream, e.g. of a BGPmon <a class="footnote-reference" href="#bgpmon" id="id5">[5]</a> instance
 or via BGPstream <a class="footnote-reference" href="#bgpstream" id="id6">[6]</a>.
-It then parses  received BGP messages and extracts IP prefixes and origin AS
+It then parses received BGP messages and extracts IP prefixes and origin AS
 information.
-These prefix to origin AS relations are validated using the RTRlib client
+These prefix to origin AS relations are validated using the RTRlib validator
 to query a trusted RPKI cache server.</p>
 <p>The RPKI READ frontend presents a dashboard like interface showing a live
 overview of the RPKI validation state of all currently advertised IP prefixes
@@ -345,8 +345,8 @@ aims for easy access to RPKI certificates, revocation lists, ROAs etc.
 to give network operators more confidence in their data.
 Though, RPKI is a powerful tool, its success depends on several aspects.
 One crucial piece is the correctness of the RPKI data.
-RPKI data is public but might be hard to inspect outside of shell-like
-environments.</p>
+Though, the RPKI data is public, it still might be hard to inspect outside of
+shell-like environments.</p>
 <p>The main objective of RPKI MIRO is to provide an extensive but painless
 insight into the published RPKI content.
 RPKI MIRO is a monitoring application that consists of three parts:</p>

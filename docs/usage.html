@@ -163,8 +163,8 @@ package manager, as follows:</p>
 </div>
 <div class="section" id="apple-macos">
 <h3>Apple macOS<a class="headerlink" href="#apple-macos" title="Permalink to this headline">¶</a></h3>
-<p>For macOS we provide a <em>Homebrew</em> tap <a class="footnote-reference" href="#tap" id="id1">[2]</a> to easily install the RTRlib.
-First, install Homebrew [#homebrew] and afterwards install the RTRlib package:</p>
+<p>For macOS we provide a <em>Homebrew tap</em> <a class="footnote-reference" href="#tap" id="id1">[2]</a> to easily install the RTRlib.
+First, setup Homebrew <a class="footnote-reference" href="#homebrew" id="id2">[1]</a> and afterwards install the RTRlib package:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>brew tap rtrlib/pils
 brew install rtrlib
 </pre></div>
@@ -173,7 +173,7 @@ brew install rtrlib
 <table class="docutils footnote" frame="void" id="homebrew" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[1]</td><td>Homebrew &#8211; <a class="reference external" href="http://brew.sh">http://brew.sh</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td>Homebrew &#8211; <a class="reference external" href="http://brew.sh">http://brew.sh</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="tap" rules="none">
@@ -196,7 +196,7 @@ The following minimal requirements have to be met, before building the library:<
 <li><cite>cmocka</cite>, a framework to run RTRlib unit tests</li>
 <li><cite>doxygen</cite>, to build the RTRlib API documentation</li>
 </ul>
-<p>If the requirements are installed, the library and tools can be build.
+<p>If the requirements are available in the system, the library and tools can be build.
 First, either download or clone the RTRlib source code as follows:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>wget https://github.com/rtrlib/rtrlib/archive/v0.3.6.tar.gz
 tar xzf v0.3.6.tar.gz
@@ -222,16 +222,16 @@ make
 sudo make install
 </pre></div>
 </div>
-<p>If the build command fails with any error, please consult the RTRlib README <a class="footnote-reference" href="#readme" id="id2">[3]</a>
-and Wiki <a class="footnote-reference" href="#wiki" id="id3">[4]</a>, you may also join our <cite>mailing list</cite> <a class="footnote-reference" href="#mailinglist" id="id4">[5]</a> or open
-an issue on Github <a class="footnote-reference" href="#issue" id="id5">[6]</a>.</p>
+<p>If the build command fails with any error, please consult the RTRlib README <a class="footnote-reference" href="#readme" id="id3">[3]</a>
+and Wiki <a class="footnote-reference" href="#wiki" id="id4">[4]</a>, you may also join our <cite>mailing list</cite> <a class="footnote-reference" href="#mailinglist" id="id5">[5]</a> or open
+an issue on Github <a class="footnote-reference" href="#issue" id="id6">[6]</a>.</p>
 <p>To enable debug symbols and messages, change the <cite>cmake</cite> command to:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>cmake -D <span class="nv">CMAKE_BUILD_TYPE</span><span class="o">=</span>Debug ../
 </pre></div>
 </div>
-<p>For developers we provide a pre-build Doxygen API reference <a class="footnote-reference" href="#doxygen" id="id6">[7]</a> online
+<p>For developers we provide a pre-build Doxygen API reference <a class="footnote-reference" href="#doxygen" id="id7">[7]</a> online
 for the latest release of the RTRlib. Alternatively, and if <cite>Doxygen</cite> is
-available, you can build the documentation as follows:</p>
+available, you can build the documentation locally as follows:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>make doc
 </pre></div>
 </div>
@@ -244,31 +244,31 @@ via <cite>make</cite>:</p>
 <table class="docutils footnote" frame="void" id="readme" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[3]</a></td><td>README &#8211; <a class="reference external" href="https://github.com/rtrlib/rtrlib/blob/master/README">https://github.com/rtrlib/rtrlib/blob/master/README</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>README &#8211; <a class="reference external" href="https://github.com/rtrlib/rtrlib/blob/master/README">https://github.com/rtrlib/rtrlib/blob/master/README</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="wiki" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[4]</a></td><td>Wiki &#8211; <a class="reference external" href="https://github.com/rtrlib/rtrlib/wiki">https://github.com/rtrlib/rtrlib/wiki</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td>Wiki &#8211; <a class="reference external" href="https://github.com/rtrlib/rtrlib/wiki">https://github.com/rtrlib/rtrlib/wiki</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="mailinglist" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id4">[5]</a></td><td>Mailing list &#8211; <a class="reference external" href="https://groups.google.com/forum/#!forum/rtrlib">https://groups.google.com/forum/#!forum/rtrlib</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id5">[5]</a></td><td>Mailing list &#8211; <a class="reference external" href="https://groups.google.com/forum/#!forum/rtrlib">https://groups.google.com/forum/#!forum/rtrlib</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="issue" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id5">[6]</a></td><td>Issue tracker &#8211; <a class="reference external" href="https://github.com/rtrlib/rtrlib/issues">https://github.com/rtrlib/rtrlib/issues</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id6">[6]</a></td><td>Issue tracker &#8211; <a class="reference external" href="https://github.com/rtrlib/rtrlib/issues">https://github.com/rtrlib/rtrlib/issues</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="doxygen" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id6">[7]</a></td><td>API reference &#8211; <a class="reference external" href="https://rtrlib.realmv6.org/doxygen/latest">https://rtrlib.realmv6.org/doxygen/latest</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id7">[7]</a></td><td>API reference &#8211; <a class="reference external" href="https://rtrlib.realmv6.org/doxygen/latest">https://rtrlib.realmv6.org/doxygen/latest</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -283,7 +283,8 @@ into the code:</p>
 </pre></div>
 </div>
 <p>The name of the corresponding shared library is <cite>rtr</cite>.
-To link an application against the RTRlib, pass the following parameter to gcc:</p>
+To link an application against the RTRlib, pass the following parameter to the
+compiler:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>-lrtr
 </pre></div>
 </div>
@@ -309,14 +310,14 @@ the <code class="docutils literal"><span class="pre">cli-validator</span></code>
 The former connects to a single RTR cache server via TCP or SSH and prints
 validated prefix origin data to STDOUT. You can use this tool to get first
 experiences with the RPKI-RTR protocol. With the latter you can validate
-arbitrary prefix to origin relations against records of a connected RPKI cache.
-Both tools are located in the <code class="docutils literal"><span class="pre">tools/</span></code> directory. Having a look into the
-source code of these tools will help to understand and integrate the RTRlib
-into applications.</p>
+arbitrary prefix origin AS relations against records received from a connected
+RPKI cache. Both tools are located in the <code class="docutils literal"><span class="pre">tools/</span></code> directory. Having a look
+into the source code of these tools will help to understand and integrate the
+RTRlib into applications.</p>
 <hr class="docutils" />
 <p>Any application using the RTRlib will have to setup a RTR connection manager
-that handles the synchronization with one (or multiple) trusted RPKI cache
-server(s). The following provides an overview on important code segments.</p>
+that handles synchronization with one (or multiple) trusted RPKI cache server(s).
+The following provides an overview on important code segments.</p>
 <p>First, create a RTR transport socket, for instance using TCP as shown in
 <a class="reference internal" href="#lst-create-socket"><span class="std std-numref">Listing 1</span></a>.</p>
 <div class="literal-block-wrapper docutils container" id="lst-create-socket">
@@ -350,8 +351,8 @@ server(s). The following provides an overview on important code segments.</p>
 </td></tr></table></div>
 </div>
 <p>Afterwards, create a group of RTR cache servers with preference <cite>1</cite>.
-In this example case (see <a class="reference internal" href="#lst-create-group"><span class="std std-numref">Listing 2</span></a>), it includes only a
-single cache instance.</p>
+In this example (see <a class="reference internal" href="#lst-create-group"><span class="std std-numref">Listing 2</span></a>), it includes only a single
+cache instance.</p>
 <div class="literal-block-wrapper docutils container" id="lst-create-group">
 <div class="code-block-caption"><span class="caption-number">Listing 2 </span><span class="caption-text">Create a group of RTR caches</span><a class="headerlink" href="#lst-create-group" title="Permalink to this code">¶</a></div>
 <div class="highlight-C"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -414,8 +415,8 @@ the corresponding origin AS.</p>
 </td></tr></table></div>
 </div>
 <p>With a running RTR connection manager, you can also execute validation queries.
-Validate the relation of prefix <cite>10.10.0.0/24</cite> and its origin AS 12345 as shown
-in <a class="reference internal" href="#lst-validate"><span class="std std-numref">Listing 5</span></a>.</p>
+For instance, validate the relation of prefix <cite>10.10.0.0/24</cite> and its origin
+AS 12345 as shown in <a class="reference internal" href="#lst-validate"><span class="std std-numref">Listing 5</span></a>.</p>
 <div class="literal-block-wrapper docutils container" id="lst-validate">
 <div class="code-block-caption"><span class="caption-number">Listing 5 </span><span class="caption-text">Validate a prefix to origin AS relation</span><a class="headerlink" href="#lst-validate" title="Permalink to this code">¶</a></div>
 <div class="highlight-C"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1

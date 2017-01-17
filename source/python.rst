@@ -2,11 +2,11 @@
 RTRlib Python Binding
 *********************
 
-The RTRlib is now also available for scripting in Python using the
+The RTRlib is also available for scripting in Python using the
 `RTRlib Python binding` [#rtrlib-python]_.
 This section gives a quick overview on the usage of the Python binding.
 An even more detailed documentation on the API and further usage examples can
-be found on `readthedocs.io` [#readthedocs]_.
+be found on the corresponding `readthedocs.io` [#readthedocs]_ page.
 
 Installation
 ============
@@ -41,7 +41,7 @@ Build and Install
 
 The setup process of the RTRlib Python binding is straight forward and complies
 to well-known Python standards.
-First download the source code from Github:
+First, download the source code from Github:
 
 .. code-block:: bash
 
@@ -59,14 +59,13 @@ Step-by-Step Example
 ====================
 
 The following code listings show how to implement a simple RPKI validator based
-on the RTRlib Pythin binding. The functionality basically reflects the
+on the RTRlib Python binding. The functionality basically reflects the
 `cli-validator` tool shipped with the RTRlib C library (see :ref:`validator`).
 
 ----
 
-First, import the required Python packages as shown in
-:numref:`lst-python-import`, namely `rtrlib` but also some future imports in
-case of Python 2.
+First, import required Python packages as shown in :numref:`lst-python-import`;
+namely `rtrlib`, but also some future imports in case of Python 2.
 
 .. code-block:: Python
     :linenos:

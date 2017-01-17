@@ -8,8 +8,8 @@ In the following sections we give an overview on several software tools, which
 utilize the RTRlib and its features.
 These tools range from low level shell commands to easy-to-use browser plugins.
 For all tools we provide small usage examples; where ever appropriate we will
-use the `RIPE RIS Beacons` [#ripe-beacons]_ (see :numref:`beacons`) with well known
-RPKI validation results.
+use the `RIPE RIS Beacons` [#ripe-beacons]_ (see :numref:`beacons`) with well
+known RPKI validation results to show case the tool.
 
 .. _beacons:
 .. table:: RIPE RIS beacons for RPKI tests
@@ -25,9 +25,9 @@ RPKI validation results.
     2001:7fb:ff03::/48    None           not found
     ==================== ============== ============
 
-*Note*: for all prefixes the RPKI validation results are based on
-origin AS 12654 that is owned by RIPE.
-Most examples require a connection to a RPKI cache server, for that we
+*Note*: for all prefixes RPKI validation results are based on origin AS 12654
+that is owned by RIPE.
+Most examples also require a connection to a RPKI cache server, for that we
 provide a public cache with *hostname* ``rpki-validator.realmv6.org``
 and *port* ``8282``.
 
@@ -39,7 +39,7 @@ RTRlib Client
 The RTRlib client (``rtrclient``) is a default part of the RTRlib package.
 It emulates a RPKI enabled BGP router by using  the client side functionality
 of the RTR protocol to connect to a trusted RPKI cache server and receive all
-currently valid ROAs.
+currently valid ROAs.s
 
 To establish a connection with a RPKI cache server the client can use *TCP* or
 *SSH* transport sockets.
@@ -132,7 +132,7 @@ RPKI Validator Browser Plugin
 The RPKI Validator plugin for web browsers allows to check the RPKI validation
 of visited URLs, i.e., the associated IP prefix and origin AS of the URL.
 A small icon indicates the validation state of the visited URL, which is
-either valid (|valid|), invalid (|invalid|) or was not found (|not_found|).
+either valid (|valid|), invalid (|invalid|), or not found (|not_found|).
 
 The plugin is available as an add-on (or extension) for the web browsers
 Firefox and Chrome .
@@ -177,21 +177,21 @@ and *not found* :numref:`fig-notfound`) for certain websites .
 RPKI READ
 =========
 
-The *RPKI Realtime Dashboard* (`RPKI READ` [#rpki-read]_) aims to provide a consistent
-(and live) view on the RPKI validation state of currently announced IP prefixes.
-That is, it verifies relation of an IP prefix and its BGP origin AS
+The *RPKI Realtime Dashboard* (`RPKI READ` [#rpki-read]_) aims to provide a
+consistent (and live) view on the RPKI validation state of currently announced
+IP prefixes. That is, it verifies relation of an IP prefix and its BGP origin AS
 (autonomous system) utilizing the RPKI.
 
 The RPKI READ monitoring system has two parts:
 
-#. the backend storing latest validation results in a database, and
-#. the (web) frontend displaying these results as well as an overview of statistics derived from them.
+#. the backend, storing latest validation results in a database, and
+#. the (web) frontend, displaying these results as well as an overview of statistics derived from them.
 
 The backend connects to a live BGP stream, e.g. of a BGPmon [#bgpmon]_ instance
 or via BGPstream [#bgpstream]_.
-It then parses  received BGP messages and extracts IP prefixes and origin AS
+It then parses received BGP messages and extracts IP prefixes and origin AS
 information.
-These prefix to origin AS relations are validated using the RTRlib client
+These prefix to origin AS relations are validated using the RTRlib validator
 to query a trusted RPKI cache server.
 
 The RPKI READ frontend presents a dashboard like interface showing a live
@@ -217,8 +217,8 @@ aims for easy access to RPKI certificates, revocation lists, ROAs etc.
 to give network operators more confidence in their data.
 Though, RPKI is a powerful tool, its success depends on several aspects.
 One crucial piece is the correctness of the RPKI data.
-RPKI data is public but might be hard to inspect outside of shell-like
-environments.
+Though, the RPKI data is public, it still might be hard to inspect outside of
+shell-like environments.
 
 The main objective of RPKI MIRO is to provide an extensive but painless
 insight into the published RPKI content.
