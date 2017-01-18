@@ -37,16 +37,16 @@ RTRlib Client
 =============
 
 The RTRlib client (``rtrclient``) is a default part of the RTRlib package.
-It emulates a RPKI enabled BGP router by using  the client side functionality
-of the RTR protocol to connect to a trusted RPKI cache server and receive all
-currently valid ROAs.s
+It emulates a BGP router with RPKI support by using  the client side
+functionality of the RTR protocol to connect to a trusted RPKI cache server and
+receive all currently valid ROAs.
 
-To establish a connection with a RPKI cache server the client can use *TCP* or
+To establish a connection with RPKI cache servers the client can use *TCP* or
 *SSH* transport sockets.
 It then communicates with the cache server utilizing the RTR protocol provided
 by the RTRlib to receive all cryptographically verified ROAs from the cache.
 To run the program you have to specify the transport protocol as well as the
-hostname and port of a RPKI cache server; additionally you can set several
+hostname and port of the RPKI cache server; additionally you can set several
 options.
 To get a complete reference over all options for the command simply run
 ``rtrclient`` in a shell.

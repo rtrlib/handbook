@@ -22,7 +22,7 @@ autonomous systems (AS) to originate corresponding routes, which is
 cryptographically verifiable through *Route Origination Authorizations* (ROAs)
 that are stored in the RPKI.
 
-A RPKI enabled router does not store such ROAs itself, but only the validated
+RPKI enabled routers do not store such ROAs themselves, but only the validated
 content of those.
 To achieve high scalability as well as limit resource utilization on BGP
 routers, the validation of ROAs is performed by trusted RPKI cache servers,

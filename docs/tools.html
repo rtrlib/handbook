@@ -199,15 +199,15 @@ and <em>port</em> <code class="docutils literal"><span class="pre">8282</span></
 <div class="section" id="rtrlib-client">
 <span id="rtrclient"></span><h2>RTRlib Client<a class="headerlink" href="#rtrlib-client" title="Permalink to this headline">¶</a></h2>
 <p>The RTRlib client (<code class="docutils literal"><span class="pre">rtrclient</span></code>) is a default part of the RTRlib package.
-It emulates a RPKI enabled BGP router by using  the client side functionality
-of the RTR protocol to connect to a trusted RPKI cache server and receive all
-currently valid ROAs.s</p>
-<p>To establish a connection with a RPKI cache server the client can use <em>TCP</em> or
+It emulates a BGP router with RPKI support by using  the client side
+functionality of the RTR protocol to connect to a trusted RPKI cache server and
+receive all currently valid ROAs.</p>
+<p>To establish a connection with RPKI cache servers the client can use <em>TCP</em> or
 <em>SSH</em> transport sockets.
 It then communicates with the cache server utilizing the RTR protocol provided
 by the RTRlib to receive all cryptographically verified ROAs from the cache.
 To run the program you have to specify the transport protocol as well as the
-hostname and port of a RPKI cache server; additionally you can set several
+hostname and port of the RPKI cache server; additionally you can set several
 options.
 To get a complete reference over all options for the command simply run
 <code class="docutils literal"><span class="pre">rtrclient</span></code> in a shell.</p>
