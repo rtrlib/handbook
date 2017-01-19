@@ -27,8 +27,8 @@ known RPKI validation results to show case the tool.
 
 *Note*: for all prefixes RPKI validation results are based on origin AS 12654
 that is owned by RIPE.
-Most examples also require a connection to a RPKI cache server, for that we
-provide a public cache with *hostname* ``rpki-validator.realmv6.org``
+Most examples also require a connection to a trusted RPKI cache server, for that
+we provide a public cache with *hostname* ``rpki-validator.realmv6.org``
 and *port* ``8282``.
 
 .. _rtrclient:
