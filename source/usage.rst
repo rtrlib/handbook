@@ -16,6 +16,39 @@ Installation
 
 To install or build the RTRlib from source follow the steps described here.
 
+
+Archlinux
+---------
+
+For Archlinux we maintain two PKGBUILDs in the Archlinux User Repository,
+rtrlib [#rtrlib]_ and rtrlib-git [#rtrlibgit]_
+the former is for the latest release and the later for git master.
+You can either use your favourite aur helper or execute the following commands.
+
+.. code-block:: bash
+
+    sudo pacman --needed base-devel
+
+    # for the latest release
+    wget https://aur.archlinux.org/cgit/aur.git/snapshot/rtrlib.tar.gz
+    tar xf rtrlib
+    cd rtrlib
+
+    # for the git version
+    wget https://aur.archlinux.org/cgit/aur.git/snapshot/rtrlib-git.tar.gz
+    tar xf rtrlib-git
+    cd rtrlib-git
+
+    # for both
+    makepkg -sci
+
+
+.. rubric:: Footnotes
+
+.. [#rtrlib] https://aur.archlinux.org/packages/rtrlib/
+.. [#rtrlibgit] https://aur.archlinux.org/packages/rtrlib-git/
+
+
 Debian Linux
 ------------
 
