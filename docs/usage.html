@@ -88,6 +88,7 @@
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Usage of the RTRlib C Library</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#archlinux">Archlinux</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#debian-linux">Debian Linux</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#apple-macos">Apple macOS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#from-source">From Source</a></li>
@@ -153,6 +154,42 @@ prepare your OS environment by installing a recent release package.</p>
 <div class="section" id="installation">
 <span id="install"></span><h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>To install or build the RTRlib from source follow the steps described here.</p>
+<div class="section" id="archlinux">
+<h3>Archlinux<a class="headerlink" href="#archlinux" title="Permalink to this headline">¶</a></h3>
+<p>For Archlinux we maintain two PKGBUILDs in the Archlinux User Repository,
+rtrlib <a class="footnote-reference" href="#rtrlib" id="id1">[1]</a> and rtrlib-git <a class="footnote-reference" href="#rtrlibgit" id="id2">[2]</a>.
+The former is for the latest official release and the latter for current git master.
+You can either use your favourite aur helper or execute the following commands:</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo pacman --needed base-devel
+
+<span class="c1"># for the latest release</span>
+wget https://aur.archlinux.org/cgit/aur.git/snapshot/rtrlib.tar.gz
+tar xf rtrlib
+<span class="nb">cd</span> rtrlib
+
+<span class="c1"># for the git version</span>
+wget https://aur.archlinux.org/cgit/aur.git/snapshot/rtrlib-git.tar.gz
+tar xf rtrlib-git
+<span class="nb">cd</span> rtrlib-git
+
+<span class="c1"># for both</span>
+makepkg -sci
+</pre></div>
+</div>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="rtrlib" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="https://aur.archlinux.org/packages/rtrlib/">https://aur.archlinux.org/packages/rtrlib/</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="rtrlibgit" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="https://aur.archlinux.org/packages/rtrlib-git/">https://aur.archlinux.org/packages/rtrlib-git/</a></td></tr>
+</tbody>
+</table>
+</div>
 <div class="section" id="debian-linux">
 <h3>Debian Linux<a class="headerlink" href="#debian-linux" title="Permalink to this headline">¶</a></h3>
 <p>If you are running Debian (Jessie), you can install the RTRlib via the APT
@@ -164,7 +201,7 @@ package manager, as follows:</p>
 <div class="section" id="apple-macos">
 <h3>Apple macOS<a class="headerlink" href="#apple-macos" title="Permalink to this headline">¶</a></h3>
 <p>For macOS we provide a <em>Homebrew tap</em> to easily install the RTRlib.
-First, setup Homebrew <a class="footnote-reference" href="#homebrew" id="id1">[1]</a> and afterwards install the RTRlib package:</p>
+First, setup Homebrew <a class="footnote-reference" href="#homebrew" id="id3">[3]</a> and afterwards install the RTRlib package:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>brew tap rtrlib/pils
 brew install rtrlib
 </pre></div>
@@ -173,7 +210,7 @@ brew install rtrlib
 <table class="docutils footnote" frame="void" id="homebrew" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Homebrew &#8211; <a class="reference external" href="http://brew.sh">http://brew.sh</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>Homebrew &#8211; <a class="reference external" href="http://brew.sh">http://brew.sh</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -216,14 +253,14 @@ make
 sudo make install
 </pre></div>
 </div>
-<p>If the build command fails with any error, please consult the RTRlib README <a class="footnote-reference" href="#readme" id="id2">[2]</a>
-and Wiki <a class="footnote-reference" href="#wiki" id="id3">[3]</a>, you may also join our <cite>mailing list</cite> <a class="footnote-reference" href="#mailinglist" id="id4">[4]</a> or open
-an issue on Github <a class="footnote-reference" href="#issue" id="id5">[5]</a>.</p>
+<p>If the build command fails with any error, please consult the RTRlib README <a class="footnote-reference" href="#readme" id="id4">[4]</a>
+and Wiki <a class="footnote-reference" href="#wiki" id="id5">[5]</a>, you may also join our <cite>mailing list</cite> <a class="footnote-reference" href="#mailinglist" id="id6">[6]</a> or open
+an issue on Github <a class="footnote-reference" href="#issue" id="id7">[7]</a>.</p>
 <p>To enable debug symbols and messages, change the <cite>cmake</cite> command to:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>cmake -D <span class="nv">CMAKE_BUILD_TYPE</span><span class="o">=</span>Debug ../
 </pre></div>
 </div>
-<p>For developers we provide a pre-build Doxygen API reference online <a class="footnote-reference" href="#doxygen" id="id6">[6]</a>
+<p>For developers we provide a pre-build Doxygen API reference online <a class="footnote-reference" href="#doxygen" id="id8">[8]</a>
 for the latest release of the RTRlib. Alternatively, and if <cite>Doxygen</cite> is
 available on your system, you can build the documentation locally as follows:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>make doc
@@ -238,31 +275,31 @@ via <cite>make</cite>:</p>
 <table class="docutils footnote" frame="void" id="readme" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>README &#8211; <a class="reference external" href="https://github.com/rtrlib/rtrlib/blob/master/README">https://github.com/rtrlib/rtrlib/blob/master/README</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td>README &#8211; <a class="reference external" href="https://github.com/rtrlib/rtrlib/blob/master/README">https://github.com/rtrlib/rtrlib/blob/master/README</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="wiki" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>Wiki &#8211; <a class="reference external" href="https://github.com/rtrlib/rtrlib/wiki">https://github.com/rtrlib/rtrlib/wiki</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id5">[5]</a></td><td>Wiki &#8211; <a class="reference external" href="https://github.com/rtrlib/rtrlib/wiki">https://github.com/rtrlib/rtrlib/wiki</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="mailinglist" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td>Mailing list &#8211; <a class="reference external" href="https://groups.google.com/forum/#!forum/rtrlib">https://groups.google.com/forum/#!forum/rtrlib</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id6">[6]</a></td><td>Mailing list &#8211; <a class="reference external" href="https://groups.google.com/forum/#!forum/rtrlib">https://groups.google.com/forum/#!forum/rtrlib</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="issue" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id5">[5]</a></td><td>Issue tracker &#8211; <a class="reference external" href="https://github.com/rtrlib/rtrlib/issues">https://github.com/rtrlib/rtrlib/issues</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id7">[7]</a></td><td>Issue tracker &#8211; <a class="reference external" href="https://github.com/rtrlib/rtrlib/issues">https://github.com/rtrlib/rtrlib/issues</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="doxygen" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id6">[6]</a></td><td>API reference &#8211; <a class="reference external" href="https://rtrlib.realmv6.org/doxygen/latest">https://rtrlib.realmv6.org/doxygen/latest</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id8">[8]</a></td><td>API reference &#8211; <a class="reference external" href="https://rtrlib.realmv6.org/doxygen/latest">https://rtrlib.realmv6.org/doxygen/latest</a></td></tr>
 </tbody>
 </table>
 </div>

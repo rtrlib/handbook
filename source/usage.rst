@@ -21,9 +21,9 @@ Archlinux
 ---------
 
 For Archlinux we maintain two PKGBUILDs in the Archlinux User Repository,
-rtrlib [#rtrlib]_ and rtrlib-git [#rtrlibgit]_
-the former is for the latest release and the later for git master.
-You can either use your favourite aur helper or execute the following commands.
+rtrlib [#rtrlib]_ and rtrlib-git [#rtrlibgit]_.
+The former is for the latest official release and the latter for current git master.
+You can either use your favourite aur helper or execute the following commands:
 
 .. code-block:: bash
 
