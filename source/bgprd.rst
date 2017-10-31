@@ -1,7 +1,7 @@
 .. _bgprd:
 
 *********************************
-BGP Routing Daemons with RPKR/RTR
+BGP Routing Daemons with RPKI/RTR
 *********************************
 
 For several Routing Daemons such as `Quagga` [#quagga]_ and `BIRD` [#bird]_
