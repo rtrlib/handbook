@@ -143,9 +143,9 @@ After seeing this line, the test function was executed and the prefixes were suc
 The Quagga Routing Software Suite
 =================================
 
-A Routing Daemon such as Quagga implements TCP/IP routing via protocols such as
+The Quagga routing daemon implements IP routing via the protocols
 OSPF, RIP and BGP. It acts as a router that fetches and shares routing information
-with other routers. Regarding BGP, Quagga supports version 4.
+with other routers. Quagga is mainly dedicated to BGP4.
 An unofficial release implements support for the RPKI so BGP updates can be
 verified against a ROA. Doing so requires the support of the RTRlib so Quagga
 can initialize a connection to a cache server using the RTR protocol.
