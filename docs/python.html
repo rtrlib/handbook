@@ -13,6 +13,8 @@
 
   
   
+  
+  
 
   
 
@@ -44,6 +46,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -84,7 +87,10 @@
           
             
             
-                <ul class="current">
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage of the RTRlib C Library</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">RTRlib Python Binding</a><ul>
@@ -97,7 +103,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tools.html">Tools based on the RTRlib</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bgprd.html">BGP Routing Daemons with RPKR/RTR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bgprd.html">BGP Routing Daemons with RPKI/RTR</a></li>
 </ul>
 
             
@@ -110,8 +116,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">The RTRlib Handbook</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">The RTRlib Handbook</a>
+        
       </nav>
 
 
@@ -120,23 +128,40 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-    <li>RTRlib Python Binding</li>
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>RTRlib Python Binding</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="_sources/python.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -248,13 +273,13 @@ or <em>not_found</em>; other return values indicate an error during validation.<
 <table class="docutils footnote" frame="void" id="rtrlib-python" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>RTRlib Python binding &#8211; <a class="reference external" href="https://github.com/rtrlib/python-binding">https://github.com/rtrlib/python-binding</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>RTRlib Python binding – <a class="reference external" href="https://github.com/rtrlib/python-binding">https://github.com/rtrlib/python-binding</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="readthedocs" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>ReadTheDocs &#8211;  <a class="reference external" href="https://python-rtrlib.readthedocs.io">https://python-rtrlib.readthedocs.io</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>ReadTheDocs –  <a class="reference external" href="https://python-rtrlib.readthedocs.io">https://python-rtrlib.readthedocs.io</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -262,15 +287,18 @@ or <em>not_found</em>; other return values indicate an error during validation.<
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="tools.html" class="btn btn-neutral float-right" title="Tools based on the RTRlib" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="tools.html" class="btn btn-neutral float-right" title="Tools based on the RTRlib" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="usage.html" class="btn btn-neutral" title="Usage of the RTRlib C Library" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="usage.html" class="btn btn-neutral" title="Usage of the RTRlib C Library" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -304,7 +332,8 @@ or <em>not_found</em>; other return values indicate an error during validation.<
             VERSION:'0.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>

@@ -13,6 +13,8 @@
 
   
   
+  
+  
 
   
 
@@ -34,7 +36,7 @@
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="The RTRlib Handbook 0.3 documentation" href="index.html"/>
-        <link rel="next" title="BGP Routing Daemons with RPKR/RTR" href="bgprd.html"/>
+        <link rel="next" title="BGP Routing Daemons with RPKI/RTR" href="bgprd.html"/>
         <link rel="prev" title="RTRlib Python Binding" href="python.html"/> 
 
   
@@ -44,6 +46,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -84,7 +87,10 @@
           
             
             
-                <ul class="current">
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage of the RTRlib C Library</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python.html">RTRlib Python Binding</a></li>
@@ -98,7 +104,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#other-third-party-tools">Other Third-Party Tools</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="bgprd.html">BGP Routing Daemons with RPKR/RTR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bgprd.html">BGP Routing Daemons with RPKI/RTR</a></li>
 </ul>
 
             
@@ -111,8 +117,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">The RTRlib Handbook</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">The RTRlib Handbook</a>
+        
       </nav>
 
 
@@ -121,23 +129,40 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-    <li>Tools based on the RTRlib</li>
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Tools based on the RTRlib</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="_sources/tools.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -151,8 +176,8 @@ These tools range from low level shell commands to easy-to-use browser plugins.
 For all tools we provide small usage examples; where ever appropriate we will
 use the <cite>RIPE RIS Beacons</cite> <a class="footnote-reference" href="#ripe-beacons" id="id1">[1]</a> (see <a class="reference internal" href="#beacons"><span class="std std-numref">Table 1</span></a>) with well
 known RPKI validation results to show case the tool.</p>
-<table border="1" class="docutils" id="id14">
-<span id="beacons"></span><caption><span class="caption-number">Table 1 </span><span class="caption-text">RIPE RIS beacons for RPKI tests</span><a class="headerlink" href="#id14" title="Permalink to this table">¶</a></caption>
+<span id="beacons"></span><table border="1" class="docutils" id="id14">
+<caption><span class="caption-number">Table 1 </span><span class="caption-text">RIPE RIS beacons for RPKI tests</span><a class="headerlink" href="#id14" title="Permalink to this table">¶</a></caption>
 <colgroup>
 <col width="43%" />
 <col width="30%" />
@@ -221,18 +246,18 @@ The RTRlib client will receive and print such updates until the program is
 terminated, i.e., by <code class="docutils literal"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">c</span></code>.</p>
 <div class="literal-block-wrapper docutils container" id="lst-rtrclient">
 <div class="code-block-caption"><span class="caption-number">Listing 11 </span><span class="caption-text">Output of the rtrclient tool</span><a class="headerlink" href="#lst-rtrclient" title="Permalink to this code">¶</a></div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>rtrclient tcp -k -p rpki-validator.realmv6.org 8282
+<div class="highlight-bash"><div class="highlight"><pre><span></span>rtrclient tcp -k -p rpki-validator.realmv6.org <span class="m">8282</span>
 Prefix                                     Prefix Length         ASN
-+ 89.185.224.0                                <span class="m">19</span> -  <span class="m">19</span>        24971
-+ 180.234.81.0                                <span class="m">24</span> -  <span class="m">24</span>        45951
-+ 37.32.128.0                                 <span class="m">17</span> -  <span class="m">17</span>       197121
-+ 161.234.0.0                                 <span class="m">16</span> -  <span class="m">24</span>         6306
-+ 85.187.243.0                                <span class="m">24</span> -  <span class="m">24</span>        29694
-+ 2a02:5d8::                                  <span class="m">32</span> -  <span class="m">32</span>         8596
-+ 2a03:2260::                                 <span class="m">30</span> -  <span class="m">30</span>       201701
-+ 2001:13c7:6f08::                            <span class="m">48</span> -  <span class="m">48</span>        27814
-+ 2a07:7cc3::                                 <span class="m">32</span> -  <span class="m">32</span>        61232
-+ 2a05:b480:fc00::                            <span class="m">48</span> -  <span class="m">48</span>        39126
++ <span class="m">89</span>.185.224.0                                <span class="m">19</span> -  <span class="m">19</span>        <span class="m">24971</span>
++ <span class="m">180</span>.234.81.0                                <span class="m">24</span> -  <span class="m">24</span>        <span class="m">45951</span>
++ <span class="m">37</span>.32.128.0                                 <span class="m">17</span> -  <span class="m">17</span>       <span class="m">197121</span>
++ <span class="m">161</span>.234.0.0                                 <span class="m">16</span> -  <span class="m">24</span>         <span class="m">6306</span>
++ <span class="m">85</span>.187.243.0                                <span class="m">24</span> -  <span class="m">24</span>        <span class="m">29694</span>
++ 2a02:5d8::                                  <span class="m">32</span> -  <span class="m">32</span>         <span class="m">8596</span>
++ 2a03:2260::                                 <span class="m">30</span> -  <span class="m">30</span>       <span class="m">201701</span>
++ <span class="m">2001</span>:13c7:6f08::                            <span class="m">48</span> -  <span class="m">48</span>        <span class="m">27814</span>
++ 2a07:7cc3::                                 <span class="m">32</span> -  <span class="m">32</span>        <span class="m">61232</span>
++ 2a05:b480:fc00::                            <span class="m">48</span> -  <span class="m">48</span>        <span class="m">39126</span>
 </pre></div>
 </div>
 </div>
@@ -261,19 +286,19 @@ If multiple ROAs exist for a prefix, they are listed successively separated
 by commas (<code class="docutils literal"><span class="pre">,</span></code>).</p>
 <div class="literal-block-wrapper docutils container" id="lst-validator">
 <div class="code-block-caption"><span class="caption-number">Listing 12 </span><span class="caption-text">Output of the cli-validator tool</span><a class="headerlink" href="#lst-validator" title="Permalink to this code">¶</a></div>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>cli-validator rpki-validator.realmv6.org 8282
-93.175.146.0 <span class="m">24</span> 12654
-93.175.146.0 <span class="m">24</span> 12654<span class="p">|</span><span class="m">12654</span> 93.175.146.0 <span class="m">24</span> 24<span class="p">|</span>0
-2001:7fb:fd02:: <span class="m">48</span> 12654
-2001:7fb:fd02:: <span class="m">48</span> 12654<span class="p">|</span><span class="m">12654</span> 2001:7fb:fd02:: <span class="m">48</span> 48<span class="p">|</span>0
-93.175.147.0 <span class="m">24</span> 12654
-93.175.147.0 <span class="m">24</span> 12654<span class="p">|</span><span class="m">196615</span> 93.175.147.0 <span class="m">24</span> 24<span class="p">|</span>2
-2001:7fb:fd03:: <span class="m">48</span> 12654
-2001:7fb:fd03:: <span class="m">48</span> 12654<span class="p">|</span><span class="m">196615</span> 2001:7fb:fd03:: <span class="m">48</span> 48<span class="p">|</span>2
-84.205.83.0 <span class="m">24</span> 12654
-84.205.83.0 <span class="m">24</span> 12654<span class="o">||</span>1
-2001:7fb:ff03:: <span class="m">48</span> 12654
-2001:7fb:ff03:: <span class="m">48</span> 12654<span class="o">||</span>1
+<div class="highlight-bash"><div class="highlight"><pre><span></span>cli-validator rpki-validator.realmv6.org <span class="m">8282</span>
+<span class="m">93</span>.175.146.0 <span class="m">24</span> <span class="m">12654</span>
+<span class="m">93</span>.175.146.0 <span class="m">24</span> <span class="m">12654</span><span class="p">|</span><span class="m">12654</span> <span class="m">93</span>.175.146.0 <span class="m">24</span> <span class="m">24</span><span class="p">|</span><span class="m">0</span>
+<span class="m">2001</span>:7fb:fd02:: <span class="m">48</span> <span class="m">12654</span>
+<span class="m">2001</span>:7fb:fd02:: <span class="m">48</span> <span class="m">12654</span><span class="p">|</span><span class="m">12654</span> <span class="m">2001</span>:7fb:fd02:: <span class="m">48</span> <span class="m">48</span><span class="p">|</span><span class="m">0</span>
+<span class="m">93</span>.175.147.0 <span class="m">24</span> <span class="m">12654</span>
+<span class="m">93</span>.175.147.0 <span class="m">24</span> <span class="m">12654</span><span class="p">|</span><span class="m">196615</span> <span class="m">93</span>.175.147.0 <span class="m">24</span> <span class="m">24</span><span class="p">|</span><span class="m">2</span>
+<span class="m">2001</span>:7fb:fd03:: <span class="m">48</span> <span class="m">12654</span>
+<span class="m">2001</span>:7fb:fd03:: <span class="m">48</span> <span class="m">12654</span><span class="p">|</span><span class="m">196615</span> <span class="m">2001</span>:7fb:fd03:: <span class="m">48</span> <span class="m">48</span><span class="p">|</span><span class="m">2</span>
+<span class="m">84</span>.205.83.0 <span class="m">24</span> <span class="m">12654</span>
+<span class="m">84</span>.205.83.0 <span class="m">24</span> <span class="m">12654</span><span class="o">||</span><span class="m">1</span>
+<span class="m">2001</span>:7fb:ff03:: <span class="m">48</span> <span class="m">12654</span>
+<span class="m">2001</span>:7fb:ff03:: <span class="m">48</span> <span class="m">12654</span><span class="o">||</span><span class="m">1</span>
 </pre></div>
 </div>
 </div>
@@ -441,49 +466,49 @@ complete overview on other tools related to RPKI and BGP security, in general.</
 <table class="docutils footnote" frame="void" id="firefox" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>Firefox add-on &#8211; <a class="reference external" href="https://addons.mozilla.org/en-US/firefox/addon/rpki-validator/">https://addons.mozilla.org/en-US/firefox/addon/rpki-validator/</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>Firefox add-on – <a class="reference external" href="https://addons.mozilla.org/en-US/firefox/addon/rpki-validator/">https://addons.mozilla.org/en-US/firefox/addon/rpki-validator/</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="chrome" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>Chrome Extension &#8211; <a class="reference external" href="https://github.com/rtrlib/chrome-extension">https://github.com/rtrlib/chrome-extension</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>Chrome Extension – <a class="reference external" href="https://github.com/rtrlib/chrome-extension">https://github.com/rtrlib/chrome-extension</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="id11" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td>RPKI READ &#8211; <a class="reference external" href="https://rpki-read.realmv6.org/">https://rpki-read.realmv6.org/</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td>RPKI READ – <a class="reference external" href="https://rpki-read.realmv6.org/">https://rpki-read.realmv6.org/</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="bgpmon" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id5">[5]</a></td><td>BGPmon &#8211; <a class="reference external" href="http://www.bgpmon.io/">http://www.bgpmon.io/</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id5">[5]</a></td><td>BGPmon – <a class="reference external" href="http://www.bgpmon.io/">http://www.bgpmon.io/</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="bgpstream" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id6">[6]</a></td><td>BGPstream &#8211; <a class="reference external" href="https://bgpstream.caida.org/">https://bgpstream.caida.org/</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id6">[6]</a></td><td>BGPstream – <a class="reference external" href="https://bgpstream.caida.org/">https://bgpstream.caida.org/</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="id12" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id7">[7]</a></td><td>RPKI MIRO &#8211; <a class="reference external" href="http://rpki-miro.realmv6.org/">http://rpki-miro.realmv6.org/</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id7">[7]</a></td><td>RPKI MIRO – <a class="reference external" href="http://rpki-miro.realmv6.org/">http://rpki-miro.realmv6.org/</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="id13" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id8">[8]</a></td><td>RPKI RBV &#8211; <a class="reference external" href="https://rpki-rbv.realmv6.org/">https://rpki-rbv.realmv6.org/</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id8">[8]</a></td><td>RPKI RBV – <a class="reference external" href="https://rpki-rbv.realmv6.org/">https://rpki-rbv.realmv6.org/</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="rbv-git" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id9">[9]</a></td><td>RPKI RBV Github &#8211; <a class="reference external" href="https://github.com/rtrlib/rbv">https://github.com/rtrlib/rbv</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id9">[9]</a></td><td>RPKI RBV Github – <a class="reference external" href="https://github.com/rtrlib/rbv">https://github.com/rtrlib/rbv</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="ripe-tools" rules="none">
@@ -497,15 +522,18 @@ complete overview on other tools related to RPKI and BGP security, in general.</
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="bgprd.html" class="btn btn-neutral float-right" title="BGP Routing Daemons with RPKR/RTR" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="bgprd.html" class="btn btn-neutral float-right" title="BGP Routing Daemons with RPKI/RTR" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="python.html" class="btn btn-neutral" title="RTRlib Python Binding" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="python.html" class="btn btn-neutral" title="RTRlib Python Binding" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -539,7 +567,8 @@ complete overview on other tools related to RPKI and BGP security, in general.</
             VERSION:'0.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>

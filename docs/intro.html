@@ -13,6 +13,8 @@
 
   
   
+  
+  
 
   
 
@@ -44,6 +46,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -84,7 +87,10 @@
           
             
             
-                <ul class="current">
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#background">Background</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#further-reading">Further Reading</a></li>
@@ -93,7 +99,7 @@
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage of the RTRlib C Library</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python.html">RTRlib Python Binding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tools.html">Tools based on the RTRlib</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bgprd.html">BGP Routing Daemons with RPKR/RTR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bgprd.html">BGP Routing Daemons with RPKI/RTR</a></li>
 </ul>
 
             
@@ -106,8 +112,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">The RTRlib Handbook</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">The RTRlib Handbook</a>
+        
       </nav>
 
 
@@ -116,23 +124,40 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-    <li>Introduction</li>
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Introduction</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="_sources/intro.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -224,7 +249,7 @@ and <a class="reference internal" href="#draft-ietf-sidr-bgpsec-protocol" id="id
 <table class="docutils citation" frame="void" id="whss-roslr-13" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id6">[6]</a></td><td>Matthias Wählisch, Fabian Holler, Thomas&nbsp;C. Schmidt, and Jochen&nbsp;H. Schiller. RTRlib: An Open-Source Library in C for RPKI-based Prefix Origin Validation. In <em>Proc. of USENIX Security Workshop CSET&#8216;13</em>. Berkeley, CA, USA, 2013. USENIX Assoc. URL: <a class="reference external" href="https://www.usenix.org/conference/cset13/rtrlib-open-source-library-c-rpki-based-prefix-origin-validation">https://www.usenix.org/conference/cset13/rtrlib-open-source-library-c-rpki-based-prefix-origin-validation</a>.</td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id6">[6]</a></td><td>Matthias Wählisch, Fabian Holler, Thomas&nbsp;C. Schmidt, and Jochen&nbsp;H. Schiller. RTRlib: An Open-Source Library in C for RPKI-based Prefix Origin Validation. In <em>Proc. of USENIX Security Workshop CSET‘13</em>. Berkeley, CA, USA, 2013. USENIX Assoc. URL: <a class="reference external" href="https://www.usenix.org/conference/cset13/rtrlib-open-source-library-c-rpki-based-prefix-origin-validation">https://www.usenix.org/conference/cset13/rtrlib-open-source-library-c-rpki-based-prefix-origin-validation</a>.</td></tr>
 </tbody>
 </table>
 <table class="docutils citation" frame="void" id="rfc-7353" rules="none">
@@ -245,15 +270,18 @@ and <a class="reference internal" href="#draft-ietf-sidr-bgpsec-protocol" id="id
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="usage.html" class="btn btn-neutral float-right" title="Usage of the RTRlib C Library" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="usage.html" class="btn btn-neutral float-right" title="Usage of the RTRlib C Library" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="Welcome to The RTRlib Handbook!" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral" title="Welcome to The RTRlib Handbook!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -287,7 +315,8 @@ and <a class="reference internal" href="#draft-ietf-sidr-bgpsec-protocol" id="id
             VERSION:'0.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>

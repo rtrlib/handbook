@@ -13,6 +13,8 @@
 
   
   
+  
+  
 
   
 
@@ -44,6 +46,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -84,7 +87,10 @@
           
             
             
-                <ul class="current">
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Usage of the RTRlib C Library</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
@@ -101,7 +107,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="python.html">RTRlib Python Binding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tools.html">Tools based on the RTRlib</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bgprd.html">BGP Routing Daemons with RPKR/RTR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bgprd.html">BGP Routing Daemons with RPKI/RTR</a></li>
 </ul>
 
             
@@ -114,8 +120,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">The RTRlib Handbook</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">The RTRlib Handbook</a>
+        
       </nav>
 
 
@@ -124,23 +132,40 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-    <li>Usage of the RTRlib C Library</li>
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Usage of the RTRlib C Library</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="_sources/usage.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -210,7 +235,7 @@ brew install rtrlib
 <table class="docutils footnote" frame="void" id="homebrew" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>Homebrew &#8211; <a class="reference external" href="http://brew.sh">http://brew.sh</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>Homebrew – <a class="reference external" href="http://brew.sh">http://brew.sh</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -275,31 +300,31 @@ via <cite>make</cite>:</p>
 <table class="docutils footnote" frame="void" id="readme" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td>README &#8211; <a class="reference external" href="https://github.com/rtrlib/rtrlib/blob/master/README">https://github.com/rtrlib/rtrlib/blob/master/README</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td>README – <a class="reference external" href="https://github.com/rtrlib/rtrlib/blob/master/README">https://github.com/rtrlib/rtrlib/blob/master/README</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="wiki" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id5">[5]</a></td><td>Wiki &#8211; <a class="reference external" href="https://github.com/rtrlib/rtrlib/wiki">https://github.com/rtrlib/rtrlib/wiki</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id5">[5]</a></td><td>Wiki – <a class="reference external" href="https://github.com/rtrlib/rtrlib/wiki">https://github.com/rtrlib/rtrlib/wiki</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="mailinglist" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id6">[6]</a></td><td>Mailing list &#8211; <a class="reference external" href="https://groups.google.com/forum/#!forum/rtrlib">https://groups.google.com/forum/#!forum/rtrlib</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id6">[6]</a></td><td>Mailing list – <a class="reference external" href="https://groups.google.com/forum/#!forum/rtrlib">https://groups.google.com/forum/#!forum/rtrlib</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="issue" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id7">[7]</a></td><td>Issue tracker &#8211; <a class="reference external" href="https://github.com/rtrlib/rtrlib/issues">https://github.com/rtrlib/rtrlib/issues</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id7">[7]</a></td><td>Issue tracker – <a class="reference external" href="https://github.com/rtrlib/rtrlib/issues">https://github.com/rtrlib/rtrlib/issues</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="doxygen" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id8">[8]</a></td><td>API reference &#8211; <a class="reference external" href="https://rtrlib.realmv6.org/doxygen/latest">https://rtrlib.realmv6.org/doxygen/latest</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id8">[8]</a></td><td>API reference – <a class="reference external" href="https://rtrlib.realmv6.org/doxygen/latest">https://rtrlib.realmv6.org/doxygen/latest</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -692,15 +717,18 @@ with <cite>libssh</cite> support.</p>
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="python.html" class="btn btn-neutral float-right" title="RTRlib Python Binding" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="python.html" class="btn btn-neutral float-right" title="RTRlib Python Binding" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="intro.html" class="btn btn-neutral" title="Introduction" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="intro.html" class="btn btn-neutral" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -734,7 +762,8 @@ with <cite>libssh</cite> support.</p>
             VERSION:'0.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>

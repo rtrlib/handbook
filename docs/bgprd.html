@@ -8,9 +8,11 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>BGP Routing Daemons with RPKR/RTR &mdash; The RTRlib Handbook 0.3 documentation</title>
+  <title>BGP Routing Daemons with RPKI/RTR &mdash; The RTRlib Handbook 0.3 documentation</title>
   
 
+  
+  
   
   
 
@@ -43,6 +45,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -83,12 +86,15 @@
           
             
             
-                <ul class="current">
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage of the RTRlib C Library</a></li>
 <li class="toctree-l1"><a class="reference internal" href="python.html">RTRlib Python Binding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tools.html">Tools based on the RTRlib</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">BGP Routing Daemons with RPKR/RTR</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">BGP Routing Daemons with RPKI/RTR</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#the-bird-internet-routing-daemon">The BIRD Internet Routing Daemon</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#the-quagga-routing-software-suite">The Quagga Routing Software Suite</a></li>
 </ul>
@@ -105,8 +111,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">The RTRlib Handbook</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">The RTRlib Handbook</a>
+        
       </nav>
 
 
@@ -115,30 +123,47 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-    <li>BGP Routing Daemons with RPKR/RTR</li>
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>BGP Routing Daemons with RPKI/RTR</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="_sources/bgprd.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="bgp-routing-daemons-with-rpkr-rtr">
-<span id="bgprd"></span><h1>BGP Routing Daemons with RPKR/RTR<a class="headerlink" href="#bgp-routing-daemons-with-rpkr-rtr" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="bgp-routing-daemons-with-rpki-rtr">
+<span id="bgprd"></span><h1>BGP Routing Daemons with RPKI/RTR<a class="headerlink" href="#bgp-routing-daemons-with-rpki-rtr" title="Permalink to this headline">¶</a></h1>
 <p>For several Routing Daemons such as <cite>Quagga</cite> <a class="footnote-reference" href="#quagga" id="id1">[1]</a> and <cite>BIRD</cite> <a class="footnote-reference" href="#bird" id="id2">[2]</a>
 exist RPKI enabled extensions that are based on the RTRlib.</p>
 <div class="section" id="the-bird-internet-routing-daemon">
@@ -161,9 +186,9 @@ At the top of this file write:</p>
 <span class="o">{</span>
     print <span class="s2">&quot;Testing ROA&quot;</span><span class="p">;</span>
     print <span class="s2">&quot;Should be TRUE TRUE TRUE:&quot;</span>,
-    <span class="s2">&quot; &quot;</span>, roa_check<span class="o">(</span>rtr_roa_table, 84.205.83.0/24, 12654<span class="o">)</span> <span class="o">=</span> ROA_UNKNOWN,
-    <span class="s2">&quot; &quot;</span>, roa_check<span class="o">(</span>rtr_roa_table, 93.175.146.0/24, 12654<span class="o">)</span> <span class="o">=</span> ROA_VALID,
-    <span class="s2">&quot; &quot;</span>, roa_check<span class="o">(</span>rtr_roa_table, 93.175.147.0/24, 12654<span class="o">)</span> <span class="o">=</span> ROA_INVALID<span class="p">;</span>
+    <span class="s2">&quot; &quot;</span>, roa_check<span class="o">(</span>rtr_roa_table, <span class="m">84</span>.205.83.0/24, <span class="m">12654</span><span class="o">)</span> <span class="o">=</span> ROA_UNKNOWN,
+    <span class="s2">&quot; &quot;</span>, roa_check<span class="o">(</span>rtr_roa_table, <span class="m">93</span>.175.146.0/24, <span class="m">12654</span><span class="o">)</span> <span class="o">=</span> ROA_VALID,
+    <span class="s2">&quot; &quot;</span>, roa_check<span class="o">(</span>rtr_roa_table, <span class="m">93</span>.175.147.0/24, <span class="m">12654</span><span class="o">)</span> <span class="o">=</span> ROA_INVALID<span class="p">;</span>
 <span class="o">}</span>
 </pre></div>
 </div>
@@ -175,7 +200,7 @@ The BIRD socket must now be opened. In order to do that type the following comma
 </pre></div>
 </div>
 <p>With the option <code class="docutils literal"><span class="pre">-d</span></code> BIRD runs in the foreground.
-That&#8217;s necessary to view the output of the <code class="docutils literal"><span class="pre">test_ripe_beacons</span></code> function.
+That’s necessary to view the output of the <code class="docutils literal"><span class="pre">test_ripe_beacons</span></code> function.
 <code class="docutils literal"><span class="pre">/tmp/bird.ctl</span></code> is the location and name of the socket that will be created.
 It is required by the <code class="docutils literal"><span class="pre">bird-rtrlib-cli</span></code> which we will install next.</p>
 <p>Open another new terminal. To try out whether BIRD receives actual responses,
@@ -217,11 +242,11 @@ Head back to the BRID directory and start the BIRD CLI with the following comman
 <p>All the commands of the CLI can be viewed by typing <code class="docutils literal"><span class="pre">?</span></code>.
 To list all the entries from the ROA table enter:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span></span>bird&gt; show roa
-194.3.206.0/24 max <span class="m">24</span> as 24954
-03.4.119.0/24 max <span class="m">24</span> as 38203
-200.7.212.0/24 max <span class="m">24</span> as 27947
-200.7.212.0/24 max <span class="m">24</span> as 19114
-103.10.79.0/24 max <span class="m">24</span> as 45951
+<span class="m">194</span>.3.206.0/24 max <span class="m">24</span> as <span class="m">24954</span>
+<span class="m">03</span>.4.119.0/24 max <span class="m">24</span> as <span class="m">38203</span>
+<span class="m">200</span>.7.212.0/24 max <span class="m">24</span> as <span class="m">27947</span>
+<span class="m">200</span>.7.212.0/24 max <span class="m">24</span> as <span class="m">19114</span>
+<span class="m">103</span>.10.79.0/24 max <span class="m">24</span> as <span class="m">45951</span>
 ...
 </pre></div>
 </div>
@@ -229,8 +254,8 @@ To list all the entries from the ROA table enter:</p>
 The content of the <code class="docutils literal"><span class="pre">bird-rtrlib-cli</span></code> was successfully written to the ROA table.
 Search, for example, for the prefix <code class="docutils literal"><span class="pre">93.175.146.0/24</span></code> and BIRD will return
 the entry with its corresponding ASN.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>bird&gt; show roa 93.175.146.0/24
-93.175.146.0/24 max <span class="m">24</span> as 12654
+<div class="highlight-bash"><div class="highlight"><pre><span></span>bird&gt; show roa <span class="m">93</span>.175.146.0/24
+<span class="m">93</span>.175.146.0/24 max <span class="m">24</span> as <span class="m">12654</span>
 </pre></div>
 </div>
 <p>To do the actual validation of the prefixes that were defined in <code class="docutils literal"><span class="pre">test_ripe_beacons</span></code> execute:</p>
@@ -248,9 +273,9 @@ bird: Should be TRUE TRUE TRUE: TRUE TRUE TRUE
 </div>
 <div class="section" id="the-quagga-routing-software-suite">
 <h2>The Quagga Routing Software Suite<a class="headerlink" href="#the-quagga-routing-software-suite" title="Permalink to this headline">¶</a></h2>
-<p>A Routing Daemon such as Quagga implements TCP/IP routing via protocols such as
+<p>The Quagga routing daemon implements IP routing via the protocols
 OSPF, RIP and BGP. It acts as a router that fetches and shares routing information
-with other routers. Regarding BGP, Quagga supports version 4.
+with other routers. Quagga is mainly dedicated to BGP4.
 An unofficial release implements support for the RPKI so BGP updates can be
 verified against a ROA. Doing so requires the support of the RTRlib so Quagga
 can initialize a connection to a cache server using the RTR protocol.</p>
@@ -290,19 +315,19 @@ Execute <code class="docutils literal"><span class="pre">bgpd</span></code> and 
 <table class="docutils footnote" frame="void" id="quagga" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Quagga &#8211; <a class="reference external" href="http://www.nongnu.org/quagga/">http://www.nongnu.org/quagga/</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Quagga – <a class="reference external" href="http://www.nongnu.org/quagga/">http://www.nongnu.org/quagga/</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="bird" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>BIRD &#8211; <a class="reference external" href="http://bird.network.cz/">http://bird.network.cz/</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>BIRD – <a class="reference external" href="http://bird.network.cz/">http://bird.network.cz/</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="bird-download" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>BIRD download &#8211; <a class="reference external" href="http://bird.network.cz/?download">http://bird.network.cz/?download</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>BIRD download – <a class="reference external" href="http://bird.network.cz/?download">http://bird.network.cz/?download</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -310,13 +335,16 @@ Execute <code class="docutils literal"><span class="pre">bgpd</span></code> and 
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="tools.html" class="btn btn-neutral" title="Tools based on the RTRlib" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="tools.html" class="btn btn-neutral" title="Tools based on the RTRlib" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -350,7 +378,8 @@ Execute <code class="docutils literal"><span class="pre">bgpd</span></code> and 
             VERSION:'0.3',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>
