@@ -49,16 +49,6 @@ You can either use your favourite aur helper or execute the following commands:
 .. [#rtrlibgit] https://aur.archlinux.org/packages/rtrlib-git/
 
 
-Debian Linux
-------------
-
-If you are running Debian (Jessie), you can install the RTRlib via the APT
-package manager, as follows:
-
-.. code-block:: bash
-
-    sudo apt-get install librtr0
-
 Apple macOS
 -----------
 
