@@ -64,6 +64,24 @@ First, setup Homebrew [#homebrew]_ and afterwards install the RTRlib package:
 
 .. [#homebrew]  Homebrew -- http://brew.sh
 
+
+Gentoo
+------
+
+The kind guys from the FRRouting project maintain a gentoo overlay [#overlay]_ that contains an ebuild for the RTRlib.
+First, setup layman [#layman]_, then install rtrlib with the following commands:
+
+.. code-block:: bash
+
+    # If this doe not work try layman -f
+    layman -a frr-gentoo
+    emerge rtrlib
+
+.. rubric:: Footnotes
+
+.. [#overlay] https://github.com/FRRouting/gentoo-overlay
+.. [#layman] https://wiki.gentoo.org/wiki/Layman
+
 From Source
 -----------
 
