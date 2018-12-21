@@ -24,27 +24,19 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="The RTRlib Handbook 0.4 documentation" href="index.html"/>
-        <link rel="next" title="RTRlib Python Binding" href="python.html"/>
-        <link rel="prev" title="Introduction" href="intro.html"/> 
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="RTRlib Python Binding" href="python.html" />
+    <link rel="prev" title="Introduction" href="intro.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -96,6 +88,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#archlinux">Archlinux</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#apple-macos">Apple macOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gentoo">Gentoo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#debian">Debian</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#from-source">From Source</a></li>
 </ul>
 </li>
@@ -118,7 +112,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">The RTRlib Handbook</a>
@@ -126,9 +120,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -184,7 +179,7 @@ prepare your OS environment by installing a recent release package.</p>
 rtrlib <a class="footnote-reference" href="#rtrlib" id="id1">[1]</a> and rtrlib-git <a class="footnote-reference" href="#rtrlibgit" id="id2">[2]</a>.
 The former is for the latest official release and the latter for current git master.
 You can either use your favourite aur helper or execute the following commands:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo pacman --needed base-devel
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo pacman --needed base-devel
 
 <span class="c1"># for the latest release</span>
 wget https://aur.archlinux.org/cgit/aur.git/snapshot/rtrlib.tar.gz
@@ -218,7 +213,7 @@ makepkg -sci
 <h3>Apple macOS<a class="headerlink" href="#apple-macos" title="Permalink to this headline">¶</a></h3>
 <p>For macOS we provide a <em>Homebrew tap</em> to easily install the RTRlib.
 First, setup Homebrew <a class="footnote-reference" href="#homebrew" id="id3">[3]</a> and afterwards install the RTRlib package:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>brew tap rtrlib/pils
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>brew tap rtrlib/pils
 brew install rtrlib
 </pre></div>
 </div>
@@ -227,6 +222,45 @@ brew install rtrlib
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td>Homebrew – <a class="reference external" href="http://brew.sh">http://brew.sh</a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="gentoo">
+<h3>Gentoo<a class="headerlink" href="#gentoo" title="Permalink to this headline">¶</a></h3>
+<p>The kind guys from the FRRouting project maintain a gentoo overlay <a class="footnote-reference" href="#overlay" id="id4">[4]</a> that contains an ebuild for the RTRlib.
+First, setup layman <a class="footnote-reference" href="#layman" id="id5">[5]</a>, then install rtrlib with the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># If this doe not work try layman -f</span>
+layman -a frr-gentoo
+emerge rtrlib
+</pre></div>
+</div>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="overlay" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td><a class="reference external" href="https://github.com/FRRouting/gentoo-overlay">https://github.com/FRRouting/gentoo-overlay</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="layman" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id5">[5]</a></td><td><a class="reference external" href="https://wiki.gentoo.org/wiki/Layman">https://wiki.gentoo.org/wiki/Layman</a></td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="debian">
+<h3>Debian<a class="headerlink" href="#debian" title="Permalink to this headline">¶</a></h3>
+<p>Debian contains RTRlib since Buster <a class="footnote-reference" href="#debianbuster" id="id6">[6]</a> and can be installed with apt.
+The package is called <code class="docutils literal notranslate"><span class="pre">librtr0</span></code>, developers will require the <code class="docutils literal notranslate"><span class="pre">librtr-dev</span></code> package, too.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>apt install librtr0 librtr-dev
+</pre></div>
+</div>
+<p>Debugging Symbols(<code class="docutils literal notranslate"><span class="pre">librtr0-dbgsym</span></code>) and offline documentation (<code class="docutils literal notranslate"><span class="pre">librtr-doc</span></code>) are also available.</p>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="debianbuster" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[6]</a></td><td>Buster is currently in testing and scheduled for release Mid 2019</td></tr>
 </tbody>
 </table>
 </div>
@@ -245,7 +279,7 @@ The following minimal requirements have to be met, before building the library:<
 </ul>
 <p>If the requirements are fulfilled in the system, the library and tools can be build.
 First, either download or clone the RTRlib source code as follows:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>wget https://github.com/rtrlib/rtrlib/archive/v0.3.6.tar.gz
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget https://github.com/rtrlib/rtrlib/archive/v0.3.6.tar.gz
 tar xzf v0.3.6.tar.gz
 <span class="nb">cd</span> rtrlib-0.3.6
 <span class="c1"># or</span>
@@ -255,96 +289,96 @@ git clone https://github.com/rtrlib/rtrlib/
 </div>
 <p>The contents of the RTRlib source code has the following subdirectory structure:</p>
 <ul class="simple">
-<li><code class="docutils literal"><span class="pre">cmake/</span></code>      CMake modules</li>
-<li><code class="docutils literal"><span class="pre">doxygen/</span></code>    Example code and graphics used in the Doxygen documentation</li>
-<li><code class="docutils literal"><span class="pre">rtrlib/</span></code>     Header and source code files of the RTRlib</li>
-<li><code class="docutils literal"><span class="pre">tests/</span></code>      Function tests and unit tests</li>
-<li><code class="docutils literal"><span class="pre">tools/</span></code>      Contains <code class="docutils literal"><span class="pre">rtrclient</span></code> and <code class="docutils literal"><span class="pre">cli-validator</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">cmake/</span></code>      CMake modules</li>
+<li><code class="docutils literal notranslate"><span class="pre">doxygen/</span></code>    Example code and graphics used in the Doxygen documentation</li>
+<li><code class="docutils literal notranslate"><span class="pre">rtrlib/</span></code>     Header and source code files of the RTRlib</li>
+<li><code class="docutils literal notranslate"><span class="pre">tests/</span></code>      Function tests and unit tests</li>
+<li><code class="docutils literal notranslate"><span class="pre">tools/</span></code>      Contains <code class="docutils literal notranslate"><span class="pre">rtrclient</span></code> and <code class="docutils literal notranslate"><span class="pre">cli-validator</span></code></li>
 </ul>
 <p>Afterwards, the library can be build (we recommend an <cite>out-of-source</cite> build)
 using <cite>cmake</cite>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>mkdir build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> build
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir build <span class="o">&amp;&amp;</span> <span class="nb">cd</span> build
 cmake -DCMAKE_BUILD_TYPE<span class="o">=</span>Release ../
 make
 sudo make install
 </pre></div>
 </div>
-<p>If the build command fails with any error, please consult the RTRlib README <a class="footnote-reference" href="#readme" id="id4">[4]</a>
-and Wiki <a class="footnote-reference" href="#wiki" id="id5">[5]</a>, you may also join our <cite>mailing list</cite> <a class="footnote-reference" href="#mailinglist" id="id6">[6]</a> or open
-an issue on Github <a class="footnote-reference" href="#issue" id="id7">[7]</a>.</p>
+<p>If the build command fails with any error, please consult the RTRlib README <a class="footnote-reference" href="#readme" id="id7">[7]</a>
+and Wiki <a class="footnote-reference" href="#wiki" id="id8">[8]</a>, you may also join our <cite>mailing list</cite> <a class="footnote-reference" href="#mailinglist" id="id9">[9]</a> or open
+an issue on Github <a class="footnote-reference" href="#issue" id="id10">[10]</a>.</p>
 <p>To enable debug symbols and messages, change the <cite>cmake</cite> command to:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>cmake -D <span class="nv">CMAKE_BUILD_TYPE</span><span class="o">=</span>Debug ../
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake -D <span class="nv">CMAKE_BUILD_TYPE</span><span class="o">=</span>Debug ../
 </pre></div>
 </div>
-<p>For developers we provide a pre-build Doxygen API reference online <a class="footnote-reference" href="#doxygen" id="id8">[8]</a>
+<p>For developers we provide a pre-build Doxygen API reference online <a class="footnote-reference" href="#doxygen" id="id11">[11]</a>
 for the latest release of the RTRlib. Alternatively, and if <cite>Doxygen</cite> is
 available on your system, you can build the documentation locally as follows:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>make doc
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make doc
 </pre></div>
 </div>
 <p>Further, you can also run the build-in tests provided by the RTRlib package
 via <cite>make</cite>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>make <span class="nb">test</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make <span class="nb">test</span>
 </pre></div>
 </div>
 <p class="rubric">Footnotes</p>
 <table class="docutils footnote" frame="void" id="readme" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td>README – <a class="reference external" href="https://github.com/rtrlib/rtrlib/blob/master/README">https://github.com/rtrlib/rtrlib/blob/master/README</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id7">[7]</a></td><td>README – <a class="reference external" href="https://github.com/rtrlib/rtrlib/blob/master/README">https://github.com/rtrlib/rtrlib/blob/master/README</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="wiki" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id5">[5]</a></td><td>Wiki – <a class="reference external" href="https://github.com/rtrlib/rtrlib/wiki">https://github.com/rtrlib/rtrlib/wiki</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id8">[8]</a></td><td>Wiki – <a class="reference external" href="https://github.com/rtrlib/rtrlib/wiki">https://github.com/rtrlib/rtrlib/wiki</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="mailinglist" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id6">[6]</a></td><td>Mailing list – <a class="reference external" href="https://groups.google.com/forum/#!forum/rtrlib">https://groups.google.com/forum/#!forum/rtrlib</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id9">[9]</a></td><td>Mailing list – <a class="reference external" href="https://groups.google.com/forum/#!forum/rtrlib">https://groups.google.com/forum/#!forum/rtrlib</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="issue" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id7">[7]</a></td><td>Issue tracker – <a class="reference external" href="https://github.com/rtrlib/rtrlib/issues">https://github.com/rtrlib/rtrlib/issues</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id10">[10]</a></td><td>Issue tracker – <a class="reference external" href="https://github.com/rtrlib/rtrlib/issues">https://github.com/rtrlib/rtrlib/issues</a></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="doxygen" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id8">[8]</a></td><td>API reference – <a class="reference external" href="https://rtrlib.realmv6.org/doxygen/latest">https://rtrlib.realmv6.org/doxygen/latest</a></td></tr>
+<tr><td class="label"><a class="fn-backref" href="#id11">[11]</a></td><td>API reference – <a class="reference external" href="https://rtrlib.realmv6.org/doxygen/latest">https://rtrlib.realmv6.org/doxygen/latest</a></td></tr>
 </tbody>
 </table>
 </div>
 </div>
 <div class="section" id="development-with-rtrlib">
 <span id="devel"></span><h2>Development with RTRlib<a class="headerlink" href="#development-with-rtrlib" title="Permalink to this headline">¶</a></h2>
-<p>The RTRlib shared library is installed to <code class="docutils literal"><span class="pre">/usr/local/lib</span></code> by default,
-and its headers files to <code class="docutils literal"><span class="pre">/usr/local/include</span></code>, respectively.
+<p>The RTRlib shared library is installed to <code class="docutils literal notranslate"><span class="pre">/usr/local/lib</span></code> by default,
+and its headers files to <code class="docutils literal notranslate"><span class="pre">/usr/local/include</span></code>, respectively.
 To write an application in C/C++ using the RTRlib, include the main header file
 into the code:</p>
-<div class="highlight-C"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;rtrlib/rtrlib.h&quot;</span><span class="cp"></span>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&quot;rtrlib/rtrlib.h&quot;</span><span class="cp"></span>
 </pre></div>
 </div>
 <p>The name of the corresponding shared library is <cite>rtr</cite>.
 To link an application against the RTRlib, pass the following parameter to the
 compiler:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>-lrtr
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-lrtr
 </pre></div>
 </div>
-<p>If the linker reports an error such as <code class="docutils literal"><span class="pre">cannot</span> <span class="pre">find</span> <span class="pre">-lrtr</span></code>, probably the
+<p>If the linker reports an error such as <code class="docutils literal notranslate"><span class="pre">cannot</span> <span class="pre">find</span> <span class="pre">-lrtr</span></code>, probably the
 RTRlib was not installed to a standard location.
 In this case, pass its location as an absolute path to the compiler,
 add parameter:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>-L&lt;/path/to/librtr/&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-L&lt;/path/to/librtr/&gt;
 </pre></div>
 </div>
 <p>On Linux you can alternatively try to update the linker cache instead,
 run:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>ldconfig
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ldconfig
 <span class="c1"># verify with</span>
 ldconfig -p <span class="p">|</span> grep rtr
 </pre></div>
@@ -352,13 +386,13 @@ ldconfig -p <span class="p">|</span> grep rtr
 </div>
 <div class="section" id="step-by-step-example">
 <span id="coding"></span><h2>Step-by-Step Example<a class="headerlink" href="#step-by-step-example" title="Permalink to this headline">¶</a></h2>
-<p>The RTRlib package includes two command line tools, the <code class="docutils literal"><span class="pre">rtrclient</span></code> and
-the <code class="docutils literal"><span class="pre">cli-validator</span></code>, see also <a class="reference internal" href="tools.html#tools"><span class="std std-ref">Tools based on the RTRlib</span></a>.
+<p>The RTRlib package includes two command line tools, the <code class="docutils literal notranslate"><span class="pre">rtrclient</span></code> and
+the <code class="docutils literal notranslate"><span class="pre">cli-validator</span></code>, see also <a class="reference internal" href="tools.html#tools"><span class="std std-ref">Tools based on the RTRlib</span></a>.
 The former connects to a single RTR cache server via TCP or SSH and prints
 validated prefix origin data to STDOUT. You can use this tool to get first
 experiences with the RPKI-RTR protocol. With the latter you can validate
 arbitrary prefix origin AS relations against records received from a connected
-RPKI cache. Both tools are located in the <code class="docutils literal"><span class="pre">tools/</span></code> directory. Having a look
+RPKI cache. Both tools are located in the <code class="docutils literal notranslate"><span class="pre">tools/</span></code> directory. Having a look
 into the source code of these tools will help to understand and integrate the
 RTRlib into applications.</p>
 <hr class="docutils" />
@@ -369,7 +403,7 @@ The following provides an overview on important code segments.</p>
 <a class="reference internal" href="#lst-create-socket"><span class="std std-numref">Listing 1</span></a>.</p>
 <div class="literal-block-wrapper docutils container" id="lst-create-socket">
 <div class="code-block-caption"><span class="caption-number">Listing 1 </span><span class="caption-text">Create a RTR transport socket</span><a class="headerlink" href="#lst-create-socket" title="Permalink to this code">¶</a></div>
-<div class="highlight-C"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<div class="highlight-C notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -402,7 +436,7 @@ In this example (see <a class="reference internal" href="#lst-create-group"><spa
 cache instance.</p>
 <div class="literal-block-wrapper docutils container" id="lst-create-group">
 <div class="code-block-caption"><span class="caption-number">Listing 2 </span><span class="caption-text">Create a group of RTR caches</span><a class="headerlink" href="#lst-create-group" title="Permalink to this code">¶</a></div>
-<div class="highlight-C"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<div class="highlight-C notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
@@ -423,7 +457,7 @@ and a 600s retry interval will be defined.
 Afterwards, start the RTR Connection Manager.</p>
 <div class="literal-block-wrapper docutils container" id="lst-init-rtrmgr">
 <div class="code-block-caption"><span class="caption-number">Listing 3 </span><span class="caption-text">Initialize the RTR connection manager.</span><a class="headerlink" href="#lst-init-rtrmgr" title="Permalink to this code">¶</a></div>
-<div class="highlight-C"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<div class="highlight-C notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
@@ -441,7 +475,7 @@ is called which prints the prefix, its minimum, and maximum length, as well as
 the corresponding origin AS.</p>
 <div class="literal-block-wrapper docutils container" id="lst-callback">
 <div class="code-block-caption"><span class="caption-number">Listing 4 </span><span class="caption-text">RTR connection manager update callback</span><a class="headerlink" href="#lst-callback" title="Permalink to this code">¶</a></div>
-<div class="highlight-C"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<div class="highlight-C notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
@@ -466,7 +500,7 @@ For instance, validate the relation of prefix <cite>10.10.0.0/24</cite> and its 
 AS 12345 as shown in <a class="reference internal" href="#lst-validate"><span class="std std-numref">Listing 5</span></a>.</p>
 <div class="literal-block-wrapper docutils container" id="lst-validate">
 <div class="code-block-caption"><span class="caption-number">Listing 5 </span><span class="caption-text">Validate a prefix to origin AS relation</span><a class="headerlink" href="#lst-validate" title="Permalink to this code">¶</a></div>
-<div class="highlight-C"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<div class="highlight-C notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
@@ -483,7 +517,7 @@ Connection Manager, and secondly release any memory allocated
 (see <a class="reference internal" href="#lst-stop-rtrmgr"><span class="std std-numref">Listing 6</span></a>).</p>
 <div class="literal-block-wrapper docutils container" id="lst-stop-rtrmgr">
 <div class="code-block-caption"><span class="caption-number">Listing 6 </span><span class="caption-text">RTR connection manager cleanup</span><a class="headerlink" href="#lst-stop-rtrmgr" title="Permalink to this code">¶</a></div>
-<div class="highlight-C"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<div class="highlight-C notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">rtr_mgr_stop</span><span class="p">(</span><span class="n">conf</span><span class="p">);</span>
 <span class="n">rtr_mgr_free</span><span class="p">(</span><span class="n">conf</span><span class="p">);</span>
@@ -501,7 +535,7 @@ SSH transport sockets. For the latter, the RTRlib has to be build and installed
 with <cite>libssh</cite> support.</p>
 <div class="literal-block-wrapper docutils container" id="lst-full-example">
 <div class="code-block-caption"><span class="caption-number">Listing 7 </span><span class="caption-text">A complete code example for the RTRlib</span><a class="headerlink" href="#lst-full-example" title="Permalink to this code">¶</a></div>
-<div class="highlight-C"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+<div class="highlight-C notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
   2
   3
   4
@@ -708,9 +742,7 @@ with <cite>libssh</cite> support.</p>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -728,11 +760,11 @@ with <cite>libssh</cite> support.</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016-2017, Sebastian Meiling, Marcel Röthke, and Colin Sames, for HAW Hamburg.
+        &copy; Copyright 2016-2017, Sebastian Meiling, Marcel Röthke, and Colin Sames, for HAW Hamburg
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -747,35 +779,23 @@ with <cite>libssh</cite> support.</p>
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'0.4',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
 
   
 
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>
