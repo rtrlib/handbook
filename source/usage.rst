@@ -82,6 +82,24 @@ First, setup layman [#layman]_, then install rtrlib with the following commands:
 .. [#overlay] https://github.com/FRRouting/gentoo-overlay
 .. [#layman] https://wiki.gentoo.org/wiki/Layman
 
+
+Debian
+------
+
+Debian contains RTRlib since Buster [#DebianBuster]_ and can be installed with apt.
+The package is called ``librtr0``, developers will require the ``librtr-dev`` package, too.
+
+.. code-block:: bash
+
+    apt install librtr0 librtr-dev
+
+Debugging Symbols(``librtr0-dbgsym``) and offline documentation (``librtr-doc``) are also available.
+
+.. rubric:: Footnotes
+
+.. [#DebianBuster] Buster is currently in testing and scheduled for release Mid 2019
+
+
 From Source
 -----------
 
