@@ -24,26 +24,18 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="The RTRlib Handbook 0.4 documentation" href="index.html"/>
-        <link rel="prev" title="Tools based on the RTRlib" href="tools.html"/> 
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Tools based on the RTRlib" href="tools.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -110,7 +102,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">The RTRlib Handbook</a>
@@ -118,9 +110,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -170,17 +163,17 @@ exist RPKI enabled extensions that are based on the RTRlib.</p>
 <h2>The BIRD Internet Routing Daemon<a class="headerlink" href="#the-bird-internet-routing-daemon" title="Permalink to this headline">¶</a></h2>
 <p>To set up BIRD, first download <a class="footnote-reference" href="#bird-download" id="id3">[3]</a> the latest release, unzip and
 change into the source directory. To build BIRD, run:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>./configure
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./configure
 make
 make install
 </pre></div>
 </div>
-<p>You may need to execute these and any following commands in this handbook as <code class="code bash docutils literal"><span class="pre">sudo</span></code>.
+<p>You may need to execute these and any following commands in this handbook as <code class="code bash docutils literal notranslate"><span class="pre">sudo</span></code>.
 More information on the building process can be found in the README of BIRD.</p>
 <p>Before any validations with BIRD can be done, it must be configured accordingly.
-First, a ROA table and the validation function must be added to <code class="code bash docutils literal"><span class="pre">/usr/local/etc/bird.conf</span></code>.
+First, a ROA table and the validation function must be added to <code class="code bash docutils literal notranslate"><span class="pre">/usr/local/etc/bird.conf</span></code>.
 At the top of this file write:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>roa table rtr_roa_table<span class="p">;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roa table rtr_roa_table<span class="p">;</span>
 
 <span class="k">function</span> test_ripe_beacons<span class="o">()</span>
 <span class="o">{</span>
@@ -196,52 +189,52 @@ At the top of this file write:</p>
 The function itself checks for three entries in the ROA table
 and prints the corresponding validity status.
 The BIRD socket must now be opened. In order to do that type the following command:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>./bird -c /usr/local/etc/bird.conf -s /tmp/bird.ctl -d
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./bird -c /usr/local/etc/bird.conf -s /tmp/bird.ctl -d
 </pre></div>
 </div>
-<p>With the option <code class="docutils literal"><span class="pre">-d</span></code> BIRD runs in the foreground.
-That’s necessary to view the output of the <code class="docutils literal"><span class="pre">test_ripe_beacons</span></code> function.
-<code class="docutils literal"><span class="pre">/tmp/bird.ctl</span></code> is the location and name of the socket that will be created.
-It is required by the <code class="docutils literal"><span class="pre">bird-rtrlib-cli</span></code> which we will install next.</p>
+<p>With the option <code class="docutils literal notranslate"><span class="pre">-d</span></code> BIRD runs in the foreground.
+That’s necessary to view the output of the <code class="docutils literal notranslate"><span class="pre">test_ripe_beacons</span></code> function.
+<code class="docutils literal notranslate"><span class="pre">/tmp/bird.ctl</span></code> is the location and name of the socket that will be created.
+It is required by the <code class="docutils literal notranslate"><span class="pre">bird-rtrlib-cli</span></code> which we will install next.</p>
 <p>Open another new terminal. To try out whether BIRD receives actual responses,
 there is an IPC that runs on the BIRD socket.
 Clone the <cite>BIRD-RTRlib-CLI</cite> repository on GitHub and build it:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/rtrlib/bird-rtrlib-cli
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/rtrlib/bird-rtrlib-cli
 <span class="nb">cd</span> bird-rtrlib-cli
 cmake .
 make
 </pre></div>
 </div>
 <p>In case that the RTRlib was not installed into the default directory, run</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>cmake -DRTRLIB_INCLUDE<span class="o">=</span>&lt;rtrlib&gt; -DRTRLIB_LIBRARY<span class="o">=</span>&lt;/path/to/rtrlib.<span class="o">[</span>a<span class="p">|</span>so<span class="p">|</span>dylib<span class="o">]</span>&gt; .
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake -DRTRLIB_INCLUDE<span class="o">=</span>&lt;rtrlib&gt; -DRTRLIB_LIBRARY<span class="o">=</span>&lt;/path/to/rtrlib.<span class="o">[</span>a<span class="p">|</span>so<span class="p">|</span>dylib<span class="o">]</span>&gt; .
 make
 </pre></div>
 </div>
 <p>If everything was build correctly,
-there now should be an executable called <code class="code bash docutils literal"><span class="pre">bird-rtrlib-cli</span></code>.
-To see all the options of this program run <code class="code bash docutils literal"><span class="pre">./bird-rtrlib-cli</span> <span class="pre">--help</span></code>.
+there now should be an executable called <code class="code bash docutils literal notranslate"><span class="pre">bird-rtrlib-cli</span></code>.
+To see all the options of this program run <code class="code bash docutils literal notranslate"><span class="pre">./bird-rtrlib-cli</span> <span class="pre">--help</span></code>.
 Now connect to the BIRD socket and receive the RPKI data with the following command:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>./bird-rtrlib-cli -b /tmp/bird.ctl -r rpki-validator.realmv6.org:8282 -t rtr_roa_table
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./bird-rtrlib-cli -b /tmp/bird.ctl -r rpki-validator.realmv6.org:8282 -t rtr_roa_table
 </pre></div>
 </div>
 <p>The options do the following:</p>
 <div class="line-block">
-<div class="line"><code class="code bash docutils literal"><span class="pre">-b</span></code>: the location of the BIRD socket.</div>
+<div class="line"><code class="code bash docutils literal notranslate"><span class="pre">-b</span></code>: the location of the BIRD socket.</div>
 <div class="line"><br /></div>
-<div class="line"><code class="code bash docutils literal"><span class="pre">-r</span></code>: the address and port of the RPKI cache server. Change it if you want to use a different one.</div>
+<div class="line"><code class="code bash docutils literal notranslate"><span class="pre">-r</span></code>: the address and port of the RPKI cache server. Change it if you want to use a different one.</div>
 <div class="line"><br /></div>
-<div class="line"><code class="code bash docutils literal"><span class="pre">-t</span></code>: the table in which the gathered rpki-data is filled into. We created this one earlier in the bird.conf</div>
+<div class="line"><code class="code bash docutils literal notranslate"><span class="pre">-t</span></code>: the table in which the gathered rpki-data is filled into. We created this one earlier in the bird.conf</div>
 <div class="line"><br /></div>
 </div>
 <p>After executing this line, you will see that, after establishing a connection
 to the cache server, the ROA entries are piped into the BIRD ROA table.
 Head back to the BRID directory and start the BIRD CLI with the following command:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>sudo ./birdc -s /tmp/bird.ctl
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo ./birdc -s /tmp/bird.ctl
 </pre></div>
 </div>
-<p>All the commands of the CLI can be viewed by typing <code class="docutils literal"><span class="pre">?</span></code>.
+<p>All the commands of the CLI can be viewed by typing <code class="docutils literal notranslate"><span class="pre">?</span></code>.
 To list all the entries from the ROA table enter:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>bird&gt; show roa
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bird&gt; show roa
 <span class="m">194</span>.3.206.0/24 max <span class="m">24</span> as <span class="m">24954</span>
 <span class="m">03</span>.4.119.0/24 max <span class="m">24</span> as <span class="m">38203</span>
 <span class="m">200</span>.7.212.0/24 max <span class="m">24</span> as <span class="m">27947</span>
@@ -250,22 +243,22 @@ To list all the entries from the ROA table enter:</p>
 ...
 </pre></div>
 </div>
-<p>Type <code class="docutils literal"><span class="pre">q</span></code> to exit. There will be a lot of similar output.
-The content of the <code class="docutils literal"><span class="pre">bird-rtrlib-cli</span></code> was successfully written to the ROA table.
-Search, for example, for the prefix <code class="docutils literal"><span class="pre">93.175.146.0/24</span></code> and BIRD will return
+<p>Type <code class="docutils literal notranslate"><span class="pre">q</span></code> to exit. There will be a lot of similar output.
+The content of the <code class="docutils literal notranslate"><span class="pre">bird-rtrlib-cli</span></code> was successfully written to the ROA table.
+Search, for example, for the prefix <code class="docutils literal notranslate"><span class="pre">93.175.146.0/24</span></code> and BIRD will return
 the entry with its corresponding ASN.</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>bird&gt; show roa <span class="m">93</span>.175.146.0/24
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bird&gt; show roa <span class="m">93</span>.175.146.0/24
 <span class="m">93</span>.175.146.0/24 max <span class="m">24</span> as <span class="m">12654</span>
 </pre></div>
 </div>
-<p>To do the actual validation of the prefixes that were defined in <code class="docutils literal"><span class="pre">test_ripe_beacons</span></code> execute:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>bird&gt; <span class="nb">eval</span> test_ripe_beacons<span class="o">()</span>
+<p>To do the actual validation of the prefixes that were defined in <code class="docutils literal notranslate"><span class="pre">test_ripe_beacons</span></code> execute:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bird&gt; <span class="nb">eval</span> test_ripe_beacons<span class="o">()</span>
 <span class="o">(</span>void<span class="o">)</span>
 </pre></div>
 </div>
 <p>To see the output of the function, switch to the terminal that is running the
 BIRD daemon. The output will look like:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>bird: Testing ROA
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bird: Testing ROA
 bird: Should be TRUE TRUE TRUE: TRUE TRUE TRUE
 </pre></div>
 </div>
@@ -280,7 +273,7 @@ An unofficial release implements support for the RPKI so BGP updates can be
 verified against a ROA. Doing so requires the support of the RTRlib so Quagga
 can initialize a connection to a cache server using the RTR protocol.</p>
 <p>To install Quagga, clone the Git repository and switch the branch like this:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>git clone https://github.com/rtrlib/quagga-rtrlib.git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/rtrlib/quagga-rtrlib.git
 <span class="nb">cd</span> quagga-rtrlib
 git checkout feature/rtrlib
 </pre></div>
@@ -295,22 +288,22 @@ building it, make sure your system meets the perquisites:</p>
 <li>GNU AWK:      3.1.5</li>
 </ul>
 <p>If all of these packages are installed, Quagga can be build. Some steps might
-require <code class="docutils literal"><span class="pre">sudo</span></code> privileges:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>./bootstrap
+require <code class="docutils literal notranslate"><span class="pre">sudo</span></code> privileges:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./bootstrap
 ./configure --enable-rpki
 make
 make install
 </pre></div>
 </div>
-<p>The <code class="docutils literal"><span class="pre">--enable-rpki</span></code> option tells the configure script to include the RTRlib.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">--enable-rpki</span></code> option tells the configure script to include the RTRlib.</p>
 <p>Now that Quagga is built, start the BGP and Zebra daemons. Zebra acts as a
 process between the package stream of the kernel and daemons like BGP or OSPF.
-Execute <code class="docutils literal"><span class="pre">bgpd</span></code> and <code class="docutils literal"><span class="pre">zebra</span></code>:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span></span>./bgpd/bgpd
+Execute <code class="docutils literal notranslate"><span class="pre">bgpd</span></code> and <code class="docutils literal notranslate"><span class="pre">zebra</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./bgpd/bgpd
 ./zebra/zebra
 </pre></div>
 </div>
-<p>To interact with BGPD, connect to it via <code class="docutils literal"><span class="pre">vtysh</span></code>, a command line interface that gains access to such daemons.</p>
+<p>To interact with BGPD, connect to it via <code class="docutils literal notranslate"><span class="pre">vtysh</span></code>, a command line interface that gains access to such daemons.</p>
 <p class="rubric">Footnotes</p>
 <table class="docutils footnote" frame="void" id="quagga" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
@@ -335,9 +328,7 @@ Execute <code class="docutils literal"><span class="pre">bgpd</span></code> and 
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -353,11 +344,11 @@ Execute <code class="docutils literal"><span class="pre">bgpd</span></code> and 
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2016-2017, Sebastian Meiling, Marcel Röthke, and Colin Sames, for HAW Hamburg.
+        &copy; Copyright 2016-2017, Sebastian Meiling, Marcel Röthke, and Colin Sames, for HAW Hamburg
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -372,35 +363,23 @@ Execute <code class="docutils literal"><span class="pre">bgpd</span></code> and 
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'0.4',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
 
   
 
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>
