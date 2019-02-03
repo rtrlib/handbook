@@ -15,13 +15,17 @@ repository on Github [#rtrlib_git]_.
 .. toctree::
    :maxdepth: 2
 
-   intro
-   usage
+   about
+   background
+   installation
+   development
    python
    tools
+   thirdpartytools
    bgprd
 
 .. rubric:: Footnotes
 
-.. [#rtrlib_web]  Website -- https://rtrlib.realmv6.org
-.. [#rtrlib_git]  Github -- https://github.com/rtrlib/rtrlib
+.. [#rtrlib_web]  Project website -- https://rtrlib.realmv6.org
+.. [#rtrlib_git]  Source code on Github -- https://github.com/rtrlib/rtrlib
+

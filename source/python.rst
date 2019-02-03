@@ -15,8 +15,8 @@ The RTRlib Python binding runs on Linux and Apple macOS like the C library. It
 supports both Python 2 and Python 3, in any recent release, detailed requirements
 and install instructions are described here.
 
-Requirements
-------------
+Getting Started
+---------------
 
 The Python binding for the RTRlib has several dependencies. For compilation
 it requires the following external packages to be installed:
@@ -36,8 +36,8 @@ If you are using *virtualenv*, these are installed automatically during the
 install step, otherwise you have to use your platforms package management tool
 or just run ``pip install -r requirements.txt``.
 
-Build and Install
------------------
+Building and Installation
+-------------------------
 
 The setup process of the RTRlib Python binding is straight forward and complies
 to well-known Python standards.
@@ -60,7 +60,8 @@ Step-by-Step Example
 
 The following code listings show how to implement a simple RPKI validator based
 on the RTRlib Python binding. The functionality basically reflects the
-`cli-validator` tool shipped with the RTRlib C library (see :ref:`validator`).
+``rpki-rov`` tool shipped with the RTRlib C library (see
+:ref:`rtrlib_tools_rpki-rov`).
 
 ----
 
